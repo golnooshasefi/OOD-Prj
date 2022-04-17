@@ -1,5 +1,7 @@
 import React from "react";
+import Button from "../shared/Button";
 import classes from "./MainNavigation.module.scss";
+import classNames from "classnames";
 
 function MainNavigation() {
   return (
@@ -14,12 +16,21 @@ function MainNavigation() {
               placeholder="جستجو کنید"
             />
             <button className={classes.search__button}>
-              <i className="fa-solid fa-magnifying-glass" />
+              <i
+                className={classNames(
+                  "fa-solid fa-magnifying-glass",
+                  classes.search__icon
+                )}
+              />
             </button>
             <button className={classes.search__button}></button>
           </form>
-          <button>Login button</button>
-          <button>Sig up button</button>
+          <Button
+            className={classNames(classes.Button, classes.Button__header)}
+          >
+            Login
+          </Button>
+          <Button>Sig up</Button>
         </div>
 
         <nav className={classes.Navigation}>

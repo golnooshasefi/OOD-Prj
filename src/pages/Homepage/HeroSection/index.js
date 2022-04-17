@@ -8,7 +8,7 @@ function HeroSection() {
       <div className={classes.HeroSection__content}>
         <div className={classes.HeroSection__info}>
           <h1 className={classes["HeroSection__info--header"]}>
-            انتخاب سبک خود را به ما بسپارید
+            انتخاب سبک لباس خود را به ما بسپارید
           </h1>
           <button className={classes["HeroSection__info--button"]}>
             امتحان کنید
@@ -31,14 +31,14 @@ function HeroSection() {
               classes["HeroSection__gallery__photo--p2"]
             )}
           />
-          {/* <img
-            src="https://images.unsplash.com/photo-1600247354058-a55b0f6fb720?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+          <img
+            src="../images/6.jpg"
             alt="picture 3"
             className={classNames(
-              classes.gallery__photo,
-              classes["gallery__photo--p3"]
+              classes.HeroSection__gallery__photo,
+              classes["HeroSection__gallery__photo--p3"]
             )}
-          /> */}
+          />
         </div>
       </div>
     </section>

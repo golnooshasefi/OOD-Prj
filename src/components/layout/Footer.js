@@ -35,8 +35,18 @@ function Footer() {
                 classes["Footer__icon--i1"]
               )}
             />
-            <i className="fa-brands fa-linkedin" />
-            <i className="fa-brands fa-twitter" />
+            <i
+              className={classNames(
+                "fa-brands fa-twitter",
+                classes["Footer__icon--i2"]
+              )}
+            />
+            <i
+              className={classNames(
+                "fa-brands fa-linkedin",
+                classes["Footer__icon--i3"]
+              )}
+            />
           </div>
         </div>
       </div>

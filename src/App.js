@@ -1,7 +1,7 @@
 import React from "react";
 import MainNavigation from "./components/layout/MainNavigation";
 import Footer from "./components/layout/Footer";
-import HeroSection from "./components/layout/HeroSection";
+import HeroSection from "./pages/Homepage/HeroSection";
 function App() {
   return (
     <>

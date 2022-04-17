@@ -1,5 +1,5 @@
 .HeroSection {
-  height: 80vh;
+  height: 85vh;
   // clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
   background-color: white;
   &__content {
@@ -15,7 +15,9 @@
     align-items: center;
     margin-left: 20rem;
     &--header {
-      font-size: 2rem;
+      font-size: 3rem;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
     }
     &--button {
     }
@@ -24,6 +26,7 @@
   &__gallery {
     position: relative;
     flex: 1;
+    margin-bottom: 5rem;
     &__photo {
       width: 45%;
       box-shadow: 0 1.5rem 4rem rgba(black, 0.4);
@@ -34,7 +37,7 @@
       outline-offset: 2rem;
       &--p1 {
         top: -2rem;
-        left: 0;
+        left: 4rem;
       }
 
       &--p2 {
@@ -45,6 +48,12 @@
       &--p3 {
         top: 10rem;
         left: 20%;
+      }
+      &:hover {
+        outline: 1rem solid #6667ab;
+        transform: scale(1.05) translateY(-0.5rem);
+        box-shadow: 0 2.5rem 4rem rgba(#000, 0.5);
+        z-index: 20;
       }
     }
   }
