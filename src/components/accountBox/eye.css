@@ -1,0 +1,12 @@
+.pass-wrapper {
+  position: relative;
+}
+i {
+  position: absolute;
+  top: 25%;
+  left: 5%;
+}
+i:hover {
+  color: #5e4d9b;
+  cursor: pointer;
+}
