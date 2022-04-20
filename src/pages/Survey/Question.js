@@ -1,3 +1,5 @@
+import classes from "./Question.module.scss";
+
 function Question({ title, id, options, isOptionsImage, onSelect }) {
   const onSelectOptionHandler = (event) => {
     const option = event.target.value;
@@ -10,26 +12,25 @@ function Question({ title, id, options, isOptionsImage, onSelect }) {
       <div onChange={onSelectOptionHandler}>
         {Object.keys(options).map((optionKey) => (
           <div key={id + optionKey}>
-            <label
-              for={id + optionKey}
-              className={classnames({ classKhas: isOptionsImage })}
-            >
-              '
+            <input
+              name={id}
+              id={id + optionKey}
+              type="radio"
+              value={optionKey}
+              className={classes.Question__radiobutton}
+            />
+            <label for={id + optionKey} className={classes.Question__label}>
               {isOptionsImage ? (
                 <img src={options[optionKey]} />
               ) : (
                 options[optionKey]
               )}
             </label>
-            <input
-              name={id}
-              id={id + optionKey}
-              type="radio"
-              value={optionKey}
-            />
           </div>
         ))}
       </div>
     </>
   );
 }
+
+export default Question;

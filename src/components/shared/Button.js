@@ -9,7 +9,7 @@ function Button() {
       className={classNames(
         classes.Button
         // {
-        //   [classes[`Button--${color}`]]: color,
+        // [classes[`Button--${color}`]]: color,
         //   [classes[`Button--${size}`]]: size,
         // },
         // { [classes[`Button--white`]]: color === "white" },

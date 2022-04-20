@@ -1,0 +1,26 @@
+.Survey {
+  //   &__absolute {
+  //     position: relative;
+  //   }
+  &__container {
+    width: 55rem;
+    // height: ;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &__header {
+    box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem 3rem;
+  }
+  &__Question {
+    padding: 2.5rem 3rem 2rem 3rem;
+  }
+  &__footer {
+    height: 60px;
+    padding: 1.5rem 3rem;
+    border-top: 1px solid lightgray;
+  }
+}

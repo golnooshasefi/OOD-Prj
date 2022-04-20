@@ -12,8 +12,10 @@
 
 .content {
   max-width: 1360px;
+
   .container {
     display: flex;
+    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2) 0 6px 20px rgba(0, 0, 0, 0.19);
     .logo {
       font-size: 3rem;
       color: #6667ab;
