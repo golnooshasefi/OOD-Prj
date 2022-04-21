@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartReqular } from "@fortawesome/free-regular-svg-icons";
+import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
 const heart = <FontAwesomeIcon icon={faHeart} />;
 const heartRegular = <FontAwesomeIcon icon={faHeartReqular} />;
 
@@ -109,7 +110,7 @@ function Item(props) {
       <Description>
         <Name>{props.name}</Name>
         <PriceContainer>
-          <Price>{props.price}</Price>
+          <Price>{digitsEnToFa(addCommas(props.price))}</Price>
           <Toman>تومان</Toman>
         </PriceContainer>
       </Description>
