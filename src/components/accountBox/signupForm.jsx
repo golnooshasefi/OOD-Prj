@@ -45,7 +45,7 @@ export function SignupForm(props) {
       </FormContainer>
       <Marginer direction="vertical" margin={20} />
       <SubmitButton type="submit">ثبت‌نام</SubmitButton>
-      <Marginer direction="vertical" margin="1em" />
+      <Marginer direction="vertical" margin="1.5rem" />
       <MutedLink href="#">
         عضو سایت هستید؟
         <BoldLink href="#" onClick={switchToSignin}>

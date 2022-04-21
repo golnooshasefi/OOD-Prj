@@ -28,11 +28,11 @@ const TopContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 0 1.8em;
-  padding-bottom: 5.5em;
+  padding-bottom: 8.5em;
 
   @media (min-width: 400px) {
     margin-top: -5px;
-    padding-bottom: 7em;
+    padding-bottom: 10em;
   }
 `;
 
@@ -72,8 +72,8 @@ const HeaderContainer = styled.div`
 const HeaderText = styled.h2`
   direction: rtl;
   font-size: 36px;
-  font-weight: 500;
-  line-height: 1.24;
+  /* font-weight: 500; */
+  /* line-height: 1.24; */
   color: #fff;
   z-index: 10;
   margin: 0;
@@ -109,8 +109,8 @@ const InnerContainer = styled.div`
 
 const AppContainer = styled.div`
   /* font-family: Vazir; */
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

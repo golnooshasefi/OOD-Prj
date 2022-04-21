@@ -15,7 +15,8 @@ const ProductContainer = styled.div`
   justify-content: space-between; */
   display: grid;
   /* gap: 1rem; */
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
+  /* grid-template-row: repeat(auto-fill, minmax(40rem, 1fr)); */
   /* background-color: black; */
 `;
 const SearchContainer = styled.div`

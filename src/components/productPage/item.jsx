@@ -54,9 +54,10 @@ const Description = styled.div`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
+  gap: 1.5rem;
 `;
 const Name = styled.h2`
-  font-family: Vazir;
+  /* font-family: Vazir; */
   font-size: 15px;
   direction: rtl;
   overflow: hidden;
@@ -70,6 +71,8 @@ const Name = styled.h2`
 const PriceContainer = styled.div`
   display: flex;
   align-items: center;
+  /* justify-content: space-between; */
+  justify-content: flex-end;
 `;
 const Price = styled.span`
   /* align-items: center; */
@@ -79,7 +82,8 @@ const Price = styled.span`
   padding-left: 5px;
 `;
 const Toman = styled.span`
-  font-family: Vazir;
+  font-size: 1.5rem;
+  /* font-family: Vazir; */
 `;
 
 const Icon = styled.i`
@@ -105,8 +109,8 @@ function Item(props) {
       <Description>
         <Name>{props.name}</Name>
         <PriceContainer>
-          <Toman>تومان</Toman>
           <Price>{props.price}</Price>
+          <Toman>تومان</Toman>
         </PriceContainer>
       </Description>
       {/* </Link> */}
