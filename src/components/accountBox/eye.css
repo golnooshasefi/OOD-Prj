@@ -3,8 +3,9 @@
 }
 i {
   position: absolute;
-  top: 25%;
+  top: 30%;
   left: 5%;
+  font-size: 1.6rem;
 }
 i:hover {
   color: #5e4d9b;

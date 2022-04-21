@@ -26,6 +26,7 @@ export function LoginForm(props) {
 
   return (
     <BoxContainer>
+      <Marginer direction="vertical" margin="2rem" />
       <FormContainer>
         <Input type="email" placeholder="ایمیل یا شماره موبایل" autoFocus />
         <Marginer direction="vertical" margin={10} />
@@ -43,7 +44,7 @@ export function LoginForm(props) {
       <MutedLink href="#">رمز عبور خود را فراموش کرده‌اید؟</MutedLink>
       <Marginer direction="vertical" margin="1.2em" />
       <SubmitButton type="submit">ورود</SubmitButton>
-      <Marginer direction="vertical" margin="1em" />
+      <Marginer direction="vertical" margin="1.5rem" />
       <MutedLink href="#">
         عضو نیستید؟{" "}
         <BoldLink href="#" onClick={switchToSignup}>
