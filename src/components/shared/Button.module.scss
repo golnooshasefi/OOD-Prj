@@ -1,7 +1,22 @@
 .Button {
   //default attributes
-  // padding: 4rem;
-  &__header {
-    color: aqua;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &--purple {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.5rem 2.3rem;
+    background-color: #6668ab;
+    color: #fff;
+  }
+  &--white {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.5rem 2rem;
+    background-color: #fff;
+    color: #6668ab;
+    border: 1px solid #6668ab;
   }
 }

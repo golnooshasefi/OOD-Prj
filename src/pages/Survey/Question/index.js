@@ -1,9 +1,19 @@
 import classes from "./Question.module.scss";
 
-function Question({ title, id, options, isOptionsImage, onSelect }) {
+function Question({
+  title,
+  id,
+  options,
+  isOptionsImage,
+  onSelect,
+  setCanContinue,
+}) {
   const onSelectOptionHandler = (event) => {
     const option = event.target.value;
-    onSelect(id, option);
+    if (option) {
+      setCanContinue();
+      onSelect(id, option);
+    }
   };
 
   return (
@@ -19,7 +29,7 @@ function Question({ title, id, options, isOptionsImage, onSelect }) {
               value={optionKey}
               className={classes.Question__radiobutton}
             />
-            <label for={id + optionKey} className={classes.Question__label}>
+            <label htmlFor={id + optionKey} className={classes.Question__label}>
               {isOptionsImage ? (
                 <img src={options[optionKey]} />
               ) : (

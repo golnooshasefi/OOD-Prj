@@ -25,12 +25,10 @@ function MainNavigation() {
             </button>
             <button className={classes.search__button}></button>
           </form>
-          <Button
-            className={classNames(classes.Button, classes.Button__header)}
-          >
-            Login
+          <Button className={classes.header__button} color="purple">
+            ورود
           </Button>
-          <Button>Sig up</Button>
+          <Button color="white">ثبت نام</Button>
         </div>
 
         <nav className={classes.Navigation}>

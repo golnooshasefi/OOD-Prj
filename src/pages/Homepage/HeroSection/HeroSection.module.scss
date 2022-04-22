@@ -1,13 +1,14 @@
 .HeroSection {
   height: 85vh;
   // clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-  background-color: #d8d7f7;
+  background-color: #c1c5d0;
   &__content {
     max-width: 1360px;
     padding: 10% 5%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin: auto;
   }
   &__info {
     display: flex;
