@@ -71,7 +71,7 @@ const questions = [
       { key: 5, value: "از ۲۲ تا ۲۳ سال", isChecked: false },
       { key: 6, value: "از ۲۳ تا ۲۴ سال", isChecked: false },
     ],
-    isOptionsImage: true,
+    isOptionsImage: false,
     selectedOptionsLimit: 3,
     hasPriority: false,
   },
@@ -116,7 +116,7 @@ function Survey() {
         <Question key={question.id} {...question} onSelect={(id, option) => setAnswers({ ...answers, [id]: option })} />
       )} */}
       <div className={classes.Survey__Question}>
-        {step < 6 ? (
+        {step < 5 ? (
           <Question
             {...questions[step]}
             onSelect={setAnswerHandler}

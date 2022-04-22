@@ -46,6 +46,11 @@ function MultipleChoicesQuestion({
   }, [onSelect, id, selectedOptions]);
 
   useEffect(() => {
+    setOptionsWithChecked(options);
+    setSelectedOptions([]);
+  }, [options]);
+
+  useEffect(() => {
     if (selectedOptions.length === selectedOptionsLimit) setCanContinue();
     else resetCanContinue();
   }, [
