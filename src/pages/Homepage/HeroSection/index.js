@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./HeroSection.module.scss";
+import Button from "../../../components/shared/Button";
 import classNames from "classnames";
 
 function HeroSection() {
@@ -10,9 +11,7 @@ function HeroSection() {
           <h1 className={classes["HeroSection__info--header"]}>
             انتخاب سبک لباس خود را به ما بسپارید
           </h1>
-          <button className={classes["HeroSection__info--button"]}>
-            امتحان کنید
-          </button>
+          <Button color="purple">امتحان کنید</Button>
         </div>
         <div className={classes.HeroSection__gallery}>
           <img
