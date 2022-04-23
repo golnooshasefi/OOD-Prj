@@ -11,9 +11,9 @@ function App() {
       {/* <MainNavigation />
       <HeroSection />
       <Footer /> */}
-      {/* <Survey /> */}
+      <Survey />
       {/* <AccountBox /> */}
-      <Products />
+      {/* <Products /> */}
     </>
   );
 }

@@ -1,13 +1,13 @@
-.pass-wrapper {
+.pass_wrapper {
   position: relative;
 }
-i {
+.icon {
   position: absolute;
   top: 30%;
   left: 5%;
   font-size: 1.6rem;
-}
-i:hover {
-  color: #5e4d9b;
-  cursor: pointer;
+  &:hover {
+    color: #5e4d9b;
+    cursor: pointer;
+  }
 }
