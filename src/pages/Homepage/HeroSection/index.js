@@ -11,7 +11,24 @@ function HeroSection() {
           <h1 className={classes["HeroSection__info--header"]}>
             انتخاب سبک لباس خود را به ما بسپارید
           </h1>
-          <Button color="purple">امتحان کنید</Button>
+          <p className={classes["HeroSection__info--text"]}>
+            ما با بررسی سلیقه شما، دقیق‌ترین استایل‌ها و لباس‌ها را به شما
+            پیشنهاد میدهیم.
+          </p>
+          <div>
+            <Button
+              color="purple"
+              className={classes["HeroSection__button--right"]}
+            >
+              امتحان کنید
+            </Button>
+            <Button
+              color="white"
+              className={classes["HeroSection__button--left"]}
+            >
+              سوالات متداول
+            </Button>
+          </div>
         </div>
         <div className={classes.HeroSection__gallery}>
           <img
