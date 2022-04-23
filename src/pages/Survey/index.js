@@ -2,29 +2,44 @@ import React, { useCallback, useEffect, useState } from "react";
 import Button from "../../components/shared/Button";
 import MultipleChoicesQuestion from "./MultipleChoicesQuestion";
 import Question from "./Question";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 import classes from "./Survey.module.scss";
 
 const questions = [
   {
     id: "1",
-    title: "بازه سنی خود را اتخاب کنید",
-    options: { 1: "زیر 12", 2: "12-18", 3: "18-30", 4: "30-50" },
+    title: "بازه سنی خود را انتخاب کنید:",
+    options: {
+      1: "زیر ۱۲",
+      2: "بین 12 تا 18 سال",
+      3: "بین 18 تا 30 سال",
+      4: "بین 30 تا 50 سال",
+    },
     isOptionsImage: false,
   },
   {
     id: "2",
-    title: "",
-    options: { 1: "/statics/img-1.jpg", 2: "/statics/img-1.jpg" },
+    title: "رنگ مورد نظر خود را انتخاب کنید",
+    options: {
+      1: "https://img.dtcn.com/image/themanual/east-dane-hero-image-500x500.jpg",
+      2: "https://dkstatics-public.digikala.com/digikala-products/7adc2bbaa968a555893cd3b7336279ce11856319_1644051263.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80",
+      3: "https://dkstatics-public.digikala.com/digikala-products/7adc2bbaa968a555893cd3b7336279ce11856319_1644051263.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80",
+      4: "https://dkstatics-public.digikala.com/digikala-products/7adc2bbaa968a555893cd3b7336279ce11856319_1644051263.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80",
+      5: "https://dkstatics-public.digikala.com/digikala-products/7adc2bbaa968a555893cd3b7336279ce11856319_1644051263.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80",
+      // 6: "https://dkstatics-public.digikala.com/digikala-products/7adc2bbaa968a555893cd3b7336279ce11856319_1644051263.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80",
+      // 7: "https://dkstatics-public.digikala.com/digikala-products/7adc2bbaa968a555893cd3b7336279ce11856319_1644051263.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80",
+    },
     isOptionsImage: true,
   },
+
   {
     id: "3",
     title: "",
     options: {
-      1: "/statics/img-1.jpg",
-      2: "/statics/img-1.jpg",
+      1: "ggfk",
+      2: "jfj",
     },
-    isOptionsImage: true,
+    isOptionsImage: false,
   },
   {
     id: "4",
@@ -134,18 +149,31 @@ function Survey() {
         )}
       </div>
       <div className={classes.Survey__footer}>
-        <Button onClick={previousClickHandler} disabled={step === 0}>
-          Previous
-        </Button>
-        <p>
-          <span>سوال{questions[step].id}از 10</span> <span></span>
+        {step !== 0 && (
+          <button
+            className={classes.Survey__btn}
+            onClick={previousClickHandler}
+            disabled={step === 0}
+          >
+            قبلی
+          </button>
+        )}
+
+        <p className={classes.Survey__step}>
+          <span>
+            <span>سوال </span>
+            <span>{digitsEnToFa(questions[step].id)} </span>
+            <span>از </span>
+            <span>{digitsEnToFa(questions.length)} </span>
+          </span>
         </p>
-        <Button
+        <button
+          className={classes.Survey__btn}
           onClick={nextClickHandler}
           disabled={!canContinue || step === questions.length - 1}
         >
-          Next
-        </Button>
+          بعدی
+        </button>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import "./eye.css";
+import classes from "./login.module.scss";
 import {
   BoldLink,
   BoxContainer,
@@ -33,12 +33,12 @@ export function SignupForm(props) {
         <Marginer direction="vertical" margin={10} />
         <Input type="tel" placeholder="شماره موبایل" />
         <Marginer direction="vertical" margin={10} />
-        <div className="pass-wrapper">
+        <div className={classes.pass_wrapper}>
           <Input
             type={passwordShown ? "text" : "password"}
             placeholder="رمز عبور"
           />
-          <i onClick={togglePasswordVisiblity}>
+          <i className={classes.icon} onClick={togglePasswordVisiblity}>
             {passwordShown ? eye : eye_slash}
           </i>
         </div>

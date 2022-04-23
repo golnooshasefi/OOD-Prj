@@ -1,4 +1,5 @@
 import classes from "./Question.module.scss";
+import { Marginer } from "../../../components/marginer";
 
 function Question({
   title,
@@ -19,9 +20,16 @@ function Question({
   return (
     <>
       <h2>{title}</h2>
-      <div onChange={onSelectOptionHandler}>
+      <Marginer direction="vertical" margin="2rem" />
+      <div
+        onChange={onSelectOptionHandler}
+        className={isOptionsImage ? classes.Question__container : ""}
+      >
         {Object.keys(options).map((optionKey) => (
-          <div key={id + optionKey}>
+          <div
+            key={id + optionKey}
+            className={isOptionsImage ? classes.Question__container : ""}
+          >
             <input
               name={id}
               id={id + optionKey}
@@ -29,9 +37,18 @@ function Question({
               value={optionKey}
               className={classes.Question__radiobutton}
             />
-            <label htmlFor={id + optionKey} className={classes.Question__label}>
+            <label
+              htmlFor={id + optionKey}
+              className={
+                isOptionsImage ? classes.Question__pic : classes.Question__label
+              }
+            >
               {isOptionsImage ? (
-                <img src={options[optionKey]} />
+                <img
+                  className={classes.Question__img}
+                  src={options[optionKey]}
+                  alt=""
+                />
               ) : (
                 options[optionKey]
               )}
