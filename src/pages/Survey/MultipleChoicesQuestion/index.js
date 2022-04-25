@@ -1,4 +1,11 @@
 import { useEffect, useState } from "react";
+import classes from "./MultipleChoicesQuestion.module.scss";
+import { Marginer } from "../../../components/marginer";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
+
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSquareQuestion } from "@fortawesome/free-solid-svg-icons";
+// const questionIcon = <FontAwesomeIcon icon={faSquareQuestion} />;
 
 function MultipleChoicesQuestion({
   title,
@@ -62,8 +69,13 @@ function MultipleChoicesQuestion({
 
   return (
     <>
-      <h2>{title}</h2>
       <div>
+        <i class="fa-solid fa-square-question"></i>
+        <h2>{title}</h2>
+      </div>
+
+      <Marginer direction="vertical" margin="2rem" />
+      <div className={isOptionsImage ? classes.Question__container : ""}>
         {optionsWithChecked.map((option) => (
           <div key={id + option.key}>
             <input
@@ -73,19 +85,31 @@ function MultipleChoicesQuestion({
               value={option.key}
               onChange={onChangeHandler}
               checked={option.isChecked}
+              className={classes.Question__checkbox}
               // defaultChecked={defaultValue?.includes(option.key)}
               // defaultValue.includes
             />
-            <label htmlFor={id + option.key}>
+            <label
+              htmlFor={id + option.key}
+              className={
+                isOptionsImage ? classes.Question__pic : classes.Question__label
+              }
+            >
               {isOptionsImage ? (
-                <img src={option.value} alt="" />
+                <img
+                  src={option.value}
+                  alt=""
+                  className={classes.Question__img}
+                />
               ) : (
                 option.value
               )}
+              {hasPriority && selectedOptions.includes(option.key + "") && (
+                <div className={classes.Question__priority}>
+                  {digitsEnToFa(selectedOptions.indexOf(option.key + "") + 1)}
+                </div>
+              )}
             </label>
-            {hasPriority && selectedOptions.includes(option.key) && (
-              <div>{selectedOptions.indexOf(option.key) + 1}</div>
-            )}
           </div>
         ))}
       </div>

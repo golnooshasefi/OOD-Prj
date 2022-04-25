@@ -8,12 +8,12 @@ import Products from "./components/productPage/products";
 function App() {
   return (
     <>
-      {/* <MainNavigation />
-      <HeroSection />
-      <Footer /> */}
+      {/* <MainNavigation /> */}
+      {/* <HeroSection /> */}
+      {/* <Products /> */}
+      {/* <Footer /> */}
       <Survey />
       {/* <AccountBox /> */}
-      {/* <Products /> */}
     </>
   );
 }
