@@ -1,35 +1,26 @@
 .Question {
-  &__radiobutton {
-    // display: none;
+  &__checkbox {
     opacity: 0;
     position: fixed;
     width: 0;
-    // visibility: hidden;
-    // &::after {
-    //   padding: 1.5rem 3rem;
-    //   color: rebeccapurple;
-    // }
   }
   &__label {
     display: block;
-    // background-color: #ddd;
     background-color: #f3f0ff;
     background-color: #f3f0ff;
-    // background-color: #7b337d;
-    // padding: 1.5rem 1.5rem;
-    // font-family: sans-serif, Arial;
     padding: 1rem 1rem;
     font-size: 16px;
     border: 1px solid #d0bfff;
     border-radius: 4px;
     margin-bottom: 1rem;
     cursor: pointer;
+    position: relative;
   }
-  &__radiobutton:hover + &__label {
+  &__checkbox:hover + &__label {
     background-color: #ede9fe;
     border-color: #d0bfff;
   }
-  &__radiobutton:checked + &__label {
+  &__checkbox:checked + &__label {
     background-color: #d0bfff;
     border-color: #b197fc;
   }
@@ -37,27 +28,40 @@
   &__container {
     // display: flex;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
   }
 
   &__pic {
     display: block;
-    height: 15rem;
+    height: 20rem;
     width: 15rem;
     padding: 0.5rem 0.5rem;
     font-size: 16px;
     border: 1px solid #e5dbff;
     border-radius: 4px;
-    margin-left: 1rem;
+    // margin-left: 1rem;
     cursor: pointer;
   }
-  &__radiobutton:checked + &__pic {
+  &__checkbox:checked + &__pic {
     background-color: #9775fa;
     border-color: #5f3dc4;
   }
   &__img {
     width: 100%;
     height: 100%;
+  }
+
+  &__priority {
+    font-size: 1.4rem;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    color: #f3f0ff;
+    background-color: #9775fa;
+    border-radius: 50%;
+    padding: 0.5rem 1rem 0.5rem 1rem;
   }
 }
 
