@@ -7,9 +7,13 @@
   &--purple {
     font-size: 1.5rem;
     font-weight: bold;
-    padding: 0.5rem 2.3rem;
-    background-color: #6668ab;
+    padding: 0 3rem;
+    background-color: rgb(102, 104, 171);
     color: #fff;
+    transition: 0.3s;
+    &:hover {
+      background-color: rgba(102, 104, 171, 0.8);
+    }
   }
   &--white {
     font-size: 1.5rem;
@@ -18,5 +22,9 @@
     background-color: #fff;
     color: #6668ab;
     border: 1px solid #6668ab;
+    transition: 0.3s;
+
+    &:hover {
+    }
   }
 }

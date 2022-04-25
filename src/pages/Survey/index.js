@@ -136,7 +136,7 @@ function Survey() {
   const setAnswerHandler = useCallback((id, option) => {
     setAnswers((answers) => ({ ...answers, [id]: option }));
   }, []);
-
+  console.log(answers);
   const nextClickHandler = () => {
     if (step === questions.length - 1) return;
     setStep(step + 1);

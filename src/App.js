@@ -5,13 +5,15 @@ import HeroSection from "./pages/Homepage/HeroSection";
 import Survey from "./pages/Survey";
 import { AccountBox } from "./components/accountBox";
 import Products from "./components/productPage/products";
+import InfoSection from "./pages/Homepage/InfoSection";
 function App() {
   return (
     <>
-      <MainNavigation />
+      {/* <MainNavigation />
       <HeroSection />
-      <Footer />
-      {/* <Survey /> */}
+      <InfoSection />
+      <Footer /> */}
+      <Survey />
       {/* <AccountBox /> */}
     </>
   );
