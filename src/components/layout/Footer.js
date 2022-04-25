@@ -6,7 +6,10 @@ function Footer() {
   return (
     <footer className={classes.Container}>
       <div className={classes.Footer}></div>
-      <div className={classes.Footer__logo}>سبکینو</div>
+      <div className={classes.Footer__logo}>
+        سبکینو
+        {/* <img src="./images/logo.png" className={classes.Footer__logo__pic} /> */}
+      </div>
       <div className={classes.row}>
         <div className={classes.column}>
           <ul className={classes.Footer__list}>

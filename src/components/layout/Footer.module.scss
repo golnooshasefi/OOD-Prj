@@ -1,5 +1,5 @@
 .Container {
-  padding: 20px 50px;
+  padding: 2rem 5rem;
   justify-content: center;
   background-image: linear-gradient(to right bottom, #9389bd, #5e4d9b);
   max-width: 1360px;
@@ -10,15 +10,19 @@
     justify-content: center;
     margin: 0 auto;
     &__logo {
+      // text-align: center;
       font-size: 3rem;
       padding-bottom: 1rem;
       color: white;
+      &__pic {
+        width: 15rem;
+      }
     }
     &__list {
       //   color: white;
-      font-weight: bold;
+      // font-weight: bold;
       list-style: none;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
     &__item {
       padding: 1rem 2rem;
@@ -67,7 +71,7 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    max-width: 200px;
+    max-width: 20rem;
     margin: 0 auto;
   }
 }
