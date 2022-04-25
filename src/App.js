@@ -8,11 +8,10 @@ import Products from "./components/productPage/products";
 function App() {
   return (
     <>
-      {/* <MainNavigation /> */}
-      {/* <HeroSection /> */}
-      {/* <Products /> */}
-      {/* <Footer /> */}
-      <Survey />
+      <MainNavigation />
+      <HeroSection />
+      <Footer />
+      {/* <Survey /> */}
       {/* <AccountBox /> */}
     </>
   );

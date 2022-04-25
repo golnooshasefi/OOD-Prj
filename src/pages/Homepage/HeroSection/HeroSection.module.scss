@@ -1,7 +1,8 @@
 .HeroSection {
-  height: 85vh;
+  height: 65rem;
   // clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-  background-color: #c1c5d0;
+  background-color: #cfcad1;
+
   &__content {
     max-width: 1360px;
     padding: 10% 5%;
@@ -20,7 +21,71 @@
       padding-top: 2rem;
       padding-bottom: 2rem;
     }
-    &--button {
+    &--text {
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__button--right {
+    margin-left: 1rem;
+    padding: 1rem 2rem;
+    background-image: linear-gradient(to right bottom, #9389bd, #6768ab);
+    transition: all 0.5s;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &:after {
+      content: "←";
+      position: absolute;
+      opacity: 0;
+      visibility: hidden;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -80px;
+      transition: 0.5s;
+    }
+
+    &:hover {
+      padding-right: 2rem;
+      padding-left: 3.5rem;
+    }
+
+    &:hover:after {
+      opacity: 1;
+      left: 1.2rem;
+      visibility: visible;
+    }
+  }
+  &__button--left {
+    padding: 1rem 1.5rem;
+    transition: all 0.5s;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &:after {
+      content: "←";
+      color: #6668ab;
+      position: absolute;
+      opacity: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -90px;
+      transition: 0.5s;
+      visibility: hidden;
+    }
+
+    &:hover {
+      padding-right: 2rem;
+      padding-left: 3.5rem;
+    }
+
+    &:hover:after {
+      opacity: 1;
+      left: 1.2rem;
+      visibility: visible;
     }
   }
 
