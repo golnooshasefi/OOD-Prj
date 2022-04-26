@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./HeroSection.module.scss";
 import Button from "../../../components/shared/Button";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 
 function HeroSection() {
   return (
@@ -16,12 +17,15 @@ function HeroSection() {
             پیشنهاد میدهیم.
           </p>
           <div>
-            <Button
-              color="purple"
-              className={classes["HeroSection__button--right"]}
-            >
-              امتحان کنید
-            </Button>
+            <Link to={false ? "/survey" : "/accountbox"}>
+              <Button
+                color="purple"
+                className={classes["HeroSection__button--right"]}
+              >
+                امتحان کنید
+              </Button>
+            </Link>
+
             <Button
               color="white"
               className={classes["HeroSection__button--left"]}

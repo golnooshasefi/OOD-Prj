@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../shared/Button";
 import classes from "./MainNavigation.module.scss";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 
 function MainNavigation() {
   return (
@@ -25,10 +26,12 @@ function MainNavigation() {
             </button>
             <button className={classes.search__button}></button>
           </form>
-          <Button className={classes.header__button} color="purple">
+          {/* <Button className={classes.header__button} color="purple">
             ورود
-          </Button>
-          <Button color="white">ثبت نام</Button>
+          </Button> */}
+          <Link to="/accountbox">
+            <Button color="white">ورود | ثبت‌نام</Button>
+          </Link>
         </div>
 
         <nav className={classes.Navigation}>

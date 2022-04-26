@@ -8,7 +8,7 @@ import {
   MutedLink,
   SubmitButton,
 } from "./common";
-import { Marginer } from "../marginer";
+import { Marginer } from "../../components/marginer";
 import { AccountContext } from "./accountContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,8 +17,8 @@ import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 
-export function LoginForm(props) {
-  const { switchToSignup } = useContext(AccountContext);
+export function SignupForm(props) {
+  const { switchToSignin } = useContext(AccountContext);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -26,10 +26,12 @@ export function LoginForm(props) {
 
   return (
     <BoxContainer>
-      <Marginer direction="vertical" margin="2rem" />
       <FormContainer>
-        {/* <Input type="email" placeholder="ایمیل یا شماره موبایل" autoFocus /> */}
-        <Input type="email" placeholder="ایمیل" autoFocus />
+        <Input type="text" placeholder="نام و نام‌خانوادگی" autoFocus />
+        <Marginer direction="vertical" margin={10} />
+        <Input type="email" placeholder="ایمیل" />
+        <Marginer direction="vertical" margin={10} />
+        <Input type="tel" placeholder="شماره موبایل" />
         <Marginer direction="vertical" margin={10} />
         <div className={classes.pass_wrapper}>
           <Input
@@ -42,14 +44,12 @@ export function LoginForm(props) {
         </div>
       </FormContainer>
       <Marginer direction="vertical" margin={20} />
-      <MutedLink href="#">رمز عبور خود را فراموش کرده‌اید؟</MutedLink>
-      <Marginer direction="vertical" margin="1.2em" />
-      <SubmitButton type="submit">ورود</SubmitButton>
+      <SubmitButton type="submit">ثبت‌نام</SubmitButton>
       <Marginer direction="vertical" margin="1.5rem" />
       <MutedLink href="#">
-        عضو نیستید؟{" "}
-        <BoldLink href="#" onClick={switchToSignup}>
-          ثبت‌نام کنید
+        عضو سایت هستید؟
+        <BoldLink href="#" onClick={switchToSignin}>
+          وارد شوید
         </BoldLink>
       </MutedLink>
     </BoxContainer>
