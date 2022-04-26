@@ -159,7 +159,7 @@ const expandingTransition = {
   stiffness: 30,
 };
 
-export function AccountBox(props) {
+export default function AccountBox(props) {
   console.log("render");
   let backdropVariants = getBackdropVariants();
   const [isExpanded, setExpanded] = useState(false);
