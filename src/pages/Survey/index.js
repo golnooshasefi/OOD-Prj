@@ -34,7 +34,7 @@ const questions = [
 
   {
     id: "3",
-    title: "از بین لباس‌های زیر کدام یک به سلیقه شما نزدیک‌تر است",
+    title: "از بین لباس‌های زیر کدام یک به سلیقه شما نزدیک‌تر است؟",
     options: {
       1: "ggfk",
       2: "jfj",
@@ -44,7 +44,7 @@ const questions = [
   },
   {
     id: "4",
-    title: "از بین لباس‌های زیر کدام یک به سلیقه شما نزدیک‌تر است",
+    title: "از بین لباس‌های زیر کدام یک به سلیقه شما نزدیک‌تر است؟",
     options: {
       1: "./images/q7/2.jpg",
       2: "./images/q7/2.jpg",
@@ -54,20 +54,22 @@ const questions = [
   },
   {
     id: "5",
-    title: "",
+    title: "از بین لباس‌های زیر کدام یک به سلیقه شما نزدیک‌تر است؟",
     options: {
       1: "/statics/img-1.jpg",
       2: "/statics/img-1.jpg",
+      3: "/statics/img-1.jpg",
+      4: "/statics/img-1.jpg",
     },
     isOptionsImage: true,
   },
   {
     id: "6",
-    title: "عنوان سوال",
+    title: "در انتخاب پوشاک خود به ترتیب به کدام ویژگی اهمیت بیشتری می‌دهید؟",
     options: [
-      { key: 1, value: "از ۱۲ تا ۱۵ سال", isChecked: false },
-      { key: 2, value: "از ۱۵ تا ۱۸ سال", isChecked: false },
-      { key: 3, value: "از ۱۸ تا ۲۰ سال", isChecked: false },
+      { key: 1, value: "رسمی - غیررسمی", isChecked: false },
+      { key: 2, value: "طرح‌دار و ساده", isChecked: false },
+      { key: 3, value: "تنگی - گشادی", isChecked: false },
     ],
     isOptionsImage: false,
     selectedOptionsLimit: 3,

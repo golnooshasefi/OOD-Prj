@@ -1,5 +1,8 @@
 import classes from "./Question.module.scss";
 import { Marginer } from "../../../components/marginer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
+const questionIcon = <FontAwesomeIcon icon={faCircleQuestion} />;
 
 function Question({
   title,
@@ -19,7 +22,10 @@ function Question({
 
   return (
     <>
-      <h2>{title}</h2>
+      <div className={classes.Question__iconContainer}>
+        <i className={classes.Question__icon}>{questionIcon}</i>
+        <h2>{title}</h2>
+      </div>
       <Marginer direction="vertical" margin="2rem" />
       <div
         onChange={onSelectOptionHandler}
