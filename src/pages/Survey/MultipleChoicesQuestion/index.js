@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import classes from "./MultipleChoicesQuestion.module.scss";
 import { Marginer } from "../../../components/marginer";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
+import classNames from "classnames";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faSquareQuestion } from "@fortawesome/free-solid-svg-icons";
-// const questionIcon = <FontAwesomeIcon icon={faSquareQuestion} />;
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
+const questionIcon = <FontAwesomeIcon icon={faCircleQuestion} />;
 
 function MultipleChoicesQuestion({
   title,
@@ -69,11 +70,10 @@ function MultipleChoicesQuestion({
 
   return (
     <>
-      <div>
-        <i class="fa-solid fa-square-question"></i>
+      <div className={classes.Question__iconContainer}>
+        <i className={classes.Question__icon}>{questionIcon}</i>
         <h2>{title}</h2>
       </div>
-
       <Marginer direction="vertical" margin="2rem" />
       <div className={isOptionsImage ? classes.Question__container : ""}>
         {optionsWithChecked.map((option) => (

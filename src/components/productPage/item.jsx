@@ -14,6 +14,7 @@ const Container = styled.div`
   /* min-width: 280px; */
   /* height: 350px;
   width: 300px; */
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   /* align-items: center; */
@@ -26,6 +27,7 @@ const Container = styled.div`
     /* -webkit-filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.2)); */
     /* filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.2)); */
     /* box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0.4rem 0.4rem 0.4rem 0.4rem rgba(0, 0, 0, 0.07);
   }
 `;
 
