@@ -4,6 +4,9 @@ import Button from "../shared/Button";
 import classes from "./MainNavigation.module.scss";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+const loginIcon = <FontAwesomeIcon icon={faArrowRightToBracket} />;
 
 function MainNavigation() {
   const { user } = useContext(UserContext);

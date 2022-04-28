@@ -18,12 +18,16 @@
     align-items: center;
     margin-left: 20rem;
     &--header {
-      color: #fff;
+      background-image: linear-gradient(to right, #8376b6, #262879);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      // color: #fff;
       font-size: 3rem;
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-      -webkit-text-stroke-width: 1px;
-      -webkit-text-stroke-color: #6667ab;
+
+      // padding-top: 2rem;
+      margin-bottom: 2rem;
+      // -webkit-text-stroke-width: 1px;
+      // -webkit-text-stroke-color: #6667ab;
     }
     &--text {
       font-size: 1.5rem;
