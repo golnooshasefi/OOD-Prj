@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../../../store/UserContext";
 import classes from "./HeroSection.module.scss";
 import Button from "../../../components/shared/Button";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 function HeroSection() {
+  const { user } = useContext(UserContext);
   return (
     <section className={classes.HeroSection}>
       <div className={classes.HeroSection__content}>
@@ -17,7 +19,7 @@ function HeroSection() {
             پیشنهاد میدهیم.
           </p>
           <div>
-            <Link to={false ? "/survey" : "/accountbox"}>
+            <Link to={user.auth ? "/survey" : "/accountbox"}>
               <Button
                 color="purple"
                 className={classes["HeroSection__button--right"]}

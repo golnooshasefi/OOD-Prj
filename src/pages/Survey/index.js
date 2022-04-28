@@ -149,6 +149,10 @@ function Survey() {
     setStep(step - 1);
   };
 
+  const submitClickHandler = () => {
+    console.log("submit");
+  };
+
   useEffect(() => {
     resetCanContinueHandler();
   }, [step]);
@@ -197,13 +201,19 @@ function Survey() {
             <span>{digitsEnToFa(questions.length)} </span>
           </span>
         </p>
-        <button
-          className={classes.Survey__btn}
-          onClick={nextClickHandler}
-          disabled={!canContinue || step === questions.length - 1}
-        >
-          بعدی
-        </button>
+        {step === questions.length - 1 ? (
+          <button className={classes.Survey__btn} onClick={submitClickHandler}>
+            ثبت
+          </button>
+        ) : (
+          <button
+            className={classes.Survey__btn}
+            onClick={nextClickHandler}
+            disabled={!canContinue || step === questions.length - 1}
+          >
+            بعدی
+          </button>
+        )}
       </div>
     </div>
   );
