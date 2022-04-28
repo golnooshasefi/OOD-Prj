@@ -4,7 +4,8 @@ import MultipleChoicesQuestion from "./MultipleChoicesQuestion";
 import Question from "./Question";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import classes from "./Survey.module.scss";
-
+import axiosInstance from "../../axios";
+import { useNavigate } from "react-router-dom";
 const questions = [
   {
     id: "1",
@@ -151,6 +152,29 @@ function Survey() {
 
   const submitClickHandler = () => {
     console.log("submit");
+    console.log(answers);
+    const newAnswers = [];
+    for (const [key, value] of Object.entries(answers)) {
+      console.log(key, value);
+      newAnswers.push(Array.isArray(value) ? value.join(",") : value);
+      console.log(newAnswers);
+
+      // const newValue = Array.isArray(value) ? value.join(",") : value;
+      // console.log(newValue);
+      // newAnswers = [...newAnswers, newValue];
+    }
+    axiosInstance
+      .post(`questions/submit/`, {
+        data: newAnswers,
+      })
+      .then((res) => {
+        //   login(formData.email);
+        //   navigate(-1);
+        //   // history.push("/login");
+        //   // console.log("axios");
+        console.log(res);
+        console.log(res.data);
+      });
   };
 
   useEffect(() => {
