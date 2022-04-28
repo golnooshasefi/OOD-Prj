@@ -1,4 +1,7 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+import UserContext from "../../store/UserContext";
 import classes from "./login.module.scss";
 import {
   BoldLink,
@@ -24,12 +27,23 @@ export function LoginForm(props) {
     setPasswordShown(passwordShown ? false : true);
   };
 
+  // const navigate = useNavigate();
+  const { login } = useContext(UserContext);
+  const [name, setName] = useState();
+
   return (
     <BoxContainer>
       <Marginer direction="vertical" margin="2rem" />
       <FormContainer>
         {/* <Input type="email" placeholder="ایمیل یا شماره موبایل" autoFocus /> */}
-        <Input type="email" placeholder="ایمیل" autoFocus />
+        <Input
+          type="email"
+          placeholder="ایمیل"
+          autoFocus
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+        />
         <Marginer direction="vertical" margin={10} />
         <div className={classes.pass_wrapper}>
           <Input
@@ -44,7 +58,9 @@ export function LoginForm(props) {
       <Marginer direction="vertical" margin={20} />
       <MutedLink href="#">رمز عبور خود را فراموش کرده‌اید؟</MutedLink>
       <Marginer direction="vertical" margin="1.2em" />
-      <SubmitButton type="submit">ورود</SubmitButton>
+      <SubmitButton onClick={() => login(name)} type="submit">
+        ورود
+      </SubmitButton>
       <Marginer direction="vertical" margin="1.5rem" />
       <MutedLink href="#">
         عضو نیستید؟{" "}

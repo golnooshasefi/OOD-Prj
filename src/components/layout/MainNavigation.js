@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../../store/UserContext";
 import Button from "../shared/Button";
 import classes from "./MainNavigation.module.scss";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 function MainNavigation() {
+  const { user } = useContext(UserContext);
   return (
     <header className={classes.header}>
       <div className={classes.content}>
@@ -29,9 +31,15 @@ function MainNavigation() {
           {/* <Button className={classes.header__button} color="purple">
             ورود
           </Button> */}
-          <Link to="/accountbox">
-            <Button color="white">ورود | ثبت‌نام</Button>
-          </Link>
+          {user.auth ? (
+            <Link to="/">
+              <Button color="white">خروج</Button>
+            </Link>
+          ) : (
+            <Link to="/accountbox">
+              <Button color="white">ورود | ثبت‌نام</Button>
+            </Link>
+          )}
         </div>
 
         <nav className={classes.Navigation}>
