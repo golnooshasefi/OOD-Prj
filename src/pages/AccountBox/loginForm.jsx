@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../axios";
 
 import UserContext from "../../store/UserContext";
 import classes from "./login.module.scss";
@@ -29,7 +30,45 @@ export function LoginForm(props) {
 
   // const navigate = useNavigate();
   const { login } = useContext(UserContext);
-  const [name, setName] = useState();
+  // const [name, setName] = useState();
+
+  const navigate = useNavigate();
+  const initialFormData = Object.freeze({
+    email: "",
+    password: "",
+  });
+
+  const [formData, updateFormData] = useState(initialFormData);
+
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    login(formData.email);
+    navigate(-1);
+
+    axiosInstance
+      .post(`accounts/api/token/`, {
+        email: formData.email,
+        password: formData.password,
+      })
+      .then((res) => {
+        localStorage.setItem("access_token", res.data.access);
+        localStorage.setItem("refresh_token", res.data.refresh);
+        axiosInstance.defaults.headers["Authorization"] =
+          "JWT " + localStorage.getItem("access_token");
+        // login(formData.email);
+        // navigate(-1);
+        //console.log(res);
+        //console.log(res.data);
+      });
+  };
 
   return (
     <BoxContainer>
@@ -40,15 +79,16 @@ export function LoginForm(props) {
           type="email"
           placeholder="ایمیل"
           autoFocus
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
+          onChange={handleChange}
+          name="email"
         />
         <Marginer direction="vertical" margin={10} />
         <div className={classes.pass_wrapper}>
           <Input
             type={passwordShown ? "text" : "password"}
             placeholder="رمز عبور"
+            onChange={handleChange}
+            name="password"
           />
           <i className={classes.icon} onClick={togglePasswordVisiblity}>
             {passwordShown ? eye : eye_slash}
@@ -58,7 +98,7 @@ export function LoginForm(props) {
       <Marginer direction="vertical" margin={20} />
       <MutedLink href="#">رمز عبور خود را فراموش کرده‌اید؟</MutedLink>
       <Marginer direction="vertical" margin="1.2em" />
-      <SubmitButton onClick={() => login(name)} type="submit">
+      <SubmitButton onClick={handleSubmit} type="submit">
         ورود
       </SubmitButton>
       <Marginer direction="vertical" margin="1.5rem" />

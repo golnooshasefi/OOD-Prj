@@ -1,22 +1,23 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const UserContext = createContext({ name: "", auth: false });
+const UserContext = createContext({ email: "", auth: false });
 export function UserContextProvider({ children }) {
-  const [user, setUser] = useState({ name: "", auth: false });
+  const [user, setUser] = useState({ email: "", auth: false });
+  console.log(user);
   const navigate = useNavigate();
 
-  const login = (name, isSurvey = false) => {
+  const login = (email, isSurvey = false) => {
     setUser({
-      name: name,
+      email: email,
       auth: true,
     });
     // navigate(isSurvey ? "/survey" : "-1", { replace: true });
-    navigate(-1);
+    // navigate(-1);
   };
   const logout = () => {
     setUser({
-      name: "",
+      email: "",
       auth: false,
     });
   };
