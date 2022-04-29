@@ -34,8 +34,27 @@
     border-color: #b197fc;
   }
 
-  &__container {
-    // display: flex;
+  // &__container {
+  //   // display: flex;
+  //   // max-width: 55rem;
+  //   display: grid;
+  //   grid-template-columns: repeat(5, 1fr);
+  // }
+
+  &__container_3 {
+    max-width: 55rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  &__container_4 {
+    max-width: 65rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  &__container_5 {
+    max-width: 80rem;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
   }

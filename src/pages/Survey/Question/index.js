@@ -19,6 +19,14 @@ function Question({
       onSelect(id, option);
     }
   };
+  let containerStyle;
+  if (Object.entries(options).length === 3) {
+    containerStyle = classes.Question__container_3;
+  } else if (Object.entries(options).length === 4) {
+    containerStyle = classes.Question__container_4;
+  } else if (Object.entries(options).length === 5) {
+    containerStyle = classes.Question__container_5;
+  }
 
   return (
     <>
@@ -29,12 +37,12 @@ function Question({
       <Marginer direction="vertical" margin="2rem" />
       <div
         onChange={onSelectOptionHandler}
-        className={isOptionsImage ? classes.Question__container : ""}
+        className={isOptionsImage ? containerStyle : ""}
       >
         {Object.keys(options).map((optionKey) => (
           <div
             key={id + optionKey}
-            className={isOptionsImage ? classes.Question__container : ""}
+            // className={isOptionsImage ? classes.Question__container : ""}
           >
             <input
               name={id}
