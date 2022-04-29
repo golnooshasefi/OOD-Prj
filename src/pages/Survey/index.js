@@ -6,15 +6,16 @@ import { digitsEnToFa } from "@persian-tools/persian-tools";
 import classes from "./Survey.module.scss";
 import axiosInstance from "../../axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const questions = [
   {
     id: "1",
     title: "بازه سنی خود را انتخاب کنید:",
     options: {
-      1: "زیر ۱۲",
-      2: "بین ۱۲ تا ۱۸ سال",
-      3: "بین ۱۸ تا ۳۰ سال",
-      4: "بین ۳۰ تا ۵۰ سال",
+      1: "زیر 15 سال",
+      2: "بین 15 تا 30 سال",
+      3: "بین 30 تا 45 سال",
+      4: "بالای 45",
     },
     isOptionsImage: false,
   },
@@ -127,6 +128,7 @@ function Survey() {
   const [step, setStep] = useState(0);
   const [canContinue, setCanContinue] = useState(false);
   const [answers, setAnswers] = useState({});
+  const navigate = useNavigate();
 
   const canContinueHandler = () => {
     setCanContinue(true);
@@ -163,17 +165,28 @@ function Survey() {
       // console.log(newValue);
       // newAnswers = [...newAnswers, newValue];
     }
+    // const api = "http://mmoslemifar.pythonanywhere.com/"
+    // axios
+    //   .post("http://mmoslemifar.pythonanywhere.com/questions/submit/", {
+    //     data: newAnswers,
+    //     headers: {
+    //       Authorization: "Bearer " + localStorage.getItem("access_token"),
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   });
     axiosInstance
       .post(`questions/submit/`, {
         data: newAnswers,
       })
       .then((res) => {
-        //   login(formData.email);
-        //   navigate(-1);
+        // login(formData.email);
+        navigate("/product", { replace: true });
         //   // history.push("/login");
         //   // console.log("axios");
-        console.log(res);
-        console.log(res.data);
+        // console.log(res);
+        // console.log(res.data);
       });
   };
 
