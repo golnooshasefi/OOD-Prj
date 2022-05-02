@@ -14,7 +14,10 @@ function MainNavigation() {
     <header className={classes.header}>
       <div className={classes.content}>
         <div className={classes.container}>
-          <div className={classes.logo}>سبکینو</div>
+          <Link to="/" className={classes.header__link}>
+            <div className={classes.logo}>سبکینو</div>
+          </Link>
+
           <form action="#" className={classes.search}>
             <input
               type="text"
@@ -40,7 +43,11 @@ function MainNavigation() {
             </Link>
           ) : (
             <Link to="/accountbox">
-              <Button color="white">ورود | ثبت‌نام</Button>
+              {/* <i className={classes.header__login_logo}>{loginIcon}</i> */}
+              <Button color="white">
+                <i className={classes.header__login_logo}>{loginIcon}</i>ورود |
+                ثبت‌نام
+              </Button>
             </Link>
           )}
         </div>
