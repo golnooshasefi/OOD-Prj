@@ -1,0 +1,81 @@
+import classes from "./ShoppingItem.module.scss";
+import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
+
+import { CoatHanger } from "phosphor-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faShield } from "@fortawesome/free-solid-svg-icons";
+import { faRulerVertical } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+const money = <FontAwesomeIcon icon={faMoneyBill} />;
+const check = <FontAwesomeIcon icon={faCircleCheck} />;
+const shield = <FontAwesomeIcon icon={faShield} />;
+const size = <FontAwesomeIcon icon={faRulerVertical} />;
+const trash = <FontAwesomeIcon icon={faTrash} />;
+const trashCan = <FontAwesomeIcon icon={faTrashCan} />;
+
+function ShoppingItem({ name, price, img }) {
+  return (
+    <div className={classes.ShoppingItem}>
+      <img
+        // src={"./images/clothes/11.jpg"}
+        // src={"./images/clothes/11bg.png"}
+        src={img}
+        className={classes.ShoppingItem__pic}
+        alt={name}
+      />
+      <div className={classes.ShoppingItem__description}>
+        <div className={classes.ShoppingItem__description__container}>
+          <CoatHanger
+            className={classes.ShoppingItem__description__icon}
+            color="#a1a3a8"
+            weight="bold"
+            size={20}
+          />
+
+          <span className={classes.ShoppingItem__description__name}>
+            {name}
+          </span>
+        </div>
+        <div className={classes.ShoppingItem__description__container}>
+          <span className={classes.ShoppingItem__description__icon}>
+            {size}
+          </span>
+          <span className={classes.ShoppingItem__description__price}>XL</span>
+        </div>
+        <div className={classes.ShoppingItem__description__container}>
+          <span className={classes.ShoppingItem__description__icon}>
+            {shield}
+          </span>
+          <span className={classes.ShoppingItem__description__price}>
+            گارانتی اصالت و سلامت فیزیکی کالا
+          </span>
+        </div>
+        <div className={classes.ShoppingItem__description__container}>
+          <span className={classes.ShoppingItem__description__icon}>
+            {check}
+          </span>
+          <span className={classes.ShoppingItem__description__price}>
+            موجود در انبار
+          </span>
+        </div>
+        <div className={classes.ShoppingItem__description__container}>
+          <span className={classes.ShoppingItem__description__icon}>
+            {money}
+          </span>
+          <span className={classes.ShoppingItem__description__price}>
+            {digitsEnToFa(addCommas(price))} تومان
+          </span>
+        </div>
+      </div>
+      <button className={classes.ShoppingItem__btn}>
+        {trashCan}
+        &nbsp; حذف
+      </button>
+    </div>
+  );
+}
+
+export default ShoppingItem;
