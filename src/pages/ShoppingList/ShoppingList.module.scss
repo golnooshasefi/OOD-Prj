@@ -1,0 +1,116 @@
+.ShoppingList {
+  width: 100rem;
+  margin: 5rem auto;
+  display: grid;
+  // grid-template-columns: 4fr 1fr;
+  grid-template-columns: 1fr 30rem;
+  gap: 2rem;
+  // position: relative;
+
+  &__headerContainer {
+    grid-column: 1 / span 2;
+    border-bottom: 1px solid #e0e0e2;
+  }
+
+  &__header {
+    position: relative;
+    display: inline-block;
+    padding-right: 1rem;
+    padding-left: 3.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.3rem solid #6667ab;
+    // border-bottom: 2px solid aquamarine;
+
+    &__text {
+      color: #6667ab;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    &__number {
+      font-size: 1.5rem;
+      color: #fff;
+      color: #f3f0ff;
+      background-color: #9775fa;
+      border-radius: 35%;
+      padding: 0 0.8rem 0 0.8rem;
+      position: absolute;
+      right: 77%;
+      top: 12%;
+    }
+  }
+
+  &__confirmBox {
+    // position: fixed;
+    // top: 5%;
+    // left: 17%;
+    // width: 100vw;
+    // left: 0;
+    // grid-row: 1;
+    // grid-column: 3;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border: 1px solid #e0e0e2;
+    border-radius: 1rem;
+    width: 30rem;
+    height: 30rem;
+
+    &__totalPrice {
+      color: #62666d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &__text {
+      }
+      &__price {
+        font-size: 1.6rem;
+      }
+    }
+
+    &__payable {
+      color: #000;
+      display: flex;
+      justify-content: space-between;
+
+      &__text {
+      }
+      &__price {
+        font-size: 1.6rem;
+      }
+    }
+
+    &__note {
+      font-size: 1.2rem;
+      color: #62666d;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__btn {
+      padding: 1rem 5rem;
+      cursor: pointer;
+      outline: none;
+      margin-top: 2rem;
+
+      &:hover {
+        background-color: rgba(102, 104, 171, 0.95);
+      }
+    }
+  }
+
+  &__confirmContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 4rem 2rem;
+    // height: 100%;
+  }
+
+  &__shoppingItems {
+    border: 1px solid #e0e0e2;
+    border-radius: 1rem;
+    // height: 50rem;
+    overflow: hidden;
+  }
+}
