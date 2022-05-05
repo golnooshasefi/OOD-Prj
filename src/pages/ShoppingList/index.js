@@ -5,12 +5,22 @@ import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
 import Button from "../../components/shared/Button";
 import ShoppingItem from "./ShoppingItem";
 
+import { useInView } from "react-intersection-observer";
+
 function ShoppingList() {
+  const { ref, inView, entry } = useInView({
+    threshold: 1,
+  });
+
+
+function ShoppingList() {
+
   return (
     <>
       <MainNavigation />
       <section className={classes.ShoppingList}>
-        <div className={classes.ShoppingList__headerContainer}>
+
+        <div className={classes.ShoppingList__headerContainer} ref={ref}>
           <div className={classes.ShoppingList__header}>
             <span className={classes.ShoppingList__header__text}>سبد خرید</span>
             <span className={classes.ShoppingList__header__number}>
@@ -34,15 +44,21 @@ function ShoppingList() {
           <ShoppingItem
             name={" شلوار مردانه سیدونا مدل MSI03072-403"}
             price={199000}
-            img={"./images/clothes/11bg.png"}
+            img={"./images/clothes/26.jpg"}
           />
           <ShoppingItem
             name={" شلوار مردانه سیدونا مدل MSI03072-403"}
             price={199000}
-            img={"./images/clothes/11bg.png"}
+            img={"./images/clothes/26bg.png"}
           />
         </div>
-        <div className={classes.ShoppingList__confirmBox}>
+        <div
+          className={
+            inView
+              ? classes.ShoppingList__confirmBox
+              : classes.ShoppingList__confirmBox__sticky
+          }
+        >
           <div className={classes.ShoppingList__confirmContainer}>
             <div className={classes.ShoppingList__confirmBox__totalPrice}>
               <span
