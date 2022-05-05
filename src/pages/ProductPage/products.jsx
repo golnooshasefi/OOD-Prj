@@ -27,6 +27,11 @@ function Products() {
               img={element.style_image_url}
             ></Item>
           ))}
+          <Item
+            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
+            price={99000}
+            img={"./images/clothes/11bg.png"}
+          ></Item>
         </div>
         <div className={classes.Products__filterContainer}>
           <h2>فیلترها</h2>
