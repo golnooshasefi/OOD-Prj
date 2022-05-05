@@ -1,0 +1,23 @@
+.ShopInfoPage {
+  //   height: 70rem;
+  margin: 2rem;
+  &__icon {
+    font-size: 2rem;
+    margin-left: 1rem;
+  }
+
+  &__InfoSec {
+    margin-top: 1rem;
+    border-radius: 4rem;
+    border: 1px solid #dee2e6;
+    padding: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__right {
+      display: flex;
+    }
+    &__Name {
+    }
+  }
+}

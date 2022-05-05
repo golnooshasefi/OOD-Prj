@@ -13,11 +13,6 @@ function Products() {
       console.log(res);
       console.log(res.data);
       setUserStyle(res.data);
-
-      // login(formData.email);
-      // navigate(-1);
-      //   // history.push("/login");
-      //   // console.log("axios");
     });
   }, []);
   return (
