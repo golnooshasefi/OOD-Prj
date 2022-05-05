@@ -5,15 +5,16 @@
   display: flex;
   gap: 3rem;
 
+
   @media (max-width: 32.5em) {
     flex-direction: column;
   }
+
 
   &__pic {
     width: 15rem;
     height: 15rem;
     flex-shrink: 0;
-
     @media (max-width: 32.5em) {
       margin: 0 auto;
     }
@@ -70,7 +71,6 @@
     &:hover {
       background-color: #f3f0ff;
     }
-
     @media (max-width: 32.5em) {
       position: relative;
     }

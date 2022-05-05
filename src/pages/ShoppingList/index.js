@@ -4,19 +4,23 @@ import Footer from "../../components/layout/Footer";
 import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
 import Button from "../../components/shared/Button";
 import ShoppingItem from "./ShoppingItem";
+
 import { useInView } from "react-intersection-observer";
 
 function ShoppingList() {
   const { ref, inView, entry } = useInView({
     threshold: 1,
   });
+
+
+function ShoppingList() {
+
   return (
     <>
       <MainNavigation />
       <section className={classes.ShoppingList}>
+
         <div className={classes.ShoppingList__headerContainer} ref={ref}>
-          {console.log(inView)}
-          {console.log(entry)}
           <div className={classes.ShoppingList__header}>
             <span className={classes.ShoppingList__header__text}>سبد خرید</span>
             <span className={classes.ShoppingList__header__number}>
@@ -28,7 +32,7 @@ function ShoppingList() {
           <ShoppingItem
             name={" شلوار مردانه سیدونا مدل MSI03072-403"}
             price={199000}
-            img={"./images/clothes/11.jpg"}
+            img={"./images/clothes/11bg.png"}
           />
           <ShoppingItem
             name={

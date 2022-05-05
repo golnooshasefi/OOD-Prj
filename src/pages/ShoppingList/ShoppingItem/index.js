@@ -16,6 +16,7 @@ const size = <FontAwesomeIcon icon={faRulerVertical} />;
 const trash = <FontAwesomeIcon icon={faTrashCan} />;
 const color = <FontAwesomeIcon icon={faBrush} />;
 
+
 function ShoppingItem({ name, price, img }) {
   return (
     <div className={classes.ShoppingItem}>
@@ -53,6 +54,7 @@ function ShoppingItem({ name, price, img }) {
         </div>
         <div className={classes.ShoppingItem__description__container}>
           <span className={classes.ShoppingItem__description__icon}>
+
             {shield}
           </span>
           <span className={classes.ShoppingItem__description__price}>
