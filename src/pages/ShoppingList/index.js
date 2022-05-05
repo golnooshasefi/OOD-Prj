@@ -11,15 +11,10 @@ function ShoppingList() {
   const { ref, inView, entry } = useInView({
     threshold: 1,
   });
-
-
-function ShoppingList() {
-
   return (
     <>
       <MainNavigation />
       <section className={classes.ShoppingList}>
-
         <div className={classes.ShoppingList__headerContainer} ref={ref}>
           <div className={classes.ShoppingList__header}>
             <span className={classes.ShoppingList__header__text}>سبد خرید</span>
