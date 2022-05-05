@@ -7,14 +7,15 @@ import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { faShield } from "@fortawesome/free-solid-svg-icons";
 import { faRulerVertical } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faBrush } from "@fortawesome/free-solid-svg-icons";
 const money = <FontAwesomeIcon icon={faMoneyBill} />;
 const check = <FontAwesomeIcon icon={faCircleCheck} />;
 const shield = <FontAwesomeIcon icon={faShield} />;
 const size = <FontAwesomeIcon icon={faRulerVertical} />;
-const trash = <FontAwesomeIcon icon={faTrash} />;
-const trashCan = <FontAwesomeIcon icon={faTrashCan} />;
+const trash = <FontAwesomeIcon icon={faTrashCan} />;
+const color = <FontAwesomeIcon icon={faBrush} />;
+
 
 function ShoppingItem({ name, price, img }) {
   return (
@@ -47,6 +48,13 @@ function ShoppingItem({ name, price, img }) {
         </div>
         <div className={classes.ShoppingItem__description__container}>
           <span className={classes.ShoppingItem__description__icon}>
+            {color}
+          </span>
+          <span className={classes.ShoppingItem__description__price}>سبز</span>
+        </div>
+        <div className={classes.ShoppingItem__description__container}>
+          <span className={classes.ShoppingItem__description__icon}>
+
             {shield}
           </span>
           <span className={classes.ShoppingItem__description__price}>
@@ -71,7 +79,7 @@ function ShoppingItem({ name, price, img }) {
         </div>
       </div>
       <button className={classes.ShoppingItem__btn}>
-        {trashCan}
+        {trash}
         &nbsp; حذف
       </button>
     </div>
