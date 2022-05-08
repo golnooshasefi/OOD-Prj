@@ -7,13 +7,13 @@ import SellerPanelSidebar from "./pages/SellerPanel/SellerPanelSidebar";
 function App() {
   return (
     <>
-      {/* <Routes>
+      <Routes>
         {routes.map((route) => (
           <Route path={route.path} element={route.element} />
         ))}
-      </Routes> */}
-      {/* <ShopInfoPage /> */}
-      <SellerPanelSidebar />
+      </Routes>
+      {/* <ShopInfoPage />
+      {/* <SellerPanelSidebar /> */}
     </>
   );
 }
