@@ -1,9 +1,9 @@
 import Homepage from "./pages/Homepage";
 import Survey from "./pages/Survey";
 import AccountBox from "./pages/AccountBox";
-import Products from "./pages/ProductPage/products";
+import Products from "./pages/ProductsList/products";
 import ShoppingList from "./pages/ShoppingList";
-import Product from "./pages/ProductPageEdit";
+import Product from "./pages/Product";
 import SellerPanelSidebar from "./pages/SellerPanel/SellerPanelSidebar";
 
 export const routes = [
