@@ -8,7 +8,7 @@ import ShoppingList from "./pages/ShoppingList";
 function App() {
   return (
     <>
-      {/* <Routes>
+      <Routes>
         {routes.map((route) => (
           <Route path={route.path} element={route.element} />
         ))}
@@ -16,6 +16,9 @@ function App() {
       {/* {/* <ShopInfoPage /> */}
       <SellerPanel />
       {/* <ShoppingList /> */}
+      </Routes>
+      {/* <ShopInfoPage />
+      {/* <SellerPanelSidebar /> */}
     </>
   );
 }
