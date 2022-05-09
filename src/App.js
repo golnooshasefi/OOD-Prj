@@ -3,7 +3,8 @@ import { routes } from "./routes";
 import { Route, Routes } from "react-router-dom";
 import ShopInfoPage from "./pages/ShopInfoPage";
 import MainNavigation from "./components/layout/MainNavigation";
-import SellerPanelSidebar from "./pages/SellerPanel/SellerPanelSidebar";
+import SellerPanel from "./pages/SellerPanel";
+import ShoppingList from "./pages/ShoppingList";
 function App() {
   return (
     <>
@@ -11,6 +12,10 @@ function App() {
         {routes.map((route) => (
           <Route path={route.path} element={route.element} />
         ))}
+      </Routes> */}
+      {/* {/* <ShopInfoPage /> */}
+      <SellerPanel />
+      {/* <ShoppingList /> */}
       </Routes>
       {/* <ShopInfoPage />
       {/* <SellerPanelSidebar /> */}
