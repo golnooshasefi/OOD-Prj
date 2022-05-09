@@ -12,11 +12,10 @@ function App() {
         {routes.map((route) => (
           <Route path={route.path} element={route.element} />
         ))}
-      </Routes> */}
-      {/* {/* <ShopInfoPage /> */}
-      <SellerPanel />
-      {/* <ShoppingList /> */}
       </Routes>
+      {/* {/* <ShopInfoPage /> */}
+      {/* <SellerPanel /> */}
+      {/* <ShoppingList /> */}
       {/* <ShopInfoPage />
       {/* <SellerPanelSidebar /> */}
     </>
