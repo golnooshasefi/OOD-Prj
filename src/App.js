@@ -5,16 +5,17 @@ import ShopInfoPage from "./pages/ShopInfoPage";
 import MainNavigation from "./components/layout/MainNavigation";
 import SellerPanel from "./pages/SellerPanel";
 import ShoppingList from "./pages/ShoppingList";
+import FAQ from "./pages/FAQ";
 
 function App() {
   return (
     <>
-      <Routes>
+      {/* <Routes>
         {routes.map((route) => (
           <Route path={route.path} element={route.element} />
         ))}
-      </Routes>
-
+      </Routes> */}
+      <FAQ />
       {/* <SellerPanel /> */}
     </>
   );
