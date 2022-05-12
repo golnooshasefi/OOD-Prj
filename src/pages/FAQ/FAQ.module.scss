@@ -4,16 +4,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 12rem;
+
   &__container {
     width: 100%;
     max-width: 80rem;
     margin: 0 auto;
     padding: 0 1.5rem;
   }
-}
 
-.accordion {
-  &__item {
+  &__accordionItem {
     background-color: #dee2e6;
     border-radius: 0.4rem;
     margin-bottom: 1rem;
@@ -21,7 +21,7 @@
     box-shadow: 0.5rem 2px 0.5rem rgba(#000, 0.1);
   }
 
-  &__link {
+  &__accordionLink {
     font-size: 1.6rem;
     color: #212529;
     text-decoration: none;
@@ -33,42 +33,58 @@
     padding: 1rem 0;
   }
 
-  &__icon {
+  &__accordionIcon {
     color: #ae3ec9;
     padding: 0.5rem;
+
     &--close {
       display: none;
     }
   }
-}
 
-.answer {
-  max-height: 0;
-  overflow: hidden;
-  position: relative;
-  background-color: #ced4da;
-  transition: max-height 650ms;
-  &::before {
-    content: "";
-    position: absolute;
-    width: 0.4rem;
-    height: 90%;
-    background-color: #ae3ec9;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
+  &__answer {
+    max-height: 0;
+    overflow: hidden;
+    position: relative;
+    background-color: #ced4da;
+    transition: max-height 650ms;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 0.4rem;
+      height: 100%;
+      background-color: #ae3ec9;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+    }
   }
-  &__desc {
+
+  &__answerDescription {
     color: #212529;
     font-size: 1.4rem;
     padding: 2rem;
   }
-}
 
-.accordion__item:target > .answer {
-  max-height: 20rem;
-}
+  &__accordionItem:target &__answer {
+    max-height: 20rem;
+  }
 
-.accordion__item:target .accordion__link .accordion__icon--open {
-  display: none;
+  &__accordionItem:target &__accordionLink &__accordionIcon--open {
+    display: none;
+  }
+  &__accordionItem:target &__accordionLink &__accordionIcon--close {
+    display: block;
+  }
+
+  &__pic {
+    padding-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__image {
+    width: 50rem;
+  }
 }
