@@ -148,7 +148,7 @@ function Survey() {
         data: newAnswers,
       })
       .then((res) => {
-        navigate("/product", { replace: true });
+        navigate("/products", { replace: true });
       });
   };
 

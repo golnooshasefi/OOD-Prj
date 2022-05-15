@@ -6,6 +6,7 @@ import MainNavigation from "./components/layout/MainNavigation";
 import SellerPanel from "./pages/SellerPanel";
 import ShoppingList from "./pages/ShoppingList";
 import FAQ from "./pages/FAQ";
+import AddProductSurvey from "./pages/SellerPanel/AddProduct/AddProductSurvey";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
           <Route path={route.path} element={route.element} />
         ))}
       </Routes> */}
-      <FAQ />
-      {/* <SellerPanel /> */}
+      {/* <FAQ /> */}
+      <SellerPanel />
+      {/* <AddProductSurvey /> */}
     </>
   );
 }
