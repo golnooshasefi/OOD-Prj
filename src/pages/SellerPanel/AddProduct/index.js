@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import classes from "./AddProduct.module.scss";
 import Button from "../../../components/shared/Button";
+import Survey from "./AddProductSurvey";
+import AddProductSurvey from "./AddProductSurvey";
 
 function AddProduct() {
   const { register, handleSubmit } = useForm();
@@ -102,6 +104,8 @@ function AddProduct() {
               </div>
             </div>
           </div>
+          {<AddProductSurvey />}
+
           <Button color="green" className={classes.btn}>
             ثبت
             {/* <i class="fa-solid fa-check"></i> */}
