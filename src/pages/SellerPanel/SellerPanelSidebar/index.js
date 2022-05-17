@@ -1,6 +1,7 @@
 import classes from "./SellerPanelSidebar.module.scss";
 import MainNavigation from "../../../components/layout/MainNavigation";
 import classNames from "classnames";
+import { Link, Outlet } from "react-router-dom";
 
 function SellerPanelSidebar() {
   return (
@@ -53,30 +54,42 @@ function SellerPanelSidebar() {
               </li>
             </ul>
           </li>
-          <li className={classes["side-nav__item"]}>
-            <a href="#" className={classNames(classes["side-nav__link"])}>
-              <i
-                className={classNames(
-                  classes["side-nav__icon"],
-                  "fa-regular fa-user"
-                )}
-              />
-              <span>اطلاعات حساب کاربری</span>
-            </a>
-          </li>
-          <li className={classes["side-nav__item"]}>
-            <a href="#" className={classNames(classes["side-nav__link"])}>
-              <i
-                className={classNames(
-                  classes["side-nav__icon"],
-                  "fa-solid fa-arrow-right-from-bracket"
-                )}
-              />
-              <span>خروج</span>
-            </a>
-          </li>
+          <Link to={"/SellerPanel/add-product"}>
+            <li className={classes["side-nav__submenu__item"]}>
+              <a href="#" className={classes["side-nav__submenu__link"]}>
+                افزودن کالا
+              </a>
+            </li>
+          </Link>
+          <Link to={"/SellerPanel/personal-info"}>
+            <li className={classes["side-nav__item"]}>
+              <a href="#" className={classNames(classes["side-nav__link"])}>
+                <i
+                  className={classNames(
+                    classes["side-nav__icon"],
+                    "fa-regular fa-user"
+                  )}
+                />
+                <span>اطلاعات حساب کاربری</span>
+              </a>
+            </li>
+          </Link>
+          <Link to={"/"}>
+            <li className={classes["side-nav__item"]}>
+              <a href="#" className={classNames(classes["side-nav__link"])}>
+                <i
+                  className={classNames(
+                    classes["side-nav__icon"],
+                    "fa-solid fa-arrow-right-from-bracket"
+                  )}
+                />
+                <span>خروج</span>
+              </a>
+            </li>
+          </Link>
         </ul>
       </nav>
+      <Outlet />
       {/* </div> */}
       {/* </div> */}
     </>

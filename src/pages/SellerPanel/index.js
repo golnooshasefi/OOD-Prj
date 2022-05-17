@@ -5,6 +5,7 @@ import AddProduct from "./AddProduct";
 import Orders from "./Orders";
 import Favorites from "./Favorites";
 import EditProduct from "./EditProduct";
+import { Outlet } from "react-router-dom";
 
 function SellerPanel() {
   return (
@@ -13,7 +14,7 @@ function SellerPanel() {
       <div className={classes.SellerPanel}>
         <div className={classes.SellerPanel__container}>
           <SellerPanelSidebar />
-          <AddProduct />
+          {/* <AddProduct /> */}
           {/* <Orders /> */}
           {/* <Favorites /> */}
           {/* <EditProduct /> */}
