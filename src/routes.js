@@ -11,33 +11,36 @@ import SellerPanel from "./pages/SellerPanel";
 import FAQ from "./pages/FAQ";
 import AddProduct from "./pages/SellerPanel/AddProduct";
 import EditProduct from "./pages/SellerPanel/EditProduct";
+import PersonalInfo from "./pages/SellerPanel/PersonalInfo";
+import Orders from "./pages/SellerPanel/Orders";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
   { path: "/survey", element: <Survey /> },
   {
-    path: "/accountbox",
+    path: "/account-box",
     element: <AccountBox />,
   },
   {
-    path: "/SellerAccountbox",
+    path: "/seller-account-box",
     element: <SellerAccountBox />,
   },
   {
     path: "/products",
     element: <Products />,
   },
-  { path: "/ShoppingList", element: <ShoppingList /> },
+  { path: "/shopping-list", element: <ShoppingList /> },
   { path: "/product", element: <Product /> },
   {
-    path: "/SellerPanel",
-    element: <SellerPanelSidebar />,
+    path: "/seller-panel",
+    element: <SellerPanel />,
     children: [
-      { path: "/SellerPanel/add-product", element: <AddProduct /> },
-      { path: "/SellerPanel/personal-info", element: <EditProduct /> },
+      { path: "/seller-panel/add-product", element: <AddProduct /> },
+      // { path: "/seller-panel/personal-info", element: <Orders /> },
+      { path: "/seller-panel/personal-info", element: <PersonalInfo /> },
     ],
   },
-  { path: "/SellerPanell", element: <SellerPanel /> },
+  // { path: "/SellerPanell", element: <SellerPanel /> },
   // { path: "/SellerLogin", element: <SellerLogin /> },
   { path: "/FAQ", element: <FAQ /> },
   { path: "*", element: <AccountBox /> }, //404

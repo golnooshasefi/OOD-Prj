@@ -54,14 +54,14 @@ function SellerPanelSidebar() {
               </li>
             </ul>
           </li>
-          <Link to={"/SellerPanel/add-product"}>
+          <Link to={"/seller-panel/add-product"}>
             <li className={classes["side-nav__submenu__item"]}>
               <a href="#" className={classes["side-nav__submenu__link"]}>
                 افزودن کالا
               </a>
             </li>
           </Link>
-          <Link to={"/SellerPanel/personal-info"}>
+          <Link to={"/seller-panel/personal-info"}>
             <li className={classes["side-nav__item"]}>
               <a href="#" className={classNames(classes["side-nav__link"])}>
                 <i
@@ -89,7 +89,7 @@ function SellerPanelSidebar() {
           </Link>
         </ul>
       </nav>
-      <Outlet />
+
       {/* </div> */}
       {/* </div> */}
     </>
