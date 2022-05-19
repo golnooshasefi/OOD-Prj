@@ -44,24 +44,48 @@
   &__container_3 {
     max-width: 55rem;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+
+    @media (max-width: 32.5em) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &__container_4 {
     max-width: 65rem;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+
+    @media (max-width: 40em) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &__container_5 {
-    max-width: 80rem;
+    max-width: 85rem;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+
+    @media (max-width: 54.5em) {
+      gap: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 32em) {
+      gap: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 28.5em) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &__pic {
     display: block;
-    height: 15rem;
+    height: 20rem;
     width: 15rem;
     padding: 0.5rem 0.5rem;
     font-size: 16px;
@@ -69,6 +93,10 @@
     border-radius: 4px;
     margin-left: 1rem;
     cursor: pointer;
+
+    @media (max-width: 54.5em) {
+      margin-left: 0;
+    }
   }
   &__radiobutton:checked + &__pic {
     background-color: #9775fa;
@@ -80,13 +108,14 @@
   }
   &__iconContainer {
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 1rem;
   }
   &__icon {
     display: flex;
     font-size: 2rem;
     color: #5e4d9b;
+    margin-top: 0.5rem;
   }
 }
 
