@@ -14,6 +14,7 @@ import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { faShield } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
+import SimilarItem from "./SimilarItem";
 const heart = <FontAwesomeIcon icon={faHeart} />;
 const heartSolid = <FontAwesomeIcon icon={faHeartSolid} />;
 const tag = <FontAwesomeIcon icon={faTag} />;
@@ -183,6 +184,11 @@ function Product() {
               {digitsEnToFa(addCommas("199000"))} تومان
             </span>
           </div>
+          <div className={classes.Product__sellerBox__featureBox}>
+            <span className={classes.Product__sellerBox__featureBox__off}>
+              {digitsEnToFa(addCommas("200000"))}
+            </span>
+          </div>
           <Button color="purple" className={classes["Product__sellerBox__btn"]}>
             افزودن به سبد
           </Button>
@@ -192,76 +198,36 @@ function Product() {
             محصولات مشابه
           </span>
           <div className={classes.Product__similarBox__items}>
-            <div className={classes.Product__similarBox__items__item}>
-              <img
-                className={classes.Product__similarBox__items__item__pic}
-                src={"./images/clothes/11bg.png"}
-                alt={"fake"}
-              />
-              <span className={classes.Product__similarBox__items__item__name}>
-                {"شلوار مردانه سیدونا مدل MSI03072-403"}
-              </span>
-              <span className={classes.Product__similarBox__items__item__price}>
-                {digitsEnToFa(addCommas("199999"))} تومان
-              </span>
-              <span
-                className={classes.Product__similarBox__items__item__priceOff}
-              >
-                {digitsEnToFa(addCommas("200000"))}
-              </span>
-            </div>
-            <div className={classes.Product__similarBox__items__item}>
-              <img
-                className={classes.Product__similarBox__items__item__pic}
-                src={"./images/clothes/11bg.png"}
-                alt={"fake"}
-              />
-              <span className={classes.Product__similarBox__items__item__name}>
-                {"شلوار مردانه سیدونا مدل MSI03072-403"}
-              </span>
-              <span className={classes.Product__similarBox__items__item__price}>
-                {digitsEnToFa(addCommas("199999"))} تومان
-              </span>
-            </div>
-            <div className={classes.Product__similarBox__items__item}>
-              <img
-                className={classes.Product__similarBox__items__item__pic}
-                src={"./images/clothes/11bg.png"}
-                alt={"fake"}
-              />
-              <span className={classes.Product__similarBox__items__item__name}>
-                {"شلوار مردانه سیدونا مدل MSI03072-403"}
-              </span>
-              <span className={classes.Product__similarBox__items__item__price}>
-                {digitsEnToFa(addCommas("199999"))} تومان
-              </span>
-            </div>
-            <div className={classes.Product__similarBox__items__item}>
-              <img
-                className={classes.Product__similarBox__items__item__pic}
-                src={"./images/clothes/11bg.png"}
-                alt={"fake"}
-              />
-              <span className={classes.Product__similarBox__items__item__name}>
-                {"شلوار مردانه سیدونا مدل MSI03072-403"}
-              </span>
-              <span className={classes.Product__similarBox__items__item__price}>
-                {digitsEnToFa(addCommas("199999"))} تومان
-              </span>
-            </div>
-            <div className={classes.Product__similarBox__items__item}>
-              <img
-                className={classes.Product__similarBox__items__item__pic}
-                src={"./images/clothes/11bg.png"}
-                alt={"fake"}
-              />
-              <span className={classes.Product__similarBox__items__item__name}>
-                {"شلوار مردانه سیدونا مدل MSI03072-403"}
-              </span>
-              <span className={classes.Product__similarBox__items__item__price}>
-                {digitsEnToFa(addCommas("199999"))} تومان
-              </span>
-            </div>
+            <SimilarItem
+              link={"./images/clothes/11bg.png"}
+              name={"شلوار مردانه سیدونا مدل MSI03072-403"}
+              price={"199999"}
+              priceOff={"200000"}
+            />
+            <SimilarItem
+              link={"./images/clothes/11bg.png"}
+              name={"شلوار مردانه سیدونا مدل MSI03072-403"}
+              price={"199999"}
+              priceOff={"200000"}
+            />
+            <SimilarItem
+              link={"./images/clothes/11bg.png"}
+              name={"شلوار مردانه سیدونا مدل MSI03072-403"}
+              price={"199999"}
+              priceOff={"200000"}
+            />
+            <SimilarItem
+              link={"./images/clothes/11bg.png"}
+              name={"شلوار مردانه سیدونا مدل MSI03072-403"}
+              price={"199999"}
+              priceOff={"200000"}
+            />
+            <SimilarItem
+              link={"./images/clothes/11bg.png"}
+              name={"شلوار مردانه سیدونا مدل MSI03072-403"}
+              price={"199999"}
+              priceOff={"200000"}
+            />
           </div>
         </div>
       </section>
