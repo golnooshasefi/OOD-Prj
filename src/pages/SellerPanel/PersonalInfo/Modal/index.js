@@ -89,7 +89,6 @@ function Modal(props) {
       >
         ویرایش
       </button>
-      {console.log(formData.fullName || formData.phoneNumber)}
     </div>
   );
 }

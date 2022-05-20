@@ -1,18 +1,11 @@
 import React, { useState, useContext } from "react";
-import classes from "./login.module.scss";
-import UserContext from "../../store/UserContext";
-import axiosInstance from "../../axios";
+import classes from "./../Login/login.module.scss";
+import UserContext from "../../../store/UserContext";
+import axiosInstance from "../../../axios";
 import { useNavigate } from "react-router-dom";
-import {
-  BoldLink,
-  BoxContainer,
-  FormContainer,
-  Input,
-  MutedLink,
-  SubmitButton,
-} from "./common";
-import { Marginer } from "../../components/marginer";
-import { AccountContext } from "./accountContext";
+
+import { Marginer } from "../../../components/marginer";
+import { AccountContext } from "../accountContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
@@ -21,10 +14,10 @@ import axios from "axios";
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 
-export function SignupForm(props) {
+export function Signup(props) {
   const { switchToSignin } = useContext(AccountContext);
   const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => {
+  const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
   };
   const navigate = useNavigate();
@@ -67,9 +60,10 @@ export function SignupForm(props) {
   };
 
   return (
-    <BoxContainer>
-      <FormContainer>
-        <Input
+    <div className={classes.boxContainer}>
+      <form className={classes.boxContainer__formContainer}>
+        <input
+          className={classes.boxContainer__formContainer__input}
           name="fullName"
           type="text"
           placeholder="نام و نام‌خانوادگی"
@@ -77,57 +71,70 @@ export function SignupForm(props) {
           onChange={handleChange}
         />
         <Marginer direction="vertical" margin={10} />
-        <Input
+        <input
+          className={classes.boxContainer__formContainer__input}
           name="email"
           type="email"
           placeholder="ایمیل"
           onChange={handleChange}
         />
         <Marginer direction="vertical" margin={10} />
-        <Input
+        <input
+          className={classes.boxContainer__formContainer__input}
           name="phoneNumber"
           type="tel"
-          placeholder="نام فروشگاه"
+          placeholder="شماره موبایل"
           onChange={handleChange}
         />
         <Marginer direction="vertical" margin={10} />
-        <Input
-          name="phoneNumber"
-          type="tel"
-          placeholder="شماره تلفن"
-          onChange={handleChange}
-        />
-        <Marginer direction="vertical" margin={10} />
-        <Input
-          name="phoneNumber"
-          type="tel"
-          placeholder="آدرس فروشگاه"
-          onChange={handleChange}
-        />
-        <Marginer direction="vertical" margin={10} />
-        <div className={classes.pass_wrapper}>
-          <Input
+        <div className={classes.boxContainer__formContainer__passWrapper}>
+          <input
+            className={classes.boxContainer__formContainer__input}
             name="password"
             type={passwordShown ? "text" : "password"}
             placeholder="رمز عبور"
             onChange={handleChange}
           />
-          <i className={classes.icon} onClick={togglePasswordVisiblity}>
+          <i
+            className={classes.boxContainer__formContainer__passWrapper__icon}
+            onClick={togglePasswordVisibility}
+          >
             {passwordShown ? eye : eye_slash}
           </i>
         </div>
-      </FormContainer>
+      </form>
       <Marginer direction="vertical" margin={20} />
-      <SubmitButton type="submit" onClick={handleSubmit}>
+      <button
+        type="submit"
+        onClick={handleSubmit}
+        disabled={
+          !formData.fullName ||
+          !formData.email ||
+          !formData.phoneNumber ||
+          !formData.password
+        }
+        className={
+          !formData.fullName ||
+          !formData.email ||
+          !formData.phoneNumber ||
+          !formData.password
+            ? classes.boxContainer__btn__disable
+            : classes.boxContainer__btn
+        }
+      >
         ثبت‌نام
-      </SubmitButton>
+      </button>
       <Marginer direction="vertical" margin="1.5rem" />
-      <MutedLink href="#">
+      <a className={classes.boxContainer__mutedLink} href="#">
         عضو سایت هستید؟
-        <BoldLink href="#" onClick={switchToSignin}>
+        <a
+          className={classes.boxContainer__boldLink}
+          href="#"
+          onClick={switchToSignin}
+        >
           وارد شوید
-        </BoldLink>
-      </MutedLink>
-    </BoxContainer>
+        </a>
+      </a>
+    </div>
   );
 }

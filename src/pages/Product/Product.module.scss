@@ -191,15 +191,18 @@
       align-items: center;
       gap: 1.5rem;
       margin-right: 1rem;
+
       &__icon {
         font-size: 2rem;
         // color: #a1a3a8;
         flex-shrink: 0;
       }
+
       &__text {
         font-size: 1.5rem;
         // color: #62666d;
       }
+
       &__off {
         font-size: 1.5rem;
         color: #9a9b9e;

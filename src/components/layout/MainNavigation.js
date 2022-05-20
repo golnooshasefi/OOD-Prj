@@ -42,7 +42,7 @@ function MainNavigation() {
               <Button color="white">خروج</Button>
             </Link>
           ) : (
-            <Link to="/accountbox">
+            <Link to="/account-box">
               {/* <i className={classes.header__login_logo}>{loginIcon}</i> */}
               <Button color="white">
                 <i className={classes.header__login_logo}>{loginIcon}</i>ورود |
@@ -56,7 +56,9 @@ function MainNavigation() {
           <ul className={classes["Navigation--list"]}>
             <li className={classes["Navigation--item"]}>دسته بندی</li>
             <li className={classes["Navigation--item"]}>درباره ما</li>
-            <li className={classes["Navigation--item"]}>فروشنده شوید</li>
+            <Link to={"/seller-account-box"}>
+              <li className={classes["Navigation--item"]}>فروشنده شوید</li>
+            </Link>
           </ul>
         </nav>
       </div>
