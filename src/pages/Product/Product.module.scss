@@ -5,11 +5,33 @@
   grid-template-columns: repeat(3, 1fr);
   // height: 10rem;
 
+  @media (max-width: 78em) {
+    column-gap: 7rem;
+    row-gap: 5rem;
+  }
+
+  @media (max-width: 62em) {
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    justify-content: center;
+    column-gap: 0;
+  }
+
   &__imgBox {
     position: relative;
+    display: flex;
+    justify-content: center;
     // border: 1px solid #e0e0e2;
     // border-radius: 1rem;
     // display: inline-block;
+
+    &__img {
+      @media (max-width: 33em) {
+        width: 30rem;
+        height: 40rem;
+      }
+    }
+
     &__regular {
       position: absolute;
       font-size: 3rem;
@@ -41,6 +63,19 @@
     flex-direction: column;
     margin-right: 2rem;
     // margin: 0 auto;
+
+    @media (max-width: 78em) {
+      grid-column: 2 / span 2;
+    }
+
+    @media (max-width: 62em) {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    @media (max-width: 33em) {
+      margin-top: -5rem;
+    }
 
     &__name {
       margin-top: 5rem;
@@ -114,6 +149,23 @@
     box-shadow: rgba(#5f3dc4, 0.3) 0px 5px, rgba(#5f3dc4, 0.2) 0px 10px,
       rgba(#5f3dc4, 0.1) 0px 15px;
 
+    @media (max-width: 78em) {
+      grid-column: 1 / span 3;
+      grid-row: 2;
+      align-self: center;
+      margin: 0 auto;
+      min-width: 50rem;
+    }
+
+    @media (max-width: 62em) {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    @media (max-width: 33em) {
+      min-width: 35rem;
+    }
+
     &__text {
       font-size: 1.8rem;
       font-weight: 600;
@@ -148,6 +200,13 @@
         font-size: 1.5rem;
         // color: #62666d;
       }
+      &__off {
+        font-size: 1.5rem;
+        color: #9a9b9e;
+        text-decoration: line-through;
+        margin-top: -2rem;
+        margin-right: 3.7rem;
+      }
     }
 
     &__btn {
@@ -164,10 +223,13 @@
 
   &__similarBox {
     margin-top: 5rem;
-    // border: 1px solid #e0e0e2;
     border-radius: 1rem;
     grid-column: 1 / span 3;
     padding: 3rem 1rem;
+
+    @media (max-width: 78em) {
+      margin-top: 0;
+    }
 
     &__text {
       color: #6667ab;
@@ -182,6 +244,23 @@
       grid-template-columns: repeat(5, 1fr);
       margin-top: 4rem;
       gap: 1rem;
+
+      @media (max-width: 75.5em) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      @media (max-width: 62em) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @media (max-width: 50em) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: 39.5em) {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
       &__item {
         padding: 3rem;
         cursor: pointer;
