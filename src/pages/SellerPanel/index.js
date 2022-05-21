@@ -14,6 +14,7 @@ function SellerPanel() {
       <div className={classes.SellerPanel}>
         <div className={classes.SellerPanel__container}>
           <SellerPanelSidebar />
+          <Outlet />
           {/* <AddProduct /> */}
           {/* <Orders /> */}
           {/* <Favorites /> */}
