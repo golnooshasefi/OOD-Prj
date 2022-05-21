@@ -95,7 +95,7 @@ const questions = [
       { key: 7, value: "./images/q7/7.jpg", isChecked: false },
       { key: 8, value: "./images/q7/8.jpg", isChecked: false },
       { key: 9, value: "./images/q7/9.jpg", isChecked: false },
-      { key: 10, value: "./images/q7/10.PNG", isChecked: false },
+      { key: 10, value: "./images/q7/10.jpg", isChecked: false },
       { key: 11, value: "./images/q7/11.jpg", isChecked: false },
       { key: 12, value: "./images/q7/12.jpg", isChecked: false },
     ],

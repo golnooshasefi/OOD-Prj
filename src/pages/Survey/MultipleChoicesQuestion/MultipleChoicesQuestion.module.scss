@@ -29,6 +29,22 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 1rem;
+
+    @media (max-width: 64em) {
+      grid-template-columns: repeat(4, 1fr);
+      max-height: 40rem;
+      overflow-y: scroll;
+    }
+
+    @media (max-width: 40.5em) {
+      grid-template-columns: repeat(3, 1fr);
+      max-height: 50rem;
+    }
+
+    @media (max-width: 31.25em) {
+      max-height: 55rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &__pic {
@@ -64,13 +80,14 @@
   }
   &__iconContainer {
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 1rem;
   }
   &__icon {
     display: flex;
     font-size: 2rem;
     color: #5e4d9b;
+    margin-top: 0.5rem;
   }
 }
 
