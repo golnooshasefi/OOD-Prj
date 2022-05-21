@@ -28,12 +28,14 @@ function HeroSection() {
               </Button>
             </Link>
 
-            <Button
-              color="white"
-              className={classes["HeroSection__button--left"]}
-            >
-              سوالات متداول
-            </Button>
+            <Link to={"/FAQ"}>
+              <Button
+                color="white"
+                className={classes["HeroSection__button--left"]}
+              >
+                سوالات متداول
+              </Button>
+            </Link>
           </div>
         </div>
         <div className={classes.HeroSection__gallery}>

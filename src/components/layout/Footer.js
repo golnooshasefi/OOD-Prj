@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import classes from "./Footer.module.scss";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -18,11 +19,13 @@ function Footer() {
                   درباره ما
                 </a>
               </li>
-              <li className={classes.Footer__item}>
-                <a href="#" className={classes.Footer__link}>
-                  پرسش‌های متداول
-                </a>
-              </li>
+              <Link to={"/FAQ"}>
+                <li className={classes.Footer__item}>
+                  <a href="#" className={classes.Footer__link}>
+                    سوالات متداول
+                  </a>
+                </li>
+              </Link>
               <li className={classes.Footer__item}>
                 <a href="#" className={classes.Footer__link}>
                   تماس با ما

@@ -6,7 +6,7 @@ import Footer from "../../components/layout/Footer";
 function FAQ() {
   return (
     <>
-      {/* <MainNavigation /> */}
+      <MainNavigation />
       <div className={classes.FAQ}>
         <div className={classes.FAQ__container}>
           <div className={classes.FAQ__accordion}>
@@ -103,7 +103,7 @@ function FAQ() {
           </div> */}
         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

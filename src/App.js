@@ -11,13 +11,18 @@ import AddProductSurvey from "./pages/SellerPanel/AddProduct/AddProductSurvey";
 function App() {
   return (
     <>
-      {/* <Routes>
+      <Routes>
         {routes.map((route) => (
-          <Route path={route.path} element={route.element} />
+          <Route path={route.path} element={route.element}>
+            {route?.children &&
+              route.children.map((childrenRoute) => (
+                <Route {...childrenRoute} />
+              ))}
+          </Route>
         ))}
-      </Routes> */}
+      </Routes>
       {/* <FAQ /> */}
-      <SellerPanel />
+      {/* <SellerPanel /> */}
       {/* <AddProductSurvey /> */}
     </>
   );
