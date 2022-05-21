@@ -14,15 +14,19 @@
     display: grid;
     /* gap: 1rem; */
     grid-template-columns: repeat(4, 1fr);
+    align-items: start;
     // grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
     /* grid-template-row: repeat(auto-fill, minmax(40rem, 1fr)); */
     /* background-color: black; */
+    border: 1px solid #e0e0e2;
+    border-radius: 1rem;
+    overflow: hidden;
   }
 
   &__filterContainer {
     grid-row: 1;
     grid-column: 1 / span 1;
-    position: fixed;
+    position: sticky;
     height: 95vh;
     width: 17vw;
     // width: 15rem;

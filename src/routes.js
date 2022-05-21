@@ -13,6 +13,8 @@ import AddProduct from "./pages/SellerPanel/AddProduct";
 import EditProduct from "./pages/SellerPanel/EditProduct";
 import PersonalInfo from "./pages/SellerPanel/PersonalInfo";
 import Orders from "./pages/SellerPanel/Orders";
+import NotFound from "./pages/NotFound";
+import ForgotPassword from "./pages/AccountBox/ForgotPassword";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
@@ -21,10 +23,17 @@ export const routes = [
     path: "/account-box",
     element: <AccountBox />,
   },
+
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
+  },
+
   {
     path: "/seller-account-box",
     element: <SellerAccountBox />,
   },
+
   {
     path: "/products",
     element: <Products />,
@@ -43,5 +52,5 @@ export const routes = [
   // { path: "/SellerPanell", element: <SellerPanel /> },
   // { path: "/SellerLogin", element: <SellerLogin /> },
   { path: "/FAQ", element: <FAQ /> },
-  { path: "*", element: <AccountBox /> }, //404
+  { path: "*", element: <NotFound /> },
 ];

@@ -1,19 +1,11 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../axios";
-
-import UserContext from "../../store/UserContext";
+import { useNavigate, Link } from "react-router-dom";
+import axiosInstance from "../../../axios";
 import classes from "./login.module.scss";
-import {
-  BoldLink,
-  BoxContainer,
-  FormContainer,
-  Input,
-  MutedLink,
-  SubmitButton,
-} from "./common";
-import { Marginer } from "../../components/marginer";
-import { AccountContext } from "./accountContext";
+
+import UserContext from "../../../store/UserContext";
+import { Marginer } from "../../../components/marginer";
+import { AccountContext } from "../accountContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
@@ -21,10 +13,10 @@ import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 
-export function LoginForm(props) {
+export function Login(props) {
   const { switchToSignup } = useContext(AccountContext);
   const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => {
+  const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
   };
 
@@ -71,11 +63,11 @@ export function LoginForm(props) {
   };
 
   return (
-    <BoxContainer>
+    <div className={classes.boxContainer}>
       <Marginer direction="vertical" margin="2rem" />
-      <FormContainer>
-        {/* <Input type="email" placeholder="ایمیل یا شماره موبایل" autoFocus /> */}
-        <Input
+      <form className={classes.boxContainer__formContainer}>
+        <input
+          className={classes.boxContainer__formContainer__input}
           type="email"
           placeholder="ایمیل"
           autoFocus
@@ -83,31 +75,53 @@ export function LoginForm(props) {
           name="email"
         />
         <Marginer direction="vertical" margin={10} />
-        <div className={classes.pass_wrapper}>
-          <Input
+        <div className={classes.boxContainer__formContainer__passWrapper}>
+          <input
+            className={classes.boxContainer__formContainer__input}
             type={passwordShown ? "text" : "password"}
             placeholder="رمز عبور"
             onChange={handleChange}
             name="password"
           />
-          <i className={classes.icon} onClick={togglePasswordVisiblity}>
+          <i
+            className={classes.boxContainer__formContainer__passWrapper__icon}
+            onClick={togglePasswordVisibility}
+          >
             {passwordShown ? eye : eye_slash}
           </i>
         </div>
-      </FormContainer>
+      </form>
       <Marginer direction="vertical" margin={20} />
-      <MutedLink href="#">رمز عبور خود را فراموش کرده‌اید؟</MutedLink>
+      <Link
+        to={"/forgot-password"}
+        className={classes.boxContainer__forgotLink}
+      >
+        رمز عبور خود را فراموش کرده‌اید؟
+      </Link>
       <Marginer direction="vertical" margin="1.2em" />
-      <SubmitButton onClick={handleSubmit} type="submit">
+      <button
+        onClick={handleSubmit}
+        type="submit"
+        disabled={!formData.email || !formData.password}
+        className={
+          !formData.email || !formData.password
+            ? classes.boxContainer__btn__disable
+            : classes.boxContainer__btn
+        }
+      >
         ورود
-      </SubmitButton>
+      </button>
       <Marginer direction="vertical" margin="1.5rem" />
-      <MutedLink href="#">
+      <a className={classes.boxContainer__mutedLink} href="#">
         عضو نیستید؟{" "}
-        <BoldLink href="#" onClick={switchToSignup}>
+        <a
+          className={classes.boxContainer__boldLink}
+          href="#"
+          onClick={switchToSignup}
+        >
           ثبت‌نام کنید
-        </BoldLink>
-      </MutedLink>
-    </BoxContainer>
+        </a>
+      </a>
+    </div>
   );
 }
