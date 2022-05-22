@@ -10,12 +10,8 @@ function SellerPanelSidebar() {
       {/* <div className={classes.SellerPanel__content}> */}
       <nav className={classes.sidebar}>
         <div className={classes["seller-info"]}>
-          <i
-            className={classNames(
-              "fa-solid fa-shop",
-              classes["seller-info__icon"]
-            )}
-          />
+          <img src="./images/user1.png" className={classes.userImage} />
+
           <div className={classes["seller-info__description"]}>
             <div className={classes["seller-info__title"]}>فروشگاه بزرگ</div>
             <div className={classes["seller-info__phone"]}>٠٩١٣٤٥٦٧٨٤٤</div>
@@ -33,7 +29,7 @@ function SellerPanelSidebar() {
               <i
                 className={classNames(
                   classes["side-nav__icon"],
-                  "fa-solid fa-store"
+                  "fa-solid fa-bars-progress"
                 )}
               />
               مدیریت کالاها
@@ -61,6 +57,21 @@ function SellerPanelSidebar() {
               </a>
             </li>
           </Link>
+
+          <Link to={"/seller-panel/personal-info"}>
+            <li className={classes["side-nav__item"]}>
+              <a href="#" className={classNames(classes["side-nav__link"])}>
+                <i
+                  className={classNames(
+                    classes["side-nav__icon"],
+                    "fa-solid fa-bag-shopping"
+                  )}
+                />
+                <span> سفارش‌ها </span>
+              </a>
+            </li>
+          </Link>
+
           <Link to={"/seller-panel/personal-info"}>
             <li className={classes["side-nav__item"]}>
               <a href="#" className={classNames(classes["side-nav__link"])}>
@@ -74,6 +85,7 @@ function SellerPanelSidebar() {
               </a>
             </li>
           </Link>
+
           <Link to={"/"}>
             <li className={classes["side-nav__item"]}>
               <a href="#" className={classNames(classes["side-nav__link"])}>

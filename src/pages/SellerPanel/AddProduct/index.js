@@ -10,7 +10,13 @@ function AddProduct() {
   return (
     <>
       <div className={classes.container}>
-        <h2 className={classes.header}>افزودن کالا</h2>
+        <div className={classes.container__headerContainer}>
+          <div className={classes.container__headerContainer__header}>
+            <span className={classes.container__headerContainer__text}>
+              ویرایش کالا
+            </span>
+          </div>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
           <div className={classes.row}>
             <div className={classes.column}>
