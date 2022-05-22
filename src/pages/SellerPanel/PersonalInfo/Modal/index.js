@@ -5,14 +5,20 @@ import { useState } from "react";
 
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { Marginer } from "../../../../components/marginer";
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 const close = <FontAwesomeIcon icon={faXmark} />;
 
 function Modal(props) {
-  const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown ? false : true);
+  const [passwordShown1, setPasswordShown1] = useState(false);
+  const togglePasswordVisiblity1 = () => {
+    setPasswordShown1(passwordShown1 ? false : true);
+  };
+
+  const [passwordShown2, setPasswordShown2] = useState(false);
+  const togglePasswordVisiblity2 = () => {
+    setPasswordShown2(passwordShown2 ? false : true);
   };
 
   const initialFormData = Object.freeze({
@@ -22,6 +28,7 @@ function Modal(props) {
     address: "",
     shopName: "",
     shopNumber: "",
+    currentPassword: "",
     password: "",
   });
 
@@ -45,11 +52,6 @@ function Modal(props) {
     }
   }
 
-  function disableChecker() {
-    console.log(formData);
-    return false;
-  }
-
   return (
     <div className={classes.modal}>
       <div className={classes.modal__header}>
@@ -59,33 +61,78 @@ function Modal(props) {
         </span>
       </div>
       <form onSubmit={confirmHandler} className={classes.modal__inputWrapper}>
-        <input
-          className={classes.modal__inputWrapper__input}
-          type={passwordShown ? "text" : props.type}
-          placeholder={props.title}
-          autoFocus
-          required
-          onChange={handleChange}
-          name={props.name}
-        />
-        {console.log("name:" + props.name)}
         {props.type === "password" && (
-          <i
-            className={classes.modal__inputWrapper__icon}
-            onClick={togglePasswordVisiblity}
-          >
-            {passwordShown ? eye : eye_slash}
-          </i>
+          <div className={classes.modal__inputWrapper__inputBox}>
+            <input
+              className={classes.modal__inputWrapper__inputBox__input}
+              type={passwordShown1 ? "text" : props.type}
+              placeholder={`${props.title} فعلی`}
+              autoFocus
+              required
+              onChange={handleChange}
+              name="currentPassword"
+            />
+            <i
+              className={classes.modal__inputWrapper__inputBox__icon}
+              onClick={togglePasswordVisiblity1}
+            >
+              {passwordShown1 ? eye : eye_slash}
+            </i>
+            <Marginer direction="vertical" margin="2rem" />
+          </div>
         )}
+        <div className={classes.modal__inputWrapper__inputBox}>
+          {props.type === "password" ? (
+            <input
+              className={classes.modal__inputWrapper__inputBox__input}
+              type={passwordShown2 ? "text" : props.type}
+              placeholder={
+                props.type === "password" ? `${props.title} جدید` : props.title
+              }
+              required
+              onChange={handleChange}
+              name={props.name}
+            />
+          ) : (
+            <input
+              className={classes.modal__inputWrapper__inputBox__input}
+              type={passwordShown2 ? "text" : props.type}
+              placeholder={
+                props.type === "password" ? `${props.title} جدید` : props.title
+              }
+              autoFocus
+              required
+              onChange={handleChange}
+              name={props.name}
+            />
+          )}
+
+          {props.type === "password" && (
+            <i
+              className={classes.modal__inputWrapper__inputBox__icon}
+              onClick={togglePasswordVisiblity2}
+            >
+              {passwordShown2 ? eye : eye_slash}
+            </i>
+          )}
+        </div>
       </form>
       <button
         className={
-          !formData[props.name]
+          props.type === "password"
+            ? !formData[props.name] || !formData.currentPassword
+              ? classes.modal__btn__disable
+              : classes.modal__btn
+            : !formData[props.name]
             ? classes.modal__btn__disable
             : classes.modal__btn
         }
         onClick={confirmHandler}
-        disabled={!formData[props.name]}
+        disabled={
+          props.type === "password"
+            ? !formData[props.name] || !formData.currentPassword
+            : !formData[props.name]
+        }
       >
         ویرایش
       </button>

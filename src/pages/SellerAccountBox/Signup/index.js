@@ -86,7 +86,6 @@ export function Signup(props) {
           name="shopName"
           type="text"
           placeholder="نام فروشگاه"
-          autoFocus
           onChange={handleChange}
         />
         <Marginer direction="vertical" margin={10} />
@@ -103,7 +102,6 @@ export function Signup(props) {
           name="address"
           type="text"
           placeholder="آدرس فروشگاه"
-          autoFocus
           onChange={handleChange}
         />
         <Marginer direction="vertical" margin={10} />
