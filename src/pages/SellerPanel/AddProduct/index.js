@@ -13,7 +13,7 @@ function AddProduct() {
         <div className={classes.container__headerContainer}>
           <div className={classes.container__headerContainer__header}>
             <span className={classes.container__headerContainer__text}>
-              ویرایش کالا
+              افزودن کالا
             </span>
           </div>
         </div>
