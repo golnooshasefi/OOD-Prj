@@ -29,15 +29,25 @@ function AddProduct() {
                   className={classes.form__input}
                 />
               </div>
-
               <div className={classes.form__group}>
-                <label className={classes.form__label}>اندازه</label>
+                <label for="color" className={classes.form__label}>
+                  رنگ
+                </label>
                 <input
-                  type="text"
-                  placeholder="اندازه"
-                  {...register("size")}
+                  name="color"
+                  id="color"
+                  list="colors"
+                  placeholder="رنگ محصول"
+                  {...register("title")}
                   className={classes.form__input}
                 />
+                <datalist id="colors">
+                  <option>قرمز</option> <option>زرد</option>
+                  <option>آبی</option> <option>سبز</option>
+                  <option>نارنجی</option> <option>بنفش</option>
+                  <option>سیاه</option> <option>سفید</option>
+                  <option>خاکستری</option>
+                </datalist>
               </div>
 
               <div className={classes.form__group}>
@@ -49,6 +59,7 @@ function AddProduct() {
                   className={classes.form__input}
                 />
               </div>
+
               <div className={classes.form__group}>
                 <label className={classes.form__label}>طرح لباس </label>
                 <input
@@ -69,6 +80,24 @@ function AddProduct() {
               </div>
             </div>
             <div className={classes.column}>
+              <div className={classes.form__group}>
+                <label for="size" className={classes.form__label}>
+                  سایز
+                </label>
+                <input
+                  name="size"
+                  id="size"
+                  list="sizes"
+                  placeholder="سایز محصول"
+                  {...register("size")}
+                  className={classes.form__input}
+                />
+                <datalist id="sizes">
+                  <option>XS</option> <option>S</option> <option>M</option>
+                  <option>L</option> <option>XL</option> <option>XXL</option>
+                  <option>XXXL</option>
+                </datalist>
+              </div>
               <div className={classes.form__group}>
                 <label className={classes.form__label}>جنس لباس</label>
                 <input
@@ -102,11 +131,7 @@ function AddProduct() {
                   تصویر محصول
                   <i class="fa-regular fa-file-image"></i>
                 </label>
-                <input
-                  type="file"
-                  {...register("file")}
-                  //   className={classes["form__input--pic"]}
-                />
+                <input type="file" {...register("file")} />
               </div>
             </div>
           </div>
@@ -114,7 +139,6 @@ function AddProduct() {
 
           <Button color="green" className={classes.btn}>
             ثبت
-            {/* <i class="fa-solid fa-check"></i> */}
           </Button>
         </form>
       </div>
