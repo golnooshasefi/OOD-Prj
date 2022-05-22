@@ -128,13 +128,17 @@ export function Signup(props) {
         disabled={
           !formData.fullName ||
           !formData.email ||
-          !formData.phoneNumber ||
+          !formData.shopName ||
+          !formData.shopNumber ||
+          !formData.address ||
           !formData.password
         }
         className={
           !formData.fullName ||
           !formData.email ||
-          !formData.phoneNumber ||
+          !formData.shopName ||
+          !formData.shopNumber ||
+          !formData.address ||
           !formData.password
             ? classes.boxContainer__btn__disable
             : classes.boxContainer__btn

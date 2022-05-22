@@ -15,6 +15,8 @@ import PersonalInfo from "./pages/SellerPanel/PersonalInfo";
 import Orders from "./pages/SellerPanel/Orders";
 import NotFound from "./pages/NotFound";
 import ForgotPassword from "./pages/AccountBox/ForgotPassword";
+import UserPanel from "./pages/UserPanel";
+import Favorites from "./pages/UserPanel/Favorites";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
@@ -53,4 +55,14 @@ export const routes = [
   // { path: "/SellerLogin", element: <SellerLogin /> },
   { path: "/FAQ", element: <FAQ /> },
   { path: "*", element: <NotFound /> },
+  { path: "/user-panel", element: <UserPanel /> },
+  {
+    path: "/user-panel",
+    element: <UserPanel />,
+    children: [
+      { path: "/user-panel/favorites", element: <Favorites /> },
+      { path: "/user-panel/orders", element: <Orders /> },
+      { path: "/user-panel/personal-info", element: <PersonalInfo /> },
+    ],
+  },
 ];
