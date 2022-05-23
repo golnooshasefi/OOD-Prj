@@ -2,8 +2,10 @@ import classes from "./FAQ.module.scss";
 import classNames from "classnames";
 import MainNavigation from "../../components/layout/MainNavigation";
 import Footer from "../../components/layout/Footer";
+import { useState } from "react";
 
 function FAQ() {
+  const [accordionIsOpen, setaccordionIsOpen] = useState(false);
   return (
     <>
       <MainNavigation />

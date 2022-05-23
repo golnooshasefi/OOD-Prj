@@ -7,6 +7,8 @@
   flex-direction: column;
   justify-content: flex-start;
   border-radius: 30px;
+  height: 100vh;
+  position: sticky;
 }
 .seller-info {
   margin-top: 2rem;
@@ -102,4 +104,8 @@
 
 .userImage {
   height: 6rem;
+}
+
+.link {
+  text-decoration: none;
 }

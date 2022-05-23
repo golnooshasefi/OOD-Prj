@@ -48,7 +48,7 @@ function SellerPanelSidebar() {
                   : classes["side-nav__submenu"]
               }
             >
-              <Link to={"/seller-panel/add-product"}>
+              <Link to={"/seller-panel/add-product"} className={classes.link}>
                 <li className={classes["side-nav__submenu__item"]}>
                   <a href="#" className={classes["side-nav__submenu__link"]}>
                     افزودن کالا
@@ -56,7 +56,7 @@ function SellerPanelSidebar() {
                 </li>
               </Link>
 
-              <Link to={"/seller-panel/edit-product"}>
+              <Link to={"/seller-panel/edit-product"} className={classes.link}>
                 <li className={classes["side-nav__submenu__item"]}>
                   <a href="#" className={classes["side-nav__submenu__link"]}>
                     ویرایش کالاها
@@ -66,7 +66,7 @@ function SellerPanelSidebar() {
             </ul>
           </li>
 
-          <Link to={"/seller-panel/personal-info"}>
+          <Link to={"/seller-panel/personal-info"} className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a href="#" className={classNames(classes["side-nav__link"])}>
                 <i
@@ -80,7 +80,7 @@ function SellerPanelSidebar() {
             </li>
           </Link>
 
-          <Link to={"/seller-panel/personal-info"}>
+          <Link to={"/seller-panel/personal-info"} className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a href="#" className={classNames(classes["side-nav__link"])}>
                 <i
@@ -94,7 +94,7 @@ function SellerPanelSidebar() {
             </li>
           </Link>
 
-          <Link to={"/"}>
+          <Link to={"/"} className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a href="#" className={classNames(classes["side-nav__link"])}>
                 <i

@@ -83,6 +83,14 @@ export function Signup(props) {
         <Marginer direction="vertical" margin={10} />
         <input
           className={classes.boxContainer__formContainer__input}
+          name="shopNumber"
+          type="tel"
+          placeholder="شماره تلفن فروشگاه"
+          onChange={handleChange}
+        />
+        <Marginer direction="vertical" margin={10} />
+        <input
+          className={classes.boxContainer__formContainer__input}
           name="shopName"
           type="text"
           placeholder="نام فروشگاه"
@@ -91,9 +99,9 @@ export function Signup(props) {
         <Marginer direction="vertical" margin={10} />
         <input
           className={classes.boxContainer__formContainer__input}
-          name="shopNumber"
+          name="telNumber"
           type="tel"
-          placeholder="شماره تلفن"
+          placeholder="شماره تلفن همراه"
           onChange={handleChange}
         />
         <Marginer direction="vertical" margin={10} />

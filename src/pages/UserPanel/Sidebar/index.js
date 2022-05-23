@@ -16,7 +16,7 @@ function Sidebar() {
         </div>
 
         <ul className={classes["side-nav"]}>
-          <Link to="/user-panel/favorites">
+          <Link to="/user-panel/favorites" className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a
                 href="#"
@@ -35,7 +35,7 @@ function Sidebar() {
               </a>
             </li>
           </Link>
-          <Link to="/user-panel/orders">
+          <Link to="/user-panel/orders" className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a
                 href="#"
@@ -54,7 +54,7 @@ function Sidebar() {
               </a>
             </li>
           </Link>
-          <Link to="/user-panel/personal-info">
+          <Link to="/user-panel/personal-info" className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a
                 href="#"
@@ -73,7 +73,28 @@ function Sidebar() {
               </a>
             </li>
           </Link>
-          <Link to={"/"}>
+
+          <Link to="/user-panel/personal-info" className={classes.link}>
+            <li className={classes["side-nav__item"]}>
+              <a
+                href="#"
+                className={classNames(
+                  classes["side-nav__link--active"],
+                  classes["side-nav__link"]
+                )}
+              >
+                <i
+                  className={classNames(
+                    classes["side-nav__icon"],
+                    "fa-solid fa-user"
+                  )}
+                />
+                سوالات تکمیلی
+              </a>
+            </li>
+          </Link>
+
+          <Link to={"/"} className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a href="#" className={classNames(classes["side-nav__link"])}>
                 <i
