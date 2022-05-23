@@ -18,25 +18,6 @@ function MainNavigation() {
             <div className={classes.logo}>سبکینو</div>
           </Link>
 
-          <form action="#" className={classes.search}>
-            <input
-              type="text"
-              className={classes.search__input}
-              placeholder="جستجو کنید"
-            />
-            <button className={classes.search__button}>
-              <i
-                className={classNames(
-                  "fa-solid fa-magnifying-glass",
-                  classes.search__icon
-                )}
-              />
-            </button>
-            <button className={classes.search__button}></button>
-          </form>
-          {/* <Button className={classes.header__button} color="purple">
-            ورود
-          </Button> */}
           {user.auth ? (
             <Link to="/">
               <Button color="white">خروج</Button>
@@ -56,7 +37,7 @@ function MainNavigation() {
           <ul className={classes["Navigation--list"]}>
             <li className={classes["Navigation--item"]}>دسته بندی</li>
             <li className={classes["Navigation--item"]}>درباره ما</li>
-            <Link to={"/seller-account-box"}>
+            <Link to={"/seller-account-box"} className={classes.link}>
               <li className={classes["Navigation--item"]}>فروشنده شوید</li>
             </Link>
           </ul>

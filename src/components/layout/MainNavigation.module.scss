@@ -29,6 +29,7 @@
 
   .container {
     display: flex;
+    justify-content: space-between;
     // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2) 0 6px 20px rgba(0, 0, 0, 0.19);
     .logo {
       font-size: 3rem;
@@ -134,6 +135,12 @@
       }
     }
   }
+}
+
+.link:link,
+.link:visited {
+  text-decoration: none;
+  color: #6667ab;
 }
 // .header {
 //   width: 100%;
