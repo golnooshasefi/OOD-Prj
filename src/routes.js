@@ -47,6 +47,8 @@ export const routes = [
     element: <SellerPanel />,
     children: [
       { path: "/seller-panel/add-product", element: <AddProduct /> },
+      { path: "/seller-panel/edit-product", element: <EditProduct /> },
+
       // { path: "/seller-panel/personal-info", element: <Orders /> },
       { path: "/seller-panel/personal-info", element: <PersonalInfo /> },
     ],

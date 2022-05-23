@@ -13,7 +13,6 @@
   padding: 2rem 3rem;
   display: flex;
   color: #343a40;
-  //   box-shadow: 0px 13px 17px -7px rgba(0, 0, 0, 0.29);
   &__icon {
     font-size: 2rem;
   }
@@ -28,10 +27,8 @@
 .side-nav {
   list-style: none;
   margin-top: 2rem;
-  // position: fixed;
 
   &__item {
-    // position: relative;
     padding-left: 2rem;
     padding-right: 2rem;
     &:not(:last-child) {
@@ -68,9 +65,13 @@
     position: static;
     display: none;
 
+    &--show {
+      display: block;
+      list-style: none;
+    }
+
     &__item {
       text-decoration: none;
-      // padding: 2rem;
       &:not(:last-child) {
         margin-bottom: 1.5rem;
       }
@@ -82,6 +83,9 @@
       text-decoration: none;
       margin-right: 5rem;
       padding: 1rem;
+      color: #343a40;
+      display: block;
+
       &:hover {
         background-color: #f1f3f5;
         color: #6667ab;
@@ -99,7 +103,9 @@
   left: 20px;
   transform: translateY(-50%);
 }
-
+.side-nav__link:hover .icon {
+  transform: translateY(-50%) rotate(-180deg);
+}
 .userImage {
   height: 6rem;
 }

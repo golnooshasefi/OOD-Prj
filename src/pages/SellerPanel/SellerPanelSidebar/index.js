@@ -1,13 +1,14 @@
 import classes from "./SellerPanelSidebar.module.scss";
 import MainNavigation from "../../../components/layout/MainNavigation";
 import classNames from "classnames";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function SellerPanelSidebar() {
+  const [subMenuIsOpen, setSubMenuIsOpen] = useState(false);
+
   return (
     <>
-      {/* <div className={classes.SellerPanel}> */}
-      {/* <div className={classes.SellerPanel__content}> */}
       <nav className={classes.sidebar}>
         <div className={classes["seller-info"]}>
           <img src="./images/user1.png" className={classes.userImage} />
@@ -25,6 +26,9 @@ function SellerPanelSidebar() {
                 classes["side-nav__link--active"],
                 classes["side-nav__link"]
               )}
+              onClick={() =>
+                setSubMenuIsOpen((subMenuIsOpen) => !subMenuIsOpen)
+              }
             >
               <i
                 className={classNames(
@@ -37,26 +41,30 @@ function SellerPanelSidebar() {
                 className={classNames("fa-solid fa-angle-down", classes.icon)}
               />
             </a>
-            <ul className={classes["side-nav__submenu"]}>
-              <li className={classes["side-nav__submenu__item"]}>
-                <a href="#" className={classes["side-nav__submenu__link"]}>
-                  افزودن کالا
-                </a>
-              </li>
-              <li className={classes["side-nav__submenu__item"]}>
-                <a href="#" className={classes["side-nav__submenu__link"]}>
-                  ویرایش کالاها
-                </a>
-              </li>
+            <ul
+              className={
+                subMenuIsOpen
+                  ? classes["side-nav__submenu--show"]
+                  : classes["side-nav__submenu"]
+              }
+            >
+              <Link to={"/seller-panel/add-product"}>
+                <li className={classes["side-nav__submenu__item"]}>
+                  <a href="#" className={classes["side-nav__submenu__link"]}>
+                    افزودن کالا
+                  </a>
+                </li>
+              </Link>
+
+              <Link to={"/seller-panel/edit-product"}>
+                <li className={classes["side-nav__submenu__item"]}>
+                  <a href="#" className={classes["side-nav__submenu__link"]}>
+                    ویرایش کالاها
+                  </a>
+                </li>
+              </Link>
             </ul>
           </li>
-          <Link to={"/seller-panel/add-product"}>
-            <li className={classes["side-nav__submenu__item"]}>
-              <a href="#" className={classes["side-nav__submenu__link"]}>
-                افزودن کالا
-              </a>
-            </li>
-          </Link>
 
           <Link to={"/seller-panel/personal-info"}>
             <li className={classes["side-nav__item"]}>
@@ -101,9 +109,6 @@ function SellerPanelSidebar() {
           </Link>
         </ul>
       </nav>
-
-      {/* </div> */}
-      {/* </div> */}
     </>
   );
 }
