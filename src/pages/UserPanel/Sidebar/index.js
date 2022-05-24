@@ -86,7 +86,7 @@ function Sidebar() {
                 <i
                   className={classNames(
                     classes["side-nav__icon"],
-                    "fa-solid fa-user"
+                    "fa-solid fa-circle-question"
                   )}
                 />
                 سوالات تکمیلی

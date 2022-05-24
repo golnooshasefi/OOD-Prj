@@ -2,8 +2,10 @@ import Footer from "../../components/layout/Footer";
 import MainNavigation from "../../components/layout/MainNavigation";
 import Button from "../../components/shared/Button";
 import classes from "./Product.module.scss";
-import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
+import { useParams } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
+import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
@@ -26,6 +28,23 @@ const star = <FontAwesomeIcon icon={faStar} />;
 const starSolid = <FontAwesomeIcon icon={faStarSolid} />;
 
 function Product() {
+  const Stars = {
+    size: 25,
+    count: 5,
+    color: "black",
+    activeColor: "#6667ab",
+    value: 0,
+    a11y: true,
+    isHalf: true,
+    emptyIcon: <i className="far fa-star" />,
+    halfIcon: <i className="fa fa-star-half-alt" />,
+    filledIcon: <i className="fa fa-star" />,
+    onChange: (newValue) => {
+      console.log(`Example 2: new value is ${newValue}`);
+    },
+  };
+
+  const { id } = useParams();
   return (
     <>
       <MainNavigation />
@@ -44,7 +63,8 @@ function Product() {
             {"شلوار مردانه سیدونا مدل MSI03072-403"}
           </span>
           <div className={classes.Product__descriptionBox__starBox}>
-            <span className={classes.Product__descriptionBox__starBox__star}>
+            <ReactStars {...Stars} />
+            {/* <span className={classes.Product__descriptionBox__starBox__star}>
               {star}
             </span>
             <span className={classes.Product__descriptionBox__starBox__star}>
@@ -58,7 +78,7 @@ function Product() {
             </span>
             <span className={classes.Product__descriptionBox__starBox__star}>
               {star}
-            </span>
+            </span> */}
           </div>
 
           <span className={classes.Product__descriptionBox__spec}>

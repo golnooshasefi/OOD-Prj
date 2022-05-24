@@ -20,9 +20,7 @@ export function Login(props) {
     setPasswordShown(passwordShown ? false : true);
   };
 
-  // const navigate = useNavigate();
   const { login } = useContext(UserContext);
-  // const [name, setName] = useState();
 
   const navigate = useNavigate();
   const initialFormData = Object.freeze({
@@ -55,10 +53,6 @@ export function Login(props) {
         localStorage.setItem("refresh_token", res.data.refresh);
         axiosInstance.defaults.headers["Authorization"] =
           "Bearer " + localStorage.getItem("access_token");
-        // login(formData.email);
-        // navigate(-1);
-        //console.log(res);
-        //console.log(res.data);
       });
   };
 
