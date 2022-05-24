@@ -74,7 +74,7 @@ function Sidebar() {
             </li>
           </Link>
 
-          <Link to="/user-panel/personal-info" className={classes.link}>
+          <Link to="/user-panel/additional-questions" className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a
                 href="#"

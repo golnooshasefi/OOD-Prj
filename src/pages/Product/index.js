@@ -2,8 +2,9 @@ import Footer from "../../components/layout/Footer";
 import MainNavigation from "../../components/layout/MainNavigation";
 import Button from "../../components/shared/Button";
 import classes from "./Product.module.scss";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import axiosInstance from "./../../axios";
 
 import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +18,7 @@ import { faShield } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
 import SimilarItem from "./SimilarItem";
+import { useEffect, useState } from "react";
 const heart = <FontAwesomeIcon icon={faHeart} />;
 const heartSolid = <FontAwesomeIcon icon={faHeartSolid} />;
 const tag = <FontAwesomeIcon icon={faTag} />;
@@ -31,7 +33,7 @@ function Product() {
   const Stars = {
     size: 25,
     count: 5,
-    color: "black",
+    color: "#868e96",
     activeColor: "#6667ab",
     value: 0,
     a11y: true,
@@ -44,7 +46,24 @@ function Product() {
     },
   };
 
-  const { id } = useParams();
+  const { productId } = useParams();
+  const [product, setProduct] = useState([]);
+  const navigate = useNavigate();
+
+  console.log(productId);
+  useEffect(() => {
+    console.log(productId);
+    if (productId) {
+      axiosInstance.get(`/accounts/product_info/${productId}/`).then((res) => {
+        console.log(res);
+        console.log(res.data);
+        setProduct(res.data);
+      });
+    } else {
+      // navigate("/404", { replace: true });
+    }
+  }, [productId]);
+
   return (
     <>
       <MainNavigation />
@@ -52,33 +71,18 @@ function Product() {
         <div className={classes.Product__imgBox}>
           <img
             className={classes.Product__imgBox__img}
-            src={"./images/clothes/11bg.png"}
-            alt={"fake"}
+            src={product.upload}
+            alt={product.product_name}
           ></img>
           <span className={classes.Product__imgBox__regular}>{heart}</span>
           {/* <span className={classes.Product__imgBox__solid}>{heartSolid}</span> */}
         </div>
         <div className={classes.Product__descriptionBox}>
           <span className={classes.Product__descriptionBox__name}>
-            {"شلوار مردانه سیدونا مدل MSI03072-403"}
+            {product.product_name}
           </span>
           <div className={classes.Product__descriptionBox__starBox}>
             <ReactStars {...Stars} />
-            {/* <span className={classes.Product__descriptionBox__starBox__star}>
-              {star}
-            </span>
-            <span className={classes.Product__descriptionBox__starBox__star}>
-              {star}
-            </span>
-            <span className={classes.Product__descriptionBox__starBox__star}>
-              {star}
-            </span>
-            <span className={classes.Product__descriptionBox__starBox__star}>
-              {star}
-            </span>
-            <span className={classes.Product__descriptionBox__starBox__star}>
-              {star}
-            </span> */}
           </div>
 
           <span className={classes.Product__descriptionBox__spec}>
@@ -95,7 +99,7 @@ function Product() {
                 {"اندازه:"}
               </span>
               <span className={classes.Product__descriptionBox__specBox__value}>
-                {"XLL"}
+                {product.product_size}
               </span>
             </div>
 
@@ -109,7 +113,7 @@ function Product() {
                 {"رنگ:"}
               </span>
               <span className={classes.Product__descriptionBox__specBox__value}>
-                {"سبز"}
+                {product.product_color}
               </span>
             </div>
 
@@ -123,7 +127,7 @@ function Product() {
                 {"قد:"}
               </span>
               <span className={classes.Product__descriptionBox__specBox__value}>
-                {"180"}
+                {product.product_height}
               </span>
             </div>
 
@@ -137,7 +141,7 @@ function Product() {
                 {"جنس:"}
               </span>
               <span className={classes.Product__descriptionBox__specBox__value}>
-                {"نخ"}
+                {product.product_material}
               </span>
             </div>
 
@@ -151,7 +155,7 @@ function Product() {
                 {"طرح:"}
               </span>
               <span className={classes.Product__descriptionBox__specBox__value}>
-                {"راه راه"}
+                {product.product_design}
               </span>
             </div>
 
@@ -165,7 +169,7 @@ function Product() {
                 {"کشور تولید کننده:"}
               </span>
               <span className={classes.Product__descriptionBox__specBox__value}>
-                {"ایران"}
+                {product.product_country}
               </span>
             </div>
           </div>
@@ -193,7 +197,7 @@ function Product() {
               {check}
             </span>
             <span className={classes.Product__sellerBox__featureBox__text}>
-              موجود در انبار
+              {product.inventory === 0 ? "ناموجود" : "موجود در انبار"}
             </span>
           </div>
           <div className={classes.Product__sellerBox__featureBox}>
@@ -201,16 +205,25 @@ function Product() {
               {money}
             </span>
             <span className={classes.Product__sellerBox__featureBox__text}>
-              {digitsEnToFa(addCommas("199000"))} تومان
+              {digitsEnToFa(addCommas(product.product_off_percent))} تومان
             </span>
           </div>
           <div className={classes.Product__sellerBox__featureBox}>
             <span className={classes.Product__sellerBox__featureBox__off}>
-              {digitsEnToFa(addCommas("200000"))}
+              {digitsEnToFa(addCommas(product.product_price))}
             </span>
           </div>
-          <Button color="purple" className={classes["Product__sellerBox__btn"]}>
-            افزودن به سبد
+          <Button
+            color="purple"
+            className={
+              0 === 0
+                ? classes["Product__sellerBox__btn--disable"]
+                : classes["Product__sellerBox__btn"]
+            }
+            isDisable={0 === 0}
+            onClickHandler={() => console.log("click add product")}
+          >
+            {0 === 0 ? "ناموجود" : "افزودن به سبد"}
           </Button>
         </div>
         <div className={classes.Product__similarBox}>
