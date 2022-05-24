@@ -2,7 +2,7 @@ import Homepage from "./pages/Homepage";
 import Survey from "./pages/Survey";
 import AccountBox from "./pages/AccountBox";
 import SellerAccountBox from "./pages/SellerAccountBox";
-import Products from "./pages/ProductsList/products";
+import ProductsList from "./pages/ProductsList";
 import ShoppingList from "./pages/ShoppingList";
 import Product from "./pages/Product";
 import SellerPanelSidebar from "./pages/SellerPanel/SellerPanelSidebar";
@@ -37,11 +37,16 @@ export const routes = [
   },
 
   {
-    path: "/products",
-    element: <Products />,
+    path: "/products-list",
+    element: <ProductsList />,
+  },
+
+  {
+    path: "/product",
+    element: <Product />,
   },
   { path: "/shopping-list", element: <ShoppingList /> },
-  { path: "/product", element: <Product /> },
+  // { path: "/products-list/:id", element: <Product /> },
   {
     path: "/seller-panel",
     element: <SellerPanel />,

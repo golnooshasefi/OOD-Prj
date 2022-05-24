@@ -45,10 +45,12 @@ export function Signup(props) {
     console.log(formData);
     // console.log("before axios");
     axiosInstance
-      .post(`accounts/register/`, {
-        username: formData.fullName,
+      .post(`accounts/create_shop/`, {
         email: formData.email,
-        user_phone_number: formData.phoneNumber,
+        username: formData.fullName,
+        shop_name: formData.shopName,
+        Shop_address: formData.address,
+        Shop_phon_number: formData.shopNumber,
         password: formData.password,
       })
       .then((res) => {
@@ -96,14 +98,14 @@ export function Signup(props) {
           placeholder="نام فروشگاه"
           onChange={handleChange}
         />
-        <Marginer direction="vertical" margin={10} />
+        {/* <Marginer direction="vertical" margin={10} />
         <input
           className={classes.boxContainer__formContainer__input}
           name="telNumber"
           type="tel"
           placeholder="شماره تلفن همراه"
           onChange={handleChange}
-        />
+        /> */}
         <Marginer direction="vertical" margin={10} />
         <input
           className={classes.boxContainer__formContainer__input}

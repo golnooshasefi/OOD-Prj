@@ -1,15 +1,16 @@
-import classes from "./products.module.scss";
+import classes from "./productsList.module.scss";
 import Item from "./item/item";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../axios";
 import MainNavigation from "../../components/layout/MainNavigation";
 import Footer from "../../components/layout/Footer";
+import { Link } from "react-router-dom";
 
-function Products() {
+function ProductsList() {
   const [userStyles, setUserStyle] = useState([]);
 
   useEffect(() => {
-    axiosInstance.get(`accounts/user_styles/`).then((res) => {
+    axiosInstance.get(`accounts/show_all_products/`).then((res) => {
       console.log(res);
       console.log(res.data);
       setUserStyle(res.data);
@@ -28,8 +29,21 @@ function Products() {
               img={element.style_image_url}
             ></Item>
           ))}
-
+          {/* <Link to={`/product-list/${id}`} className={classes.link}> */}
           <Item
+            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
+            price={99000}
+            priceOff={100000}
+            img={"./images/clothes/11bg.png"}
+          />
+          {/* </Link> */}
+          {/* <Item
+            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
+            price={99000}
+            priceOff={100000}
+            img={"./images/clothes/11bg.png"} */}
+          {/* />  */}
+          {/* <Item
             name={" شلوار مردانه سیدونا مدل MSI03072-403"}
             price={99000}
             priceOff={100000}
@@ -82,31 +96,7 @@ function Products() {
             price={99000}
             priceOff={100000}
             img={"./images/clothes/11bg.png"}
-          />
-          <Item
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={99000}
-            priceOff={100000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <Item
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={99000}
-            priceOff={100000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <Item
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={99000}
-            priceOff={100000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <Item
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={99000}
-            priceOff={100000}
-            img={"./images/clothes/11bg.png"}
-          />
+          /> */}{" "}
         </div>
         <div className={classes.Products__filterContainer}>
           <h2>فیلترها</h2>
@@ -116,4 +106,4 @@ function Products() {
     </>
   );
 }
-export default Products;
+export default ProductsList;
