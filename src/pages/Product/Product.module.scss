@@ -38,9 +38,10 @@
       cursor: pointer;
       right: 0;
       top: 5%;
+      color: #868e96;
 
       &:hover {
-        color: #5f3dc4;
+        color: #525289;
       }
     }
 
@@ -50,7 +51,7 @@
       cursor: pointer;
       right: 0;
       top: 5%;
-      color: #5f3dc4;
+      color: #6667ab;
     }
   }
 
@@ -220,6 +221,17 @@
 
       &:hover {
         background-color: rgba(102, 104, 171, 0.95);
+      }
+    }
+
+    &__btn--disable {
+      padding: 1.5rem 5rem;
+      cursor: pointer;
+      outline: none;
+      margin-top: 2rem;
+      background: #a3a4cd;
+      &:hover {
+        background: #a3a4cd;
       }
     }
   }

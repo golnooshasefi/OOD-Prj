@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import ForgotPassword from "./pages/AccountBox/ForgotPassword";
 import UserPanel from "./pages/UserPanel";
 import Favorites from "./pages/UserPanel/Favorites";
+import AdditionalQuestion from "./pages/UserPanel/AdditionalQuestion";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
@@ -41,12 +42,12 @@ export const routes = [
     element: <ProductsList />,
   },
 
-  {
-    path: "/product",
-    element: <Product />,
-  },
+  // {
+  //   path: "/product",
+  //   element: <Product />,
+  // },
   { path: "/shopping-list", element: <ShoppingList /> },
-  // { path: "/products-list/:id", element: <Product /> },
+  { path: "/products-list/:productId", element: <Product /> },
   {
     path: "/seller-panel",
     element: <SellerPanel />,
@@ -70,6 +71,10 @@ export const routes = [
       { path: "/user-panel/favorites", element: <Favorites /> },
       { path: "/user-panel/orders", element: <Orders /> },
       { path: "/user-panel/personal-info", element: <PersonalInfo /> },
+      {
+        path: "/user-panel/additional-questions",
+        element: <AdditionalQuestion />,
+      },
     ],
   },
 ];
