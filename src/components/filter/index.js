@@ -200,6 +200,28 @@ function Filter() {
               {/* </Link> */}
             </ul>
           </li>
+          <li>
+            <a
+              href="#"
+              className={classNames(
+                // classes["Filter__list__link--active"],
+                classes["Filter__list__link"]
+              )}
+              onClick={() =>
+                setSubMenuThreeIsOpen(
+                  (subMenuThreeIsOpen) => !subMenuThreeIsOpen
+                )
+              }
+            >
+              <i
+                className={classNames(
+                  classes["Filter__icon"],
+                  "fa-solid fa-palette"
+                )}
+              />
+              سبکِ من
+            </a>
+          </li>
         </ul>
       </div>
     </div>
