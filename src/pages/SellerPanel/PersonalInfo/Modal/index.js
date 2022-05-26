@@ -2,6 +2,7 @@ import classes from "./Modal.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import axiosInstance from "../../../../axios";
 
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -47,6 +48,25 @@ function Modal(props) {
   }
   function confirmHandler() {
     console.log(formData);
+
+    axiosInstance
+      .post(`/accounts/edit_shop/`, {
+        email: formData.email,
+        username: formData.fullName,
+        user_phone_number: formData.phoneNumber,
+        Shop_address: formData.address,
+        shop_name: formData.shopName,
+        Shop_phon_number: formData.shopNumber,
+        // password: formData.currentPassword,
+        // password: formData.password,
+      })
+      .then((res) => {
+        localStorage.setItem("access_token", res.data.access);
+        localStorage.setItem("refresh_token", res.data.refresh);
+        axiosInstance.defaults.headers["Authorization"] =
+          "Bearer " + localStorage.getItem("access_token");
+      });
+
     if (true) {
       props.onConfirm();
     }

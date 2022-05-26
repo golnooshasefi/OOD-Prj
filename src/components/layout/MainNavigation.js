@@ -35,10 +35,12 @@ function MainNavigation() {
 
         <nav className={classes.Navigation}>
           <ul className={classes["Navigation--list"]}>
-            <Link to="/products-list">
-              <li className={classes["Navigation--item"]}> محصولات</li>
+            <Link to="/products-list" className={classes.link}>
+              <li className={classes["Navigation--item"]}>محصولات</li>
             </Link>
-            <li className={classes["Navigation--item"]}>درباره ما</li>
+            <Link to="/about-us" className={classes.link}>
+              <li className={classes["Navigation--item"]}>درباره ما</li>
+            </Link>
             <Link to={"/seller-account-box"} className={classes.link}>
               <li className={classes["Navigation--item"]}>فروشنده شوید</li>
             </Link>
