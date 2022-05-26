@@ -18,6 +18,7 @@ import ForgotPassword from "./pages/AccountBox/ForgotPassword";
 import UserPanel from "./pages/UserPanel";
 import Favorites from "./pages/UserPanel/Favorites";
 import AdditionalQuestion from "./pages/UserPanel/AdditionalQuestion";
+import ShopInfoPage from "./pages/ShopInfoPage";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
@@ -42,10 +43,11 @@ export const routes = [
     element: <ProductsList />,
   },
 
-  // {
-  //   path: "/product",
-  //   element: <Product />,
-  // },
+  {
+    path: "/shop-page",
+    element: <ShopInfoPage />,
+  },
+
   { path: "/shopping-list", element: <ShoppingList /> },
   { path: "/products-list/:productId", element: <Product /> },
   {
