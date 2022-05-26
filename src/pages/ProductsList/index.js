@@ -5,7 +5,7 @@ import axiosInstance from "../../axios";
 import MainNavigation from "../../components/layout/MainNavigation";
 import Footer from "../../components/layout/Footer";
 import { Link } from "react-router-dom";
-
+import Filter from "../../components/filter";
 function ProductsList() {
   const [userStyles, setUserStyle] = useState([]);
 
@@ -101,8 +101,11 @@ function ProductsList() {
             img={"./images/clothes/11bg.png"}
           /> */}{" "}
         </div>
-        <div className={classes.Products__filterContainer}>
+        {/* <div className={classes.Products__filterContainer}>
           <h2>فیلترها</h2>
+        </div> */}
+        <div>
+          <Filter />
         </div>
       </div>
       <Footer />
