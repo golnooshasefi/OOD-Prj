@@ -1,67 +1,63 @@
-.Survey {
-  //   &__absolute {
-  //     position: relative;
-  //   }
-  &__container {
-    min-width: 55rem;
-    // height: ;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.container {
+  margin: 3rem;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 
-    @media (max-width: 40em) {
-      min-width: 36rem;
+  background-color: #fff;
+  border-radius: 3rem;
+
+  &__headerContainer {
+    grid-column: 1 / span 2;
+    border-bottom: 1px solid #e0e0e2;
+
+    &__header {
+      position: relative;
+      display: inline-block;
+      padding-right: 1rem;
+      padding-left: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 0.3rem solid #6667ab;
     }
 
-    &__headerContainer {
-      grid-column: 1 / span 2;
-      border-bottom: 1px solid #e0e0e2;
-
-      &__header {
-        position: relative;
-        display: inline-block;
-        padding-right: 1rem;
-        padding-left: 1.5rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 0.3rem solid #6667ab;
-      }
-
-      &__text {
-        color: #6667ab;
-        font-size: 1.8rem;
-        font-weight: 600;
-      }
+    &__text {
+      color: #6667ab;
+      font-size: 1.8rem;
+      font-weight: 600;
     }
   }
-  &__header {
-    background: linear-gradient(90deg, #9389bd 0%, #5e4d9b 100%);
-    background: linear-gradient(90deg, #5e4d9b 0%, #9389bd 100%);
-    background-color: #9389bd;
-    background: #5e4d9b;
-    color: white;
-    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
-    padding: 1.5rem 3rem;
-    text-align: center;
-  }
+}
+
+.QuestionContainer {
   &__Question {
-    padding: 2.5rem 3rem 2rem 3rem;
-    // width: max-content;
-    // height: max-content;
+    padding: 3.5rem 3rem 2rem 3rem;
+
+    &__iconContainer {
+      display: flex;
+      align-items: start;
+      gap: 1rem;
+    }
+    &__icon {
+      display: flex;
+      font-size: 2rem;
+      color: #5e4d9b;
+      margin-top: 0.5rem;
+    }
   }
+
   &__footer {
     height: 60px;
-    padding: 1.5rem 3rem;
-    border-top: 1px solid lightgray;
+    padding: 4rem 5rem;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
+
   &__btn {
-    height: 40px;
-    padding: 0 13px;
+    height: 4rem;
+    padding: 1.5rem 3rem;
     font-family: inherit;
     font-size: 18px;
     font-weight: 400;
@@ -78,7 +74,18 @@
       border: 1px solid #7b337d;
     }
   }
-  &__step {
-    font-size: 1.8rem;
+
+  &__btn__disable {
+    height: 4rem;
+    padding: 1.5rem 3rem;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    line-height: 10px;
+    background: #dfdceb;
   }
 }
