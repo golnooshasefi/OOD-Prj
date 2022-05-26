@@ -54,12 +54,14 @@ export function Signup(props) {
         password: formData.password,
       })
       .then((res) => {
-        login(formData.email);
-        navigate(-1);
-        // history.push("/login");
-        // console.log("axios");
-        console.log(res);
-        console.log(res.data);
+        if (res.status === 200) {
+          login(formData.email);
+          navigate(-1);
+          // history.push("/login");
+          // console.log("axios");
+          console.log(res);
+          console.log(res.data);
+        }
       });
   };
 

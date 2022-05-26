@@ -51,14 +51,16 @@ export function Login(props) {
         password: formData.password,
       })
       .then((res) => {
-        localStorage.setItem("access_token", res.data.access);
-        localStorage.setItem("refresh_token", res.data.refresh);
-        axiosInstance.defaults.headers["Authorization"] =
-          "Bearer " + localStorage.getItem("access_token");
-        // login(formData.email);
-        // navigate(-1);
-        //console.log(res);
-        //console.log(res.data);
+        if (res.status === 200) {
+          localStorage.setItem("access_token", res.data.access);
+          localStorage.setItem("refresh_token", res.data.refresh);
+          axiosInstance.defaults.headers["Authorization"] =
+            "Bearer " + localStorage.getItem("access_token");
+          // login(formData.email);
+          // navigate(-1);
+          //console.log(res);
+          //console.log(res.data);
+        }
       });
   };
 

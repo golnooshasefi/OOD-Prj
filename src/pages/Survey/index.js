@@ -148,7 +148,9 @@ function Survey() {
         data: newAnswers,
       })
       .then((res) => {
-        navigate("/products", { replace: true });
+        if (res.status === 200) {
+          navigate("/products", { replace: true });
+        }
       });
   };
 

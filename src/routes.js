@@ -18,6 +18,8 @@ import ForgotPassword from "./pages/AccountBox/ForgotPassword";
 import UserPanel from "./pages/UserPanel";
 import Favorites from "./pages/UserPanel/Favorites";
 import AdditionalQuestion from "./pages/UserPanel/AdditionalQuestion";
+import { default as UserPersonalInfo } from "./pages/UserPanel/PersonalInfo";
+import ShopInfoPage from "./pages/ShopInfoPage";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
@@ -40,6 +42,11 @@ export const routes = [
   {
     path: "/products-list",
     element: <ProductsList />,
+  },
+
+  {
+    path: "/shop-page",
+    element: <ShopInfoPage />,
   },
 
   // {
@@ -70,7 +77,7 @@ export const routes = [
     children: [
       { path: "/user-panel/favorites", element: <Favorites /> },
       { path: "/user-panel/orders", element: <Orders /> },
-      { path: "/user-panel/personal-info", element: <PersonalInfo /> },
+      { path: "/user-panel/personal-info", element: <UserPersonalInfo /> },
       {
         path: "/user-panel/additional-questions",
         element: <AdditionalQuestion />,

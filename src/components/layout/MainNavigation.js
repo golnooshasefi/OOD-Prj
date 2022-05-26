@@ -19,9 +19,30 @@ function MainNavigation() {
           </Link>
 
           {user.auth ? (
-            <Link to="/">
-              <Button color="white">خروج</Button>
-            </Link>
+            <div className={classes.container__btns}>
+              <Link to="/shopping-list">
+                <Button color="white">
+                  <i
+                    className={classNames(
+                      classes.header__login_logo,
+                      "fa-solid fa-cart-shopping"
+                    )}
+                  />
+                  سبد خرید
+                </Button>
+              </Link>
+              <Link to="/user-panel">
+                <Button color="white">
+                  <i
+                    className={classNames(
+                      classes.header__login_logo,
+                      "fa-solid fa-user-large"
+                    )}
+                  />
+                  پنل کاربری
+                </Button>
+              </Link>
+            </div>
           ) : (
             <Link to="/account-box">
               {/* <i className={classes.header__login_logo}>{loginIcon}</i> */}
