@@ -1,41 +1,32 @@
 import classes from "./Question.module.scss";
 import { Marginer } from "../../../../components/marginer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
-const questionIcon = <FontAwesomeIcon icon={faCircleQuestion} />;
+import ReactStars from "react-rating-stars-component";
 
-function Question({ title, id, options, onSelect, setCanContinue }) {
-  const onSelectOptionHandler = (event) => {
-    const option = event.target.value;
-    if (option) {
-      setCanContinue();
-      onSelect(id, option);
-    }
+function Question({ id, option, onSelect }) {
+  const Stars = {
+    size: 25,
+    count: 5,
+    color: "#868e96",
+    activeColor: "#6667ab",
+    value: 0,
+    a11y: true,
+    isHalf: true,
+    emptyIcon: <i className="far fa-star" />,
+    halfIcon: <i className="fa fa-star-half-alt" />,
+    filledIcon: <i className="fa fa-star" />,
+    onChange: (newValue) => {
+      onSelect(id, newValue);
+    },
   };
 
   return (
     <>
-      <div className={classes.Question__iconContainer}>
-        <i className={classes.Question__icon}>{questionIcon}</i>
-        <h2>{title}</h2>
-      </div>
-      <Marginer direction="vertical" margin="2rem" />
-      <div
-        onChange={onSelectOptionHandler}
-        className={classes.Question__container_3}
-      >
-        {Object.keys(options).map((optionKey) => (
-          <div
-            key={id + optionKey}
-            // className={isOptionsImage ? classes.Question__container : ""}
-          >
-            <img
-              className={classes.Question__img}
-              src={options[optionKey]}
-              alt=""
-            />
-          </div>
-        ))}
+      <Marginer direction="vertical" margin="3rem" />
+      <div className={classes.Question__container}>
+        <div className={classes.Question__container__box}>
+          <img className={classes.Question__img} src={option} alt="" />
+          <ReactStars classNames={classes.Question__star} {...Stars} />
+        </div>
       </div>
     </>
   );
