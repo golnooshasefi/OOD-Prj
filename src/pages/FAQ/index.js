@@ -10,6 +10,13 @@ function FAQ() {
     <>
       <MainNavigation />
       <div className={classes.FAQ}>
+        <div className={classes.container__headerContainer}>
+          <div className={classes.container__headerContainer__header}>
+            <span className={classes.container__headerContainer__text}>
+              سوالات متداول
+            </span>
+          </div>
+        </div>
         <div className={classes.FAQ__container}>
           <div className={classes.FAQ__accordion}>
             <div className={classes.FAQ__accordionItem} id="question1">
@@ -70,6 +77,62 @@ function FAQ() {
             </div>
             <div className={classes.FAQ__accordionItem} id="question3">
               <a href="#question3" className={classes.FAQ__accordionLink}>
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟
+                <i
+                  className={classNames(
+                    "fa-solid fa-angle-down",
+                    classes.FAQ__accordionIcon,
+                    classes["FAQ__accordionIcon--open"]
+                  )}
+                />
+                <i
+                  className={classNames(
+                    "fa-solid fa-angle-up",
+                    classes.FAQ__accordionIcon,
+                    classes["FAQ__accordionIcon--close"]
+                  )}
+                />
+              </a>
+              <div className={classes.FAQ__answer}>
+                <p className={classes.FAQ__answerDescription}>
+                  لوورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+                  با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و
+                  مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                  تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
+                  کاربردی می باشد.
+                </p>
+              </div>
+            </div>
+            <div className={classes.FAQ__accordionItem} id="question4">
+              <a href="#question4" className={classes.FAQ__accordionLink}>
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟
+                <i
+                  className={classNames(
+                    "fa-solid fa-angle-down",
+                    classes.FAQ__accordionIcon,
+                    classes["FAQ__accordionIcon--open"]
+                  )}
+                />
+                <i
+                  className={classNames(
+                    "fa-solid fa-angle-up",
+                    classes.FAQ__accordionIcon,
+                    classes["FAQ__accordionIcon--close"]
+                  )}
+                />
+              </a>
+              <div className={classes.FAQ__answer}>
+                <p className={classes.FAQ__answerDescription}>
+                  لوورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+                  با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و
+                  مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                  تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
+                  کاربردی می باشد.
+                </p>
+              </div>
+            </div>
+            <div className={classes.FAQ__accordionItem} id="question5">
+              <a href="#question5" className={classes.FAQ__accordionLink}>
                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟
                 <i
                   className={classNames(
