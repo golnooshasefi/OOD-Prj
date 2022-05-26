@@ -11,11 +11,10 @@ const heartRegular = <FontAwesomeIcon icon={faHeartReqular} />;
 function Item(props) {
   return (
     <div className={classes.item}>
-      {/* <Link> */}
       <div className={classes.item__imgContainer}>
-        <i className={classes.item__imgContainer__icon}>
+        {/* <i className={classes.item__imgContainer__icon}>
           {false ? heart : heartRegular}
-        </i>
+        </i> */}
         <img
           src={props.img}
           alt={props.name}
@@ -38,7 +37,6 @@ function Item(props) {
           </span>
         </div>
       </div>
-      {/* </Link> */}
     </div>
   );
 }
