@@ -66,14 +66,13 @@ function Modal(props) {
         });
     } else {
       axiosInstance
-        .post(`/accounts/change_password/`, {
-          Password: formData.password,
-          Password2: formData.password,
-          Old_password: formData.currentPassword,
+        .put(`/accounts/api/change-password/`, {
+          new_password: formData.password,
+          old_password: formData.currentPassword,
         })
         .then((res) => {
           if (res.status === 200) {
-            console.log(res);
+            props.onConfirm();
           }
         });
     }

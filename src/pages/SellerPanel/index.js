@@ -5,9 +5,30 @@ import SellerPanelSidebar from "./SellerPanelSidebar";
 // import Orders from "./Orders";
 // import Favorites from "./Favorites";
 // import EditProduct from "./EditProduct";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useLayoutEffect } from "react";
+import UserContext from "../../store/UserContext";
 
 function SellerPanel() {
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(!user.auth || (!user.auth && user.type !== "user"));
+    if (!user.auth || (!user.auth && user.type !== "seller")) {
+      console.log("sellerrrrr2");
+      navigate("/404");
+    }
+  }, []);
+
+  useLayoutEffect(() => {
+    console.log(!user.auth || (!user.auth && user.type !== "user"));
+    if (!user.auth || (!user.auth && user.type !== "seller")) {
+      console.log("sellerrrrr2");
+      navigate("/404");
+    }
+  }, [user.auth, user.type, navigate]);
+
   return (
     <>
       <MainNavigation />

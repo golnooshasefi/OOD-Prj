@@ -20,9 +20,7 @@ export function Login(props) {
     setPasswordShown(passwordShown ? false : true);
   };
 
-  // const navigate = useNavigate();
   const { login } = useContext(UserContext);
-  // const [name, setName] = useState();
 
   const navigate = useNavigate();
   const initialFormData = Object.freeze({
@@ -41,9 +39,6 @@ export function Login(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    login(formData.email);
-    navigate(-1);
 
     axiosInstance
       .post(`accounts/api/token/`, {
@@ -52,14 +47,12 @@ export function Login(props) {
       })
       .then((res) => {
         if (res.status === 200) {
+          login(res.data.type, res.data.shop_name, res.data.shop_phone_number);
           localStorage.setItem("access_token", res.data.access);
           localStorage.setItem("refresh_token", res.data.refresh);
           axiosInstance.defaults.headers["Authorization"] =
             "Bearer " + localStorage.getItem("access_token");
-          // login(formData.email);
-          // navigate(-1);
-          //console.log(res);
-          //console.log(res.data);
+          navigate(-1);
         }
       });
   };

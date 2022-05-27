@@ -39,8 +39,6 @@ export function Login(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    login(formData.email);
 
     axiosInstance
       .post(`accounts/api/token/`, {
@@ -49,6 +47,7 @@ export function Login(props) {
       })
       .then((res) => {
         if (res.status === 200) {
+          login(res.data.type, res.data.username, res.data.user_phone_number);
           localStorage.setItem("access_token", res.data.access);
           localStorage.setItem("refresh_token", res.data.refresh);
           axiosInstance.defaults.headers["Authorization"] =

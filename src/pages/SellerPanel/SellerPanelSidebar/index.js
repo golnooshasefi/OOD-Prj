@@ -2,10 +2,12 @@ import classes from "./SellerPanelSidebar.module.scss";
 import MainNavigation from "../../../components/layout/MainNavigation";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import UserContext from "../../../store/UserContext";
 
 function SellerPanelSidebar() {
   const [subMenuIsOpen, setSubMenuIsOpen] = useState(false);
+  const { user } = useContext(UserContext);
 
   return (
     <>
@@ -14,8 +16,10 @@ function SellerPanelSidebar() {
           <img src="./images/user1.png" className={classes.userImage} />
 
           <div className={classes["seller-info__description"]}>
-            <div className={classes["seller-info__title"]}>فروشگاه بزرگ</div>
-            <div className={classes["seller-info__phone"]}>٠٩١٣٤٥٦٧٨٤٤</div>
+            <div className={classes["seller-info__title"]}>{user.username}</div>
+            <div className={classes["seller-info__phone"]}>
+              {user.phoneNumber}
+            </div>
           </div>
         </div>
         <ul className={classes["side-nav"]}>
@@ -66,7 +70,7 @@ function SellerPanelSidebar() {
             </ul>
           </li>
 
-          <Link to={"/seller-panel/personal-info"} className={classes.link}>
+          <Link to={"/seller-panel/orders"} className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a href="#" className={classNames(classes["side-nav__link"])}>
                 <i

@@ -11,8 +11,9 @@ import SellerPanel from "./pages/SellerPanel";
 import FAQ from "./pages/FAQ";
 import AddProduct from "./pages/SellerPanel/AddProduct";
 import EditProduct from "./pages/SellerPanel/EditProduct";
-import PersonalInfo from "./pages/SellerPanel/PersonalInfo";
-import Orders from "./pages/SellerPanel/Orders";
+import { default as SellerPersonalInfo } from "./pages/SellerPanel/PersonalInfo";
+import { default as SellerOrders } from "./pages/SellerPanel/Orders";
+import { default as UserOrders } from "./pages/UserPanel/Orders";
 import NotFound from "./pages/NotFound";
 import ForgotPassword from "./pages/AccountBox/ForgotPassword";
 import UserPanel from "./pages/UserPanel";
@@ -57,9 +58,8 @@ export const routes = [
     children: [
       { path: "/seller-panel/add-product", element: <AddProduct /> },
       { path: "/seller-panel/edit-product", element: <EditProduct /> },
-
-      // { path: "/seller-panel/personal-info", element: <Orders /> },
-      { path: "/seller-panel/personal-info", element: <PersonalInfo /> },
+      { path: "/seller-panel/orders", element: <SellerOrders /> },
+      { path: "/seller-panel/personal-info", element: <SellerPersonalInfo /> },
     ],
   },
   // { path: "/SellerPanell", element: <SellerPanel /> },
@@ -72,7 +72,7 @@ export const routes = [
     element: <UserPanel />,
     children: [
       { path: "/user-panel/favorites", element: <Favorites /> },
-      { path: "/user-panel/orders", element: <Orders /> },
+      { path: "/user-panel/orders", element: <UserOrders /> },
       { path: "/user-panel/personal-info", element: <UserPersonalInfo /> },
       {
         path: "/user-panel/additional-questions",
