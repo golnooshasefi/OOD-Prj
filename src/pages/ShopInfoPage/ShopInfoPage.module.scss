@@ -12,12 +12,19 @@
     border: 1px solid #dee2e6;
     padding: 4rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    &__right {
+    &__header {
       display: flex;
     }
     &__Name {
+      font-size: 2rem;
+    }
+    &__address {
+      font-size: 1.8rem;
+    }
+    &__phone {
+      font-size: 1.8rem;
     }
   }
 }

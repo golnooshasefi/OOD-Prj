@@ -49,10 +49,6 @@ export const routes = [
     element: <ShopInfoPage />,
   },
 
-  // {
-  //   path: "/product",
-  //   element: <Product />,
-  // },
   { path: "/shopping-list", element: <ShoppingList /> },
   { path: "/products-list/:productId", element: <Product /> },
   {
