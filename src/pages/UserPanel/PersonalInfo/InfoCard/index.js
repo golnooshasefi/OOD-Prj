@@ -6,7 +6,7 @@ import Modal from "../Modal";
 import Backdrop from "../Backdrop";
 const edit = <FontAwesomeIcon icon={faPenToSquare} />;
 
-function InfoCard({ title, value, type, name }) {
+function InfoCard({ title, value, type, name, information, setInformation }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   function openModalHandler() {
     setModalIsOpen(true);
@@ -36,6 +36,8 @@ function InfoCard({ title, value, type, name }) {
           name={name}
           onCancel={closeModalHandler}
           onConfirm={closeModalHandler}
+          information={information}
+          setInformation={setInformation}
         />
       )}
       {modalIsOpen && <Backdrop onCancel={closeModalHandler} />}

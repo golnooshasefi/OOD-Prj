@@ -1,5 +1,5 @@
 .HeroSection {
-  height: 77rem;
+  min-height: 77rem;
   // clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
   background-color: #e1e1ee;
 
@@ -10,6 +10,18 @@
     justify-content: space-around;
     align-items: center;
     margin: auto;
+
+    @media (max-width: 54em) {
+      flex-direction: column;
+    }
+
+    @media (max-width: 37.5em) {
+      padding: 15rem 9.5rem;
+    }
+
+    @media (max-width: 26em) {
+      padding: 15rem 5rem;
+    }
   }
   &__info {
     display: flex;
@@ -17,6 +29,11 @@
     flex: 0 0 50%;
     align-items: center;
     margin-left: 20rem;
+
+    @media (max-width: 54em) {
+      margin-left: 0;
+    }
+
     &--header {
       background-image: linear-gradient(to right, #8376b6, #262879);
       background-clip: text;
@@ -112,12 +129,20 @@
       outline-offset: 2rem;
       &--p1 {
         top: -2rem;
-        left: 4rem;
+        left: 6rem;
+
+        @media (max-width: 61em) {
+          top: 1rem;
+        }
       }
 
       &--p2 {
         top: 1.5rem;
         right: 0;
+
+        @media (max-width: 61em) {
+          top: 5rem;
+        }
       }
 
       &--p3 {

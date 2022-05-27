@@ -80,7 +80,7 @@ function Product() {
   const favoriteHandler = () => {
     axiosInstance
       .post(`accounts/add_to_favorite/`, {
-        id: product.id,
+        data: product.id,
       })
       .then((res) => {
         if (res.status === 200) {

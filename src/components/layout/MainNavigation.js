@@ -14,14 +14,14 @@ function MainNavigation() {
     <header className={classes.header}>
       <div className={classes.content}>
         <div className={classes.container}>
-          <Link to="/" className={classes.header__link}>
+          <Link to="/" className={classes.link}>
             <div className={classes.logo}>سبکینو</div>
           </Link>
 
           {user.auth ? (
             <div className={classes.container__btns}>
-              <Link to="/shopping-list">
-                <Button color="white">
+              <Link to="/shopping-list" className={classes.link}>
+                <Button color="white" className={classes.header__navButton}>
                   <i
                     className={classNames(
                       classes.header__login_logo,
@@ -31,8 +31,8 @@ function MainNavigation() {
                   سبد خرید
                 </Button>
               </Link>
-              <Link to="/user-panel">
-                <Button color="white">
+              <Link to="/user-panel" className={classes.link}>
+                <Button color="white" className={classes.header__navButton}>
                   <i
                     className={classNames(
                       classes.header__login_logo,
@@ -44,7 +44,7 @@ function MainNavigation() {
               </Link>
             </div>
           ) : (
-            <Link to="/account-box">
+            <Link to="/account-box" className={classes.link}>
               {/* <i className={classes.header__login_logo}>{loginIcon}</i> */}
               <Button color="white">
                 <i className={classes.header__login_logo}>{loginIcon}</i>ورود |

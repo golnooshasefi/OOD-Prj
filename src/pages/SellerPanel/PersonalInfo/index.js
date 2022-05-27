@@ -1,6 +1,6 @@
 import classes from "./PersonalInfo.module.scss";
 import InfoCard from "./InfoCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
 import axiosInstance from "../../../axios";
 import BeatLoader from "react-spinners/BeatLoader";
 
@@ -45,42 +45,56 @@ function PersonalInfo() {
             value={information.username}
             type={"text"}
             name={"fullName"}
+            information={information}
+            setInformation={setInformation}
           />
           <InfoCard
             title={"شماره موبایل"}
             value={information.user_phone_number}
             type={"tel"}
             name={"phoneNumber"}
+            information={information}
+            setInformation={setInformation}
           />
           <InfoCard
             title={"ایمیل"}
             value={information.email}
             type={"email"}
             name={"email"}
+            information={information}
+            setInformation={setInformation}
           />
           <InfoCard
             title={"آدرس فروشگاه"}
             value={information.shop_address}
             type={"text"}
             name={"address"}
+            information={information}
+            setInformation={setInformation}
           />
           <InfoCard
             title={"نام فروشگاه"}
             value={information.shop_name}
             type={"text"}
             name={"shopName"}
+            information={information}
+            setInformation={setInformation}
           />
           <InfoCard
             title={"شماره تلفن فروشگاه"}
             value={information.shop_phone_number}
             type={"tel"}
             name={"shopNumber"}
+            information={information}
+            setInformation={setInformation}
           />
           <InfoCard
             title={"رمز عبور"}
             value={"••••••••"}
             type={"password"}
             name={"password"}
+            information={information}
+            setInformation={setInformation}
           />
         </div>
       )}

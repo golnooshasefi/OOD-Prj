@@ -7,6 +7,7 @@ import axiosInstance from "../../../../axios";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Marginer } from "../../../../components/marginer";
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 const close = <FontAwesomeIcon icon={faXmark} />;
@@ -27,8 +28,7 @@ function Modal(props) {
     phoneNumber: "",
     email: "",
     address: "",
-    shopName: "",
-    shopNumber: "",
+    postalCode: "",
     currentPassword: "",
     password: "",
   });
@@ -40,33 +40,42 @@ function Modal(props) {
       ...formData,
       [e.target.name]: e.target.value.trim(),
     });
-    console.log(formData);
   };
 
   function cancelHandler() {
     props.onCancel();
   }
+
   function confirmHandler() {
-    console.log(formData);
-
-    axiosInstance
-      .get(`/accounts/edit_shop/`, {
-        email: formData.email,
-        username: formData.fullName,
-        user_phone_number: formData.phoneNumber,
-        Shop_address: formData.address,
-        shop_name: formData.shopName,
-        Shop_phone_number: formData.shopNumber,
-        // password: formData.currentPassword,
-        // password: formData.password,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-        }
-      });
-
-    if (true) {
-      props.onConfirm();
+    if (!formData.currentPassword && !formData.password) {
+      axiosInstance
+        .post(`accounts/edit_profile/`, {
+          ...(formData.email && { email: formData.email }),
+          ...(formData.fullName && { username: formData.fullName }),
+          ...(formData.phoneNumber && {
+            user_phone_number: formData.phoneNumber,
+          }),
+          ...(formData.postalCode && { user_postal_code: formData.postalCode }),
+          ...(formData.address && { user_address: formData.address }),
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            props.onConfirm();
+            props.setInformation(res.data);
+          }
+        });
+    } else {
+      axiosInstance
+        .post(`/accounts/change_password/`, {
+          Password: formData.password,
+          Password2: formData.password,
+          Old_password: formData.currentPassword,
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            console.log(res);
+          }
+        });
     }
   }
 

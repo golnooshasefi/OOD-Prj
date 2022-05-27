@@ -39,36 +39,48 @@ function PersonalInfo() {
             value={information.username}
             type={"text"}
             name={"fullName"}
+            information={information}
+            setInformation={setInformation}
           />
           <InfoCard
             title={"شماره موبایل"}
             value={information.user_phone_number}
             type={"tel"}
             name={"phoneNumber"}
+            information={information}
+            setInformation={setInformation}
           />
           <InfoCard
             title={"ایمیل"}
             value={information.email}
             type={"email"}
             name={"email"}
+            information={information}
+            setInformation={setInformation}
           />
           <InfoCard
             title={"آدرس"}
             value={information.user_address}
             type={"text"}
             name={"address"}
+            information={information}
+            setInformation={setInformation}
           />
           <InfoCard
             title={"کد پستی"}
             value={information.user_postal_code}
             type={"text"}
             name={"postalCode"}
+            information={information}
+            setInformation={setInformation}
           />
           <InfoCard
             title={"رمز عبور"}
             value={"••••••••"}
             type={"password"}
             name={"password"}
+            information={information}
+            setInformation={setInformation}
           />
         </div>
       )}
