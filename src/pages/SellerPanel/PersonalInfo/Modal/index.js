@@ -7,6 +7,7 @@ import axiosInstance from "../../../../axios";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Marginer } from "../../../../components/marginer";
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 const close = <FontAwesomeIcon icon={faXmark} />;
@@ -40,33 +41,34 @@ function Modal(props) {
       ...formData,
       [e.target.name]: e.target.value.trim(),
     });
-    console.log(formData);
   };
 
   function cancelHandler() {
     props.onCancel();
   }
-  function confirmHandler() {
-    console.log(formData);
 
+  function confirmHandler() {
     if (!formData.currentPassword && !formData.password) {
-      console.log("without pass");
       axiosInstance
         .post(`accounts/edit_shop/`, {
-          email: formData.email,
-          username: formData.fullName,
-          user_phone_number: formData.phoneNumber,
-          shop_name: formData.shopName,
-          shop_address: formData.address,
-          shop_phone_number: formData.shopNumber,
+          ...(formData.email && { email: formData.email }),
+          ...(formData.fullName && { username: formData.fullName }),
+          ...(formData.phoneNumber && {
+            user_phone_number: formData.phoneNumber,
+          }),
+          ...(formData.shopName && { shop_name: formData.shopName }),
+          ...(formData.address && { shop_address: formData.address }),
+          ...(formData.shopNumber && {
+            shop_phone_number: formData.shopNumber,
+          }),
         })
         .then((res) => {
-          console.log(res);
           if (res.status === 200) {
+            props.onConfirm();
+            props.setInformation(res.data);
           }
         });
     } else {
-      console.log("with pass");
       axiosInstance
         .post(`/accounts/change_password/`, {
           Password: formData.password,
@@ -78,10 +80,6 @@ function Modal(props) {
             console.log(res);
           }
         });
-    }
-
-    if (true) {
-      props.onConfirm();
     }
   }
 
