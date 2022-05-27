@@ -2,16 +2,21 @@ import classes from "./Sidebar.module.scss";
 import MainNavigation from "../../../components/layout/MainNavigation";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../../../store/UserContext";
 
 function Sidebar() {
+  const { user } = useContext(UserContext);
   return (
     <>
       <nav className={classes.sidebar}>
         <div className={classes["seller-info"]}>
           <img src="./images/user1.png" className={classes.userImage} />
           <div className={classes["seller-info__description"]}>
-            <div className={classes["seller-info__title"]}>مهدی قنبرزاده</div>
-            <div className={classes["seller-info__phone"]}>٠٩١٣٤٥٦٧٨٤٤</div>
+            <div className={classes["seller-info__title"]}>{user.username}</div>
+            <div className={classes["seller-info__phone"]}>
+              {user.phoneNumber}
+            </div>
           </div>
         </div>
 

@@ -1,14 +1,29 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const UserContext = createContext({ email: "", auth: false });
+const UserContext = createContext({
+  type: "",
+  username: "",
+  phoneNumber: "",
+  email: "",
+  auth: false,
+});
 export function UserContextProvider({ children }) {
-  const [user, setUser] = useState({ email: "", auth: false });
+  const [user, setUser] = useState({
+    type: "",
+    username: "",
+    phoneNumber: "",
+    email: "",
+    auth: false,
+  });
   console.log(user);
   const navigate = useNavigate();
 
-  const login = (email, isSurvey = false) => {
+  const login = (type, username, phoneNumber, email = "", isSurvey = false) => {
     setUser({
+      type: type,
+      username: username,
+      phoneNumber: phoneNumber,
       email: email,
       auth: true,
     });
