@@ -17,6 +17,9 @@
       width: 50%;
       padding-bottom: 2rem;
       border-bottom: 1px solid lightgray;
+      @media (max-width: 27.5em) {
+        width: 75%;
+      }
     }
   }
 
