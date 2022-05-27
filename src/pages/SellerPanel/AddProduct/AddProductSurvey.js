@@ -75,7 +75,7 @@ const questions = [
   },
 ];
 
-function AddProductSurvey() {
+function AddProductSurvey({ answersHandler }) {
   const [step, setStep] = useState(0);
   const [canContinue, setCanContinue] = useState(false);
   const [answers, setAnswers] = useState({});
@@ -91,6 +91,7 @@ function AddProductSurvey() {
 
   const setAnswerHandler = useCallback((id, option) => {
     setAnswers((answers) => ({ ...answers, [id]: option }));
+    answersHandler((answers) => ({ ...answers, [id]: option }));
   }, []);
   console.log(answers);
   const nextClickHandler = () => {

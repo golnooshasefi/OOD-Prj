@@ -82,4 +82,18 @@
 }
 .btn {
   margin-top: 3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  background-color: #51cf66;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  // border: 1px solid #8ce99a;
+
+  &:hover {
+    background-color: #69db7c;
+  }
 }
