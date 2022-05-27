@@ -49,36 +49,21 @@ function Modal(props) {
   function confirmHandler() {
     console.log(formData);
 
-    if (!formData.currentPassword && !formData.password) {
-      console.log("without pass");
-      axiosInstance
-        .post(`accounts/edit_shop/`, {
-          email: formData.email,
-          username: formData.fullName,
-          user_phone_number: formData.phoneNumber,
-          shop_name: formData.shopName,
-          shop_address: formData.address,
-          shop_phone_number: formData.shopNumber,
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.status === 200) {
-          }
-        });
-    } else {
-      console.log("with pass");
-      axiosInstance
-        .post(`/accounts/change_password/`, {
-          Password: formData.password,
-          Password2: formData.password,
-          Old_password: formData.currentPassword,
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            console.log(res);
-          }
-        });
-    }
+    axiosInstance
+      .get(`/accounts/edit_shop/`, {
+        email: formData.email,
+        username: formData.fullName,
+        user_phone_number: formData.phoneNumber,
+        Shop_address: formData.address,
+        shop_name: formData.shopName,
+        Shop_phone_number: formData.shopNumber,
+        // password: formData.currentPassword,
+        // password: formData.password,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+        }
+      });
 
     if (true) {
       props.onConfirm();

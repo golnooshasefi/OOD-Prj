@@ -1,3 +1,9 @@
+.container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
 .Product {
   margin: 5rem 8rem;
   display: grid;
@@ -226,7 +232,7 @@
 
     &__btn--disable {
       padding: 1.5rem 5rem;
-      cursor: pointer;
+      cursor: default;
       outline: none;
       margin-top: 2rem;
       background: #a3a4cd;

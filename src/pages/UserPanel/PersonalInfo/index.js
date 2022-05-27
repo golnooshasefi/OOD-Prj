@@ -1,8 +1,8 @@
 import classes from "./PersonalInfo.module.scss";
 import InfoCard from "./InfoCard";
+import BeatLoader from "react-spinners/BeatLoader";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../axios";
-import BeatLoader from "react-spinners/BeatLoader";
 
 const override = `
   display: inline-block;
@@ -11,7 +11,7 @@ const override = `
 
 function PersonalInfo() {
   let [loading, setLoading] = useState(true);
-  let [information, setInformation] = useState({});
+  let [information, setInformation] = useState([]);
 
   useEffect(() => {
     axiosInstance.get(`accounts/show_user_info/`).then((res) => {
@@ -31,13 +31,7 @@ function PersonalInfo() {
           </span>
         </div>
       </div>
-      <BeatLoader
-        color="#6667ab"
-        loading={loading}
-        css={override}
-        size={30}
-        // margin={2}
-      />
+      <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
       {!loading && (
         <div className={classes.container__infoCards}>
           <InfoCard
@@ -59,22 +53,16 @@ function PersonalInfo() {
             name={"email"}
           />
           <InfoCard
-            title={"آدرس فروشگاه"}
-            value={information.shop_address}
+            title={"آدرس"}
+            value={information.user_address}
             type={"text"}
             name={"address"}
           />
           <InfoCard
-            title={"نام فروشگاه"}
-            value={information.shop_name}
+            title={"کد پستی"}
+            value={information.user_postal_code}
             type={"text"}
-            name={"shopName"}
-          />
-          <InfoCard
-            title={"شماره تلفن فروشگاه"}
-            value={information.shop_phone_number}
-            type={"tel"}
-            name={"shopNumber"}
+            name={"postalCode"}
           />
           <InfoCard
             title={"رمز عبور"}
