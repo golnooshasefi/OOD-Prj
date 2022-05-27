@@ -1,11 +1,4 @@
-import { useForm } from "react-hook-form";
-import classes from "./AddProduct.module.scss";
-import Button from "../../../components/shared/Button";
-import Survey from "./AddProductSurvey";
-import AddProductSurvey from "./AddProductSurvey";
-import { useState } from "react";
-
-function AddProduct() {
+function EditProductPage() {
   const {
     register,
     handleSubmit,
@@ -36,7 +29,7 @@ function AddProduct() {
         <div className={classes.container__headerContainer}>
           <div className={classes.container__headerContainer__header}>
             <span className={classes.container__headerContainer__text}>
-              افزودن کالا
+              ویرایش کالا
             </span>
           </div>
         </div>
@@ -215,5 +208,3 @@ function AddProduct() {
     </>
   );
 }
-
-export default AddProduct;
