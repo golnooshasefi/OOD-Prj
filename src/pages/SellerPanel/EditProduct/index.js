@@ -5,6 +5,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../axios";
 import { BeatLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 const trash = <FontAwesomeIcon icon={faTrashCan} />;
 const edit = <FontAwesomeIcon icon={faPenToSquare} />;
 
@@ -48,12 +49,14 @@ function EditProduct() {
               {"شلوار مردانه سیدونا مدل MSI03072-403"}
             </span>
             <div className={classes.container__favoriteItems__item__btns}>
-              <button
-                className={classes.container__favoriteItems__item__btns__btn}
-              >
-                {edit}
-                &nbsp; ویرایش
-              </button>
+              <Link to={`edit-product/${1}`}>
+                <button
+                  className={classes.container__favoriteItems__item__btns__btn}
+                >
+                  {edit}
+                  &nbsp; ویرایش
+                </button>
+              </Link>
               <button
                 className={classes.container__favoriteItems__item__btns__btn}
               >

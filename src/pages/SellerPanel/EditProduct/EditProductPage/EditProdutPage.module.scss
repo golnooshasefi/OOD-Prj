@@ -1,0 +1,111 @@
+.container {
+  margin: 3rem;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: #fff;
+  border-radius: 3rem;
+
+  &__headerContainer {
+    grid-column: 1 / span 2;
+    border-bottom: 1px solid #e0e0e2;
+
+    &__header {
+      position: relative;
+      display: inline-block;
+      padding-right: 1rem;
+      padding-left: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 0.3rem solid #6667ab;
+    }
+
+    &__text {
+      color: #6667ab;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.form {
+  margin-top: 2rem;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  flex-direction: row;
+  &__group {
+    margin-bottom: 2rem;
+    &:last-child {
+      margin-bottom: 3rem;
+    }
+  }
+  &__input {
+    font-family: inherit;
+    font-size: 1.4rem;
+    padding: 1rem 1.5rem;
+    // color: inherit;
+    border-radius: 1rem;
+    background-color: #dee2e6;
+    border: none;
+    border-bottom: 0.3rem solid transparent;
+    width: 70%;
+    display: block;
+    transition: all 0.3s;
+    @media only screen and (max-width: 950px) {
+      width: 90%;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0 1rem 2rem rgba(#000, 0.2);
+      border-bottom: 3px solid #8ce99a;
+    }
+    &--pic {
+      border-radius: 3rem;
+    }
+  }
+  &__label {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: 0.6rem;
+    margin-bottom: 1rem;
+    display: block;
+    transition: all 0.3s;
+  }
+  @media only screen and (max-width: 950px) {
+    flex-direction: column;
+  }
+}
+
+.column {
+  flex: 50%;
+}
+.btn {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  background-color: #51cf66;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  // &:hover {
+  //   background-color: #69db7c;
+  // }
+}
+
+.btn--disable {
+  background-color: #d3f9d8;
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  // background-color: #51cf66;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

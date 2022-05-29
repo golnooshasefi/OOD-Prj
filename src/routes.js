@@ -21,6 +21,7 @@ import Favorites from "./pages/UserPanel/Favorites";
 import AdditionalQuestion from "./pages/UserPanel/AdditionalQuestion";
 import { default as UserPersonalInfo } from "./pages/UserPanel/PersonalInfo";
 import ShopInfoPage from "./pages/ShopInfoPage";
+import EditProductPage from "./pages/SellerPanel/EditProduct/EditProductPage";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
@@ -41,11 +42,6 @@ export const routes = [
   },
 
   {
-    path: "/products-list",
-    element: <ProductsList />,
-  },
-
-  {
     path: "/shop-page",
     element: <ShopInfoPage />,
   },
@@ -58,6 +54,10 @@ export const routes = [
     children: [
       { path: "/seller-panel/add-product", element: <AddProduct /> },
       { path: "/seller-panel/edit-product", element: <EditProduct /> },
+      {
+        path: "/seller-panel/edit-product/:productId",
+        element: <EditProductPage />,
+      },
       { path: "/seller-panel/orders", element: <SellerOrders /> },
       { path: "/seller-panel/personal-info", element: <SellerPersonalInfo /> },
     ],
