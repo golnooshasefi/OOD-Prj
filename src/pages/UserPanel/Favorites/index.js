@@ -13,17 +13,22 @@ const override = `
 `;
 
 function Favorites() {
-  let [loading, setLoading] = useState(false);
+  let [loading, setLoading] = useState(true);
   let [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    axiosInstance.get(``).then((res) => {
+    axiosInstance.get(`/accounts/show_favorite/`).then((res) => {
       if (res.status === 200) {
         setLoading(false);
         setFavorites(res.data);
       }
     });
   }, []);
+
+  function favoriteHandler(e) {
+    console.log(e.target);
+    console.log(e.target.id);
+  }
 
   return (
     <div className={classes.container}>
@@ -38,126 +43,37 @@ function Favorites() {
       <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
       {!loading && (
         <div className={classes.container__favoriteItems}>
-          <div className={classes.container__favoriteItems__item}>
-            <img
-              className={classes.container__favoriteItems__item__pic}
-              src={"./images/clothes/11bg.png"}
-              alt={"fake"}
-            />
-            <span className={classes.container__favoriteItems__item__name}>
-              {"شلوار مردانه سیدونا مدل MSI03072-403"}
-            </span>
-            <span className={classes.container__favoriteItems__item__price}>
-              {digitsEnToFa(addCommas("199999"))} تومان
-            </span>
-            <span className={classes.container__favoriteItems__item__priceOff}>
-              {digitsEnToFa(addCommas("200000"))}
-            </span>
-            <button className={classes.container__favoriteItems__item__btn}>
-              {trash}
-              &nbsp; حذف
-            </button>
-          </div>
-          <div className={classes.container__favoriteItems__item}>
-            <img
-              className={classes.container__favoriteItems__item__pic}
-              src={"./images/clothes/11bg.png"}
-              alt={"fake"}
-            />
-            <span className={classes.container__favoriteItems__item__name}>
-              {"شلوار مردانه سیدونا مدل MSI03072-403"}
-            </span>
-            <span className={classes.container__favoriteItems__item__price}>
-              {digitsEnToFa(addCommas("199999"))} تومان
-            </span>
-            <span className={classes.container__favoriteItems__item__priceOff}>
-              {digitsEnToFa(addCommas("200000"))}
-            </span>
-            <button className={classes.container__favoriteItems__item__btn}>
-              {trash}
-              &nbsp; حذف
-            </button>
-          </div>
-          <div className={classes.container__favoriteItems__item}>
-            <img
-              className={classes.container__favoriteItems__item__pic}
-              src={"./images/clothes/11bg.png"}
-              alt={"fake"}
-            />
-            <span className={classes.container__favoriteItems__item__name}>
-              {"شلوار مردانه سیدونا مدل MSI03072-403"}
-            </span>
-            <span className={classes.container__favoriteItems__item__price}>
-              {digitsEnToFa(addCommas("199999"))} تومان
-            </span>
-            <span className={classes.container__favoriteItems__item__priceOff}>
-              {digitsEnToFa(addCommas("200000"))}
-            </span>
-            <button className={classes.container__favoriteItems__item__btn}>
-              {trash}
-              &nbsp; حذف
-            </button>
-          </div>
-          <div className={classes.container__favoriteItems__item}>
-            <img
-              className={classes.container__favoriteItems__item__pic}
-              src={"./images/clothes/11bg.png"}
-              alt={"fake"}
-            />
-            <span className={classes.container__favoriteItems__item__name}>
-              {"شلوار مردانه سیدونا مدل MSI03072-403"}
-            </span>
-            <span className={classes.container__favoriteItems__item__price}>
-              {digitsEnToFa(addCommas("199999"))} تومان
-            </span>
-            <span className={classes.container__favoriteItems__item__priceOff}>
-              {digitsEnToFa(addCommas("200000"))}
-            </span>
-            <button className={classes.container__favoriteItems__item__btn}>
-              {trash}
-              &nbsp; حذف
-            </button>
-          </div>
-          <div className={classes.container__favoriteItems__item}>
-            <img
-              className={classes.container__favoriteItems__item__pic}
-              src={"./images/clothes/11bg.png"}
-              alt={"fake"}
-            />
-            <span className={classes.container__favoriteItems__item__name}>
-              {"شلوار مردانه سیدونا مدل MSI03072-403"}
-            </span>
-            <span className={classes.container__favoriteItems__item__price}>
-              {digitsEnToFa(addCommas("199999"))} تومان
-            </span>
-            <span className={classes.container__favoriteItems__item__priceOff}>
-              {digitsEnToFa(addCommas("200000"))}
-            </span>
-            <button className={classes.container__favoriteItems__item__btn}>
-              {trash}
-              &nbsp; حذف
-            </button>
-          </div>
-          <div className={classes.container__favoriteItems__item}>
-            <img
-              className={classes.container__favoriteItems__item__pic}
-              src={"./images/clothes/11bg.png"}
-              alt={"fake"}
-            />
-            <span className={classes.container__favoriteItems__item__name}>
-              {"شلوار مردانه سیدونا مدل MSI03072-403"}
-            </span>
-            <span className={classes.container__favoriteItems__item__price}>
-              {digitsEnToFa(addCommas("199999"))} تومان
-            </span>
-            <span className={classes.container__favoriteItems__item__priceOff}>
-              {digitsEnToFa(addCommas("200000"))}
-            </span>
-            <button className={classes.container__favoriteItems__item__btn}>
-              {trash}
-              &nbsp; حذف
-            </button>
-          </div>
+          {favorites.map((element) => (
+            <div
+              key={element.id}
+              className={classes.container__favoriteItems__item}
+            >
+              <img
+                className={classes.container__favoriteItems__item__pic}
+                src={element.upload}
+                alt={element.product_name}
+              />
+              <span className={classes.container__favoriteItems__item__name}>
+                {element.product_name}
+              </span>
+              <span className={classes.container__favoriteItems__item__price}>
+                {digitsEnToFa(addCommas(element.product_off_percent))} تومان
+              </span>
+              <span
+                className={classes.container__favoriteItems__item__priceOff}
+              >
+                {digitsEnToFa(addCommas(element.product_price))}
+              </span>
+              <button
+                id={element.id}
+                onClick={favoriteHandler.bind(element.id)}
+                className={classes.container__favoriteItems__item__btn}
+              >
+                {trash}
+                &nbsp; حذف
+              </button>
+            </div>
+          ))}
         </div>
       )}
     </div>

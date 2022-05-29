@@ -14,7 +14,7 @@ const override = `
 `;
 
 function EditProduct() {
-  let [loading, setLoading] = useState(true);
+  let [loading, setLoading] = useState(false);
   let [products, setProducts] = useState([]);
 
   useEffect(() => {

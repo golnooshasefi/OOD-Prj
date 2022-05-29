@@ -42,6 +42,8 @@ function Product() {
   // let [isFavorite, setFavorite] = useState
   const { productId } = useParams();
   const [product, setProduct] = useState([]);
+  const [similar, setSimilar] = useState([]);
+
   const navigate = useNavigate();
 
   const Stars = {
@@ -72,12 +74,50 @@ function Product() {
           setLoading(false);
         }
       });
+
+      axiosInstance.get(`/questions/similar/${productId}/`).then((res) => {
+        if (res.status === 200) {
+          console.log(res);
+          console.log(res.data);
+          setSimilar(res.data);
+          setLoading(false);
+        }
+      });
     } else {
       // navigate("/404", { replace: true });
     }
   }, [productId]);
 
+  // useEffect(() => {
+  //   if (productId) {
+  //     axiosInstance.get(`/questions/similar/${productId}/`).then((res) => {
+  //       if (res.status === 200) {
+  //         console.log(res);
+  //         console.log(res.data);
+  //         setSimilar(res.data);
+  //         setLoading(false);
+  //       }
+  //     });
+  //   } else {
+  //     // navigate("/404", { replace: true });
+  //   }
+  // }, [productId]);
+
   const favoriteHandler = () => {
+    axiosInstance
+      .post(`accounts/add_to_favorite/`, {
+        data: product.id,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res);
+          console.log(res.data);
+        }
+      });
+  };
+
+  const addProductHandler = () => {
+    console.log("add to shop");
     axiosInstance
       .post(`accounts/add_to_favorite/`, {
         data: product.id,
@@ -301,7 +341,7 @@ function Product() {
                     : classes["Product__sellerBox__btn"]
                 }
                 isDisable={0 === 0}
-                onClickHandler={() => console.log("click add product")}
+                onClickHandler={addProductHandler}
               >
                 {0 === 0 ? "ناموجود" : "افزودن به سبد"}
               </Button>

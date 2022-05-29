@@ -17,7 +17,7 @@ function SellerPanel() {
     console.log(!user.auth || (!user.auth && user.type !== "user"));
     if (!user.auth || (!user.auth && user.type !== "seller")) {
       console.log("sellerrrrr2");
-      navigate("/404");
+      // navigate("/404");
     }
   }, []);
 
@@ -25,7 +25,7 @@ function SellerPanel() {
     console.log(!user.auth || (!user.auth && user.type !== "user"));
     if (!user.auth || (!user.auth && user.type !== "seller")) {
       console.log("sellerrrrr2");
-      navigate("/404");
+      // navigate("/404");
     }
   }, [user.auth, user.type, navigate]);
 

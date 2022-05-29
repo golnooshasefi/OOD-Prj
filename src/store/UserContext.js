@@ -8,6 +8,7 @@ const UserContext = createContext({
   email: "",
   auth: false,
 });
+
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState({
     type: "",
