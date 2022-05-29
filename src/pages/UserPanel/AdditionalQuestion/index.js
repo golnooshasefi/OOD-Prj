@@ -48,7 +48,7 @@ const override = `
 function AdditionalQuestion() {
   const { user } = useContext(UserContext);
 
-  let [loading, setLoading] = useState(true);
+  let [loading, setLoading] = useState(false);
   // let [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const navigate = useNavigate();

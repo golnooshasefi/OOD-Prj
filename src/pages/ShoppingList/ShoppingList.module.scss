@@ -1,5 +1,14 @@
+.spinner {
+  height: 80vh;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding-top: -5rem;
+}
+
 .ShoppingList {
   width: 100rem;
+  min-height: 80vh;
 
   margin: 5rem auto 10rem auto;
 
@@ -8,7 +17,7 @@
   grid-template-columns: 1fr 30rem;
   gap: 2rem;
   position: relative;
-  
+
   @media (max-width: 64em) {
     max-width: 70rem;
     display: flex;
@@ -30,7 +39,6 @@
   @media (max-width: 27em) {
     max-width: 38rem;
   }
-
 
   &__headerContainer {
     grid-column: 1 / span 2;
@@ -72,7 +80,6 @@
     width: 30rem;
     height: 30rem;
 
-
     @media (max-width: 64em) {
       margin-top: 3rem;
       width: 100%;
@@ -97,7 +104,6 @@
         height: 100%;
       }
     }
-
 
     &__totalPrice {
       color: #62666d;
