@@ -21,6 +21,15 @@
     border: 1px solid #e0e0e2;
     border-radius: 1rem;
     overflow: hidden;
+    @media (max-width: 80em) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 68em) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 50em) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 
   &__filterContainer {
@@ -36,6 +45,15 @@
     border: 1px solid #e0e0e2;
     border-radius: 1rem;
     margin-left: 1rem;
+    @media (max-width: 80em) {
+      width: 20vw;
+    }
+    @media (max-width: 68em) {
+      width: 30vw;
+    }
+    @media (max-width: 50em) {
+      width: 45vw;
+    }
   }
 }
 

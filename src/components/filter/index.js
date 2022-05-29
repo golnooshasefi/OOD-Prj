@@ -13,18 +13,6 @@ function Filter() {
       <h2 className={classes.Filter__header}>فیلترها</h2>
       <ul className={classes.Filter__list}>
         <li>
-          <a href="#/" className={classNames(classes["Filter__list__link"])}>
-            <i
-              className={classNames(
-                classes["Filter__icon"],
-                "fa-solid fa-heart"
-              )}
-            />
-            محبوب‌ترین سبک‌ها
-          </a>
-        </li>
-
-        <li>
           <a
             href="#/"
             className={classNames(
@@ -211,6 +199,18 @@ function Filter() {
               )}
             />
             سبکِ من
+          </a>
+        </li>
+
+        <li>
+          <a href="#/" className={classNames(classes["Filter__list__link"])}>
+            <i
+              className={classNames(
+                classes["Filter__icon"],
+                "fa-solid fa-heart"
+              )}
+            />
+            محبوب‌ترین سبک‌ها
           </a>
         </li>
       </ul>

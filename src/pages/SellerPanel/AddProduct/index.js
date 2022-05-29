@@ -4,13 +4,14 @@ import Button from "../../../components/shared/Button";
 import Survey from "./AddProductSurvey";
 import AddProductSurvey from "./AddProductSurvey";
 import { useState } from "react";
+import axiosInstance from "../../../axios";
 
 function AddProduct() {
   const {
     register,
     handleSubmit,
     formState: { isValid },
-  } = useForm();
+  } = useForm({ mode: "onChange" });
 
   const [answers, setAnswers] = useState([]);
   // console.log(1, answers);
@@ -28,6 +29,14 @@ function AddProduct() {
       ...values,
       ...newObject,
     };
+
+    axiosInstance
+      .post(`accounts/add_products_to_shop/`, {
+        newValues,
+      })
+      .then((res) => {
+        console.log(res);
+      });
     console.log(1, newValues);
   };
   return (
@@ -178,6 +187,7 @@ function AddProduct() {
                 className={classes.form__input}
               />
             </div>
+
             <div className={classes.form__group}>
               <label className={classes.form__label}>کشور تولید کننده </label>
               <input
@@ -206,8 +216,8 @@ function AddProduct() {
         <AddProductSurvey answersHandler={setAnswers} />
         <button
           onClick={handleSubmit(onSubmit)}
-          className={classes.btn}
-          // disabled={!isValid}
+          className={isValid ? classes.btn : classes["btn--disable"]}
+          disabled={!isValid}
         >
           ثبت
         </button>

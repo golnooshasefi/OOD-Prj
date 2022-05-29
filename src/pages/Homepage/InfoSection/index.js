@@ -10,10 +10,9 @@ function InfoSection() {
           <div className={classes.InfoSection__row}>
             <div>
               <h3 className={classes.InfoSection__row__header}>
-                ما یه شما دقیق ترین پیشنهاد را ارائه میدهیم
+                ما به شما دقیق ترین پیشنهاد را ارائه میدهیم
               </h3>
               <p className={classes.InfoSection__row__description}>
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
                 <br />
                 استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
                 <br />
