@@ -59,28 +59,15 @@ function ShoppingList() {
           </div>
 
           <div className={classes.ShoppingList__shoppingItems}>
-            <ShoppingItem
-              name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-              price={199000}
-              img={"./images/clothes/11bg.png"}
+          {list.map((element) => (
+              <ShoppingItem
+              id={element.id}
+              name={element.product_name}
+              price={element.product_price}
+              img={element.upload}
             />
-            <ShoppingItem
-              name={
-                " شلوار مردانه سیدونا مدل شلوار مردانه سیدونا مدل مدل شلوار مردانه سیدونا مدل مدل شلوار مردانه سیدونا مدل مدل شلوار مردانه سیدونا مدل MSI03072-403"
-              }
-              price={199000}
-              img={"./images/clothes/11bg.png"}
-            />
-            <ShoppingItem
-              name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-              price={199000}
-              img={"./images/clothes/26.jpg"}
-            />
-            <ShoppingItem
-              name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-              price={199000}
-              img={"./images/clothes/26bg.png"}
-            />
+            ))}
+
           </div>
 
           <div
