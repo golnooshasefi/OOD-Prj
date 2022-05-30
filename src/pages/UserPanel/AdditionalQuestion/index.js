@@ -61,26 +61,27 @@ function AdditionalQuestion() {
 
   console.log(user);
 
-  useLayoutEffect(() => {
-    console.log(!user.auth || (!user.auth && user.type !== "user"));
-    if (!user.auth || (!user.auth && user.type !== "user")) {
-      console.log("additionalQeustionn: sellerrrrr1");
-      navigate("/404");
-    }
-  }, []);
+  // useLayoutEffect(() => {
+  //   console.log(!user.auth || (!user.auth && user.type !== "user"));
+  //   if (!user.auth || (!user.auth && user.type !== "user")) {
+  //     console.log("additionalQeustionn: sellerrrrr1");
+  //     navigate("/404");
+  //   }
+  // }, []);
 
-  useLayoutEffect(() => {
-    console.log(!user.auth || (!user.auth && user.type !== "user"));
-    if (!user.auth || (!user.auth && user.type !== "user")) {
-      console.log("additionalQeustionn: sellerrrrr2");
-      navigate("/404");
-    }
-  }, [user.auth, user.type, navigate]);
+  // useLayoutEffect(() => {
+  //   console.log(!user.auth || (!user.auth && user.type !== "user"));
+  //   if (!user.auth || (!user.auth && user.type !== "user")) {
+  //     console.log("additionalQeustionn: sellerrrrr2");
+  //     navigate("/404");
+  //   }
+  // }, [user.auth, user.type, navigate]);
 
   useEffect(() => {
-    axiosInstance.get(``).then((res) => {
+    axiosInstance.get(`/questions/get_pics/`).then((res) => {
       if (res.status === 200) {
         setLoading(false);
+        console.log(res)
         // setQuestions(res.data);
       }
     });
@@ -95,13 +96,13 @@ function AdditionalQuestion() {
     }
     console.log(newAnswers);
 
-    // axiosInstance
-    //   .post(`questions/submit/`, {
-    //     data: newAnswers,
-    //   })
-    //   .then((res) => {
-    //     navigate("/products", { replace: true });
-    //   });
+    axiosInstance
+      .post(`questions/more_questions/`, {
+        data: newAnswers,
+      })
+      .then((res) => {
+        navigate("/products", { replace: true });
+      });
   };
 
   return (

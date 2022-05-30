@@ -17,9 +17,12 @@ const trash = <FontAwesomeIcon icon={faTrashCan} />;
 const color = <FontAwesomeIcon icon={faBrush} />;
 
 
-function ShoppingItem({ name, price, img }) {
+function ShoppingItem({ name, price, img, id }) {
+  function deleteProductHandler() {
+
+  }
   return (
-    <div className={classes.ShoppingItem}>
+    <div id={id} className={classes.ShoppingItem}>
       <img
         // src={"./images/clothes/11.jpg"}
         // src={"./images/clothes/11bg.png"}
@@ -78,7 +81,7 @@ function ShoppingItem({ name, price, img }) {
           </span>
         </div>
       </div>
-      <button className={classes.ShoppingItem__btn}>
+      <button className={classes.ShoppingItem__btn} onClick={deleteProductHandler}>
         {trash}
         &nbsp; حذف
       </button>

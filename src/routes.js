@@ -47,6 +47,7 @@ export const routes = [
   },
 
   { path: "/shopping-list", element: <ShoppingList /> },
+  { path: "/products-list/", element: <ProductsList /> },
   { path: "/products-list/:productId", element: <Product /> },
   {
     path: "/seller-panel",
