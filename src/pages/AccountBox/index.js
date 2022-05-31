@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Login } from "./Login";
 import { motion } from "framer-motion";
 import { AccountContext } from "./accountContext";
 import { Signup } from "./Signup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "./AccountBox.module.scss";
+import UserContext from "../../store/UserContext";
 
 function getBackdropVariants() {
   return {
@@ -30,6 +31,15 @@ const expandingTransition = {
 };
 
 export default function AccountBox(props) {
+  let { auth, type } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth) {
+      navigate("/");
+    }
+  }, [auth, navigate]);
+
   let backdropVariants = getBackdropVariants();
   const [isExpanded, setExpanded] = useState(false);
   const [active, setActive] = useState("signin");

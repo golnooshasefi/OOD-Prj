@@ -51,7 +51,7 @@ function Product() {
     count: 5,
     color: "#868e96",
     activeColor: "#6667ab",
-    value: 0,
+    value: product.score,
     a11y: true,
     isHalf: true,
     emptyIcon: <i className="far fa-star" />,
@@ -59,6 +59,16 @@ function Product() {
     filledIcon: <i className="fa fa-star" />,
     onChange: (newValue) => {
       console.log(`Example 2: new value is ${newValue}`);
+      console.log([product.id, newValue]);
+      axiosInstance
+        .post(`/accounts/show_better_clothes/`, {
+          data: [product.id, newValue],
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            setProduct((prev) => ({ ...prev, is_favorite: false }));
+          }
+        });
     },
   };
 
@@ -104,68 +114,52 @@ function Product() {
   // }, [productId]);
 
   const favoriteHandler = () => {
-    console.log(product)
-    if(product.is_favorite) {
+    console.log(product);
+    if (product.is_favorite) {
       axiosInstance
-      .post(`accounts/delete_from_favorite/`, {
-        data: product.id,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          setProduct(prev => ({...prev, is_favorite: false}))
-        }
-      });
-    }
-    else{
+        .post(`accounts/delete_from_favorite/`, {
+          data: product.id,
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            setProduct((prev) => ({ ...prev, is_favorite: false }));
+          }
+        });
+    } else {
       axiosInstance
-      .post(`accounts/add_to_favorite/`, {
-        data: product.id,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          setProduct(prev => ({...prev, is_favorite: true}))
-        }
-      });
+        .post(`accounts/add_to_favorite/`, {
+          data: product.id,
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            setProduct((prev) => ({ ...prev, is_favorite: true }));
+          }
+        });
     }
-
   };
 
   const addProductHandler = () => {
-    if(product.is_in_cart) {
+    if (product.is_in_cart) {
       axiosInstance
-      .post(`accounts/delete_from_cart/`, {
-        data: product.id,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          setProduct(prev => ({...prev, is_in_cart: false}))
-        }
-      });
-    }
-    else {
+        .post(`accounts/delete_from_cart/`, {
+          data: product.id,
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            setProduct((prev) => ({ ...prev, is_in_cart: false }));
+          }
+        });
+    } else {
       axiosInstance
-      .post(`accounts/add_to_cart/`, {
-        data: product.id,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          setProduct(prev => ({...prev, is_in_cart: true}))
-        }
-      });
+        .post(`accounts/add_to_cart/`, {
+          data: product.id,
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            setProduct((prev) => ({ ...prev, is_in_cart: true }));
+          }
+        });
     }
-
-
-    console.log("add to shop");
-    axiosInstance
-      .post(`accounts/add_to_cart/`, {
-        data: product.id,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          console.log(res.data);
-        }
-      });
   };
 
   return (
@@ -187,15 +181,22 @@ function Product() {
                 src={product.upload}
                 alt={product.product_name}
               ></img>
-              {!product.is_favorite && <span
-                className={classes.Product__imgBox__regular}
-                onClick={favoriteHandler}
-              >
-                {heart}
-              </span>}
-              {product.is_favorite && <span onClick={favoriteHandler} className={classes.Product__imgBox__solid}>{heartSolid}</span>}
-              
-              
+              {!product.is_favorite && (
+                <span
+                  className={classes.Product__imgBox__regular}
+                  onClick={favoriteHandler}
+                >
+                  {heart}
+                </span>
+              )}
+              {product.is_favorite && (
+                <span
+                  onClick={favoriteHandler}
+                  className={classes.Product__imgBox__solid}
+                >
+                  {heartSolid}
+                </span>
+              )}
             </div>
             <div className={classes.Product__descriptionBox}>
               <span className={classes.Product__descriptionBox__name}>
@@ -383,7 +384,11 @@ function Product() {
                 isDisable={product.inventory === 0}
                 onClickHandler={addProductHandler}
               >
-                {product.inventory === 0 ? "ناموجود" : !product.is_in_cart ? "افزودن به سبد" : " حذف از سبد"}
+                {product.inventory === 0
+                  ? "ناموجود"
+                  : !product.is_in_cart
+                  ? "افزودن به سبد"
+                  : " حذف از سبد"}
               </Button>
             </div>
             <div className={classes.Product__similarBox}>

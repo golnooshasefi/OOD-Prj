@@ -9,6 +9,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../axios";
 import { PuffLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 
 const override = `
   display: inline-block;
@@ -18,12 +19,13 @@ const override = `
 function ShoppingList() {
   let [loading, setLoading] = useState(true);
   let [list, setList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axiosInstance.get(`/accounts/show_cart/`).then((res) => {
       if (res.status === 200) {
-        setLoading(false);
         setList(res.data);
+        setLoading(false);
       }
     });
   }, []);
@@ -31,6 +33,18 @@ function ShoppingList() {
   const { ref, inView, entry } = useInView({
     threshold: 1,
   });
+
+  function confirmShoppingHandler() {
+    axiosInstance.get(`/accounts/checkout/`).then((res) => {
+      if (res.status === 200) {
+        // setList(res.data);
+        // setLoading(false);
+        navigate("/user-panel/orders", { replace: true });
+      }
+    });
+    console.log("/accounts/checkout/");
+  }
+
   return (
     <>
       <MainNavigation />
@@ -53,21 +67,22 @@ function ShoppingList() {
                 سبد خرید
               </span>
               <span className={classes.ShoppingList__header__number}>
-                {digitsEnToFa(1)}
+                {digitsEnToFa(list.products.length)}
               </span>
             </div>
           </div>
 
           <div className={classes.ShoppingList__shoppingItems}>
-          {list.map((element) => (
+            {console.log(list.total_price)}
+            {list.products.map((element) => (
               <ShoppingItem
-              id={element.id}
-              name={element.product_name}
-              price={element.product_price}
-              img={element.upload}
-            />
+                id={element.id}
+                name={element.product_name}
+                price={element.product_price}
+                img={element.upload}
+                setProducts={setList}
+              />
             ))}
-
           </div>
 
           <div
@@ -89,7 +104,7 @@ function ShoppingList() {
                     classes.ShoppingList__confirmBox__totalPrice__price
                   }
                 >
-                  {digitsEnToFa(addCommas(2000000))} تومان
+                  {digitsEnToFa(addCommas(list.total_price))} تومان
                 </span>
               </div>
               <div className={classes.ShoppingList__confirmBox__payable}>
@@ -101,7 +116,8 @@ function ShoppingList() {
                 <span
                   className={classes.ShoppingList__confirmBox__payable__price}
                 >
-                  {digitsEnToFa(addCommas(2000000))} تومان
+                  {digitsEnToFa(addCommas(list.total_price_with_discount))}{" "}
+                  تومان
                 </span>
               </div>
               <span className={classes.ShoppingList__confirmBox__note}>
@@ -111,6 +127,7 @@ function ShoppingList() {
               <Button
                 color="purple"
                 className={classes["ShoppingList__confirmBox__btn"]}
+                onClickHandler={confirmShoppingHandler}
               >
                 تکمیل خرید
               </Button>

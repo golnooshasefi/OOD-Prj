@@ -99,7 +99,7 @@ function ProductsList() {
             price={99000}
             priceOff={100000}
             img={"./images/clothes/11bg.png"}
-          /> */}{" "}
+          />{" "} */}
         </div>
         <div className={classes.Products__filterContainer}>
           <Filter />

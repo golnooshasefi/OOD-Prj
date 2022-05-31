@@ -9,6 +9,7 @@ import { faShield } from "@fortawesome/free-solid-svg-icons";
 import { faRulerVertical } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { faBrush } from "@fortawesome/free-solid-svg-icons";
+import axiosInstance from "../../../axios";
 const money = <FontAwesomeIcon icon={faMoneyBill} />;
 const check = <FontAwesomeIcon icon={faCircleCheck} />;
 const shield = <FontAwesomeIcon icon={faShield} />;
@@ -16,10 +17,22 @@ const size = <FontAwesomeIcon icon={faRulerVertical} />;
 const trash = <FontAwesomeIcon icon={faTrashCan} />;
 const color = <FontAwesomeIcon icon={faBrush} />;
 
-
-function ShoppingItem({ name, price, img, id }) {
+function ShoppingItem({ name, price, img, id, setProducts }) {
   function deleteProductHandler() {
-
+    console.log("delete");
+    axiosInstance
+      .post(`accounts/delete_from_cart/`, {
+        data: id,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          axiosInstance.get(`/accounts/show_cart/`).then((res) => {
+            if (res.status === 200) {
+              setProducts(res.data);
+            }
+          });
+        }
+      });
   }
   return (
     <div id={id} className={classes.ShoppingItem}>
@@ -57,7 +70,6 @@ function ShoppingItem({ name, price, img, id }) {
         </div>
         <div className={classes.ShoppingItem__description__container}>
           <span className={classes.ShoppingItem__description__icon}>
-
             {shield}
           </span>
           <span className={classes.ShoppingItem__description__price}>
@@ -81,7 +93,10 @@ function ShoppingItem({ name, price, img, id }) {
           </span>
         </div>
       </div>
-      <button className={classes.ShoppingItem__btn} onClick={deleteProductHandler}>
+      <button
+        className={classes.ShoppingItem__btn}
+        onClick={deleteProductHandler}
+      >
         {trash}
         &nbsp; حذف
       </button>
