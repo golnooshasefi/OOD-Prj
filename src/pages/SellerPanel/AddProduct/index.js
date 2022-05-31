@@ -30,6 +30,10 @@ function AddProduct() {
       ...newObject,
     };
 
+    console.log("add product submit");
+    console.log(newValues);
+    console.log(...newValues);
+
     axiosInstance
       .post(`accounts/add_products_to_shop/`, {
         newValues,
@@ -82,14 +86,14 @@ function AddProduct() {
                 <option>آبی</option> <option>سبز</option>
                 <option>نارنجی</option> <option>بنفش</option>
                 <option>سیاه</option> <option>سفید</option>
-                <option>خاکستری</option>
+                <option>خاکستری</option> <option>کرمی</option>
               </datalist>
             </div>
 
             <div className={classes.form__group}>
               <label className={classes.form__label}>قد محصول</label>
               <input
-                type="text"
+                type="number"
                 placeholder="قد"
                 {...register("product_height", {
                   required: true,
@@ -126,11 +130,11 @@ function AddProduct() {
                 دسته‌بندی
               </label>
               <input
-                name="group"
+                name="product_group"
                 id="group"
                 list="groupes"
                 placeholder="دسته‌بندی "
-                {...register("group", {
+                {...register("product_group", {
                   required: true,
                 })}
                 className={classes.form__input}
@@ -205,10 +209,11 @@ function AddProduct() {
                 <i class="fa-regular fa-file-image"></i>
               </label>
               <input
-                type="file"
-                {...register("upload", {
+                type="text"
+                {...register("product_image", {
                   required: true,
                 })}
+                className={classes.form__input}
               />
             </div>
           </div>

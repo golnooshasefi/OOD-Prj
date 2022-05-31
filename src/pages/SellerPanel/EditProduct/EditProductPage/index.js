@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import classes from "./EditProdutPage.module.scss";
 import { useParams } from "react-router-dom";
@@ -15,7 +15,16 @@ function EditProductPage() {
     register,
     handleSubmit,
     formState: { isValid },
-  } = useForm({});
+    reset,
+  } = useForm({
+    defaultValues: useMemo(() => {
+      return answers;
+    }, [answers]),
+  });
+
+  useEffect(() => {
+    reset(answers);
+  }, [answers]);
 
   let [loading, setLoading] = useState(false);
   const [answers, setAnswers] = useState([]);
@@ -234,7 +243,7 @@ function EditProductPage() {
                     className={classes.form__input}
                   />
                 </div>
-                <div className={classes.form__group}>
+                {/* <div className={classes.form__group}>
                   <label className={classes.form__label}>
                     تصویر محصول
                     <i class="fa-regular fa-file-image"></i>
@@ -245,7 +254,7 @@ function EditProductPage() {
                       required: true,
                     })}
                   />
-                </div>
+                </div> */}
               </div>
             </form>
             <button
