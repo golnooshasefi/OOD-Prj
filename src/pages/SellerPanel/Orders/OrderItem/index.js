@@ -12,11 +12,11 @@ import { faBrush } from "@fortawesome/free-solid-svg-icons";
 const money = <FontAwesomeIcon icon={faMoneyBill} />;
 const check = <FontAwesomeIcon icon={faCircleCheck} />;
 const shield = <FontAwesomeIcon icon={faShield} />;
-const size = <FontAwesomeIcon icon={faRulerVertical} />;
+const sizeIcon = <FontAwesomeIcon icon={faRulerVertical} />;
 const trash = <FontAwesomeIcon icon={faTrashCan} />;
-const color = <FontAwesomeIcon icon={faBrush} />;
+const colorIcon = <FontAwesomeIcon icon={faBrush} />;
 
-function OrderItem({ name, price, img }) {
+function OrderItem({ name, price, img, size, color }) {
   return (
     <div className={classes.OrderItem}>
       <img src={img} className={classes.OrderItem__pic} alt={name} />
@@ -32,12 +32,16 @@ function OrderItem({ name, price, img }) {
           <span className={classes.OrderItem__description__name}>{name}</span>
         </div>
         <div className={classes.OrderItem__description__container}>
-          <span className={classes.OrderItem__description__icon}>{size}</span>
-          <span className={classes.OrderItem__description__price}>XL</span>
+          <span className={classes.OrderItem__description__icon}>
+            {sizeIcon}
+          </span>
+          <span className={classes.OrderItem__description__price}>{size}</span>
         </div>
         <div className={classes.OrderItem__description__container}>
-          <span className={classes.OrderItem__description__icon}>{color}</span>
-          <span className={classes.OrderItem__description__price}>سبز</span>
+          <span className={classes.OrderItem__description__icon}>
+            {colorIcon}
+          </span>
+          <span className={classes.OrderItem__description__price}>{color}</span>
         </div>
         <div className={classes.OrderItem__description__container}>
           <span className={classes.OrderItem__description__icon}>{money}</span>

@@ -16,10 +16,11 @@ function Orders() {
   let [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axiosInstance.get(``).then((res) => {
+    axiosInstance.get(`/accounts/show_order_to_shop/`).then((res) => {
       if (res.status === 200) {
-        setLoading(false);
+        console.log(res);
         setOrders(res.data);
+        setLoading(false);
       }
     });
   }, []);
@@ -47,31 +48,15 @@ function Orders() {
       <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
       {!loading && (
         <div className={classes.container__orderItems}>
-          <OrderItem
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={199000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <OrderItem
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={199000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <OrderItem
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={199000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <OrderItem
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={199000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <OrderItem
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={199000}
-            img={"./images/clothes/11bg.png"}
-          />
+          {orders.map((element) => (
+            <OrderItem
+              name={element.product_name}
+              price={element.product_price}
+              img={element.upload}
+              size={element.product_size}
+              color={element.product_color}
+            />
+          ))}
         </div>
       )}
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { routes } from "./routes";
 import { Route, Routes } from "react-router-dom";
 import ShopInfoPage from "./pages/ShopInfoPage";
@@ -7,8 +7,15 @@ import SellerPanel from "./pages/SellerPanel";
 import ShoppingList from "./pages/ShoppingList";
 import FAQ from "./pages/FAQ";
 import AddProductSurvey from "./pages/SellerPanel/AddProduct/AddProductSurvey";
+import axiosInstance from "./axios";
 
 function App() {
+  useEffect(() => {
+    axiosInstance.post(`/accounts/initialze_recom/`).then((res) => {
+      console.log(res);
+    });
+  }, []);
+
   return (
     <>
       <Routes>

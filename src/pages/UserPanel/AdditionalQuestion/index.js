@@ -17,28 +17,28 @@ import { BeatLoader } from "react-spinners";
 import UserContext from "../../../store/UserContext";
 const questionIcon = <FontAwesomeIcon icon={faCircleQuestion} />;
 
-const questions = [
-  {
-    id: "1",
-    option: "./../images/q7/1.jpg",
-  },
-  {
-    id: "2",
-    option: "./../images/q7/2.jpg",
-  },
-  {
-    id: "3",
-    option: "./../images/q7/3.jpg",
-  },
-  {
-    id: "4",
-    option: "./../images/q7/4.jpg",
-  },
-  {
-    id: "5",
-    option: "./../images/q7/5.jpg",
-  },
-];
+// const questions = [
+//   {
+//     id: "1",
+//     option: "./../images/q7/1.jpg",
+//   },
+//   {
+//     id: "2",
+//     option: "./../images/q7/2.jpg",
+//   },
+//   {
+//     id: "3",
+//     option: "./../images/q7/3.jpg",
+//   },
+//   {
+//     id: "4",
+//     option: "./../images/q7/4.jpg",
+//   },
+//   {
+//     id: "5",
+//     option: "./../images/q7/5.jpg",
+//   },
+// ];
 
 const override = `
   display: inline-block;
@@ -48,10 +48,11 @@ const override = `
 function AdditionalQuestion() {
   const { user } = useContext(UserContext);
 
-  let [loading, setLoading] = useState(false);
+  let [loading, setLoading] = useState(true);
   let [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const navigate = useNavigate();
+  console.log(questions);
 
   const setAnswerHandler = useCallback((id, option) => {
     setAnswers((answers) => ({ ...answers, [id]: option }));
@@ -79,9 +80,9 @@ function AdditionalQuestion() {
   useEffect(() => {
     axiosInstance.get(`/questions/get_pics/`).then((res) => {
       if (res.status === 200) {
-        setLoading(false);
         console.log(res);
         setQuestions(res.data);
+        setLoading(false);
       }
     });
   }, []);
@@ -94,13 +95,14 @@ function AdditionalQuestion() {
       newAnswers.push(Array.isArray(value) ? value.join(",") : value);
     }
     console.log(newAnswers);
+    console.log(answers);
 
     axiosInstance
       .post(`questions/more_questions/`, {
         data: newAnswers,
       })
       .then((res) => {
-        navigate("/products", { replace: true });
+        navigate("/products-list", { replace: true });
       });
   };
 
