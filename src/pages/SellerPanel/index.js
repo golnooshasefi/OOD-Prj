@@ -10,24 +10,14 @@ import { useContext, useEffect, useLayoutEffect } from "react";
 import UserContext from "../../store/UserContext";
 
 function SellerPanel() {
-  const { user } = useContext(UserContext);
+  const { auth, type } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(!user.auth || (!user.auth && user.type !== "user"));
-    if (!user.auth || (!user.auth && user.type !== "seller")) {
-      console.log("sellerrrrr2");
-      // navigate("/404");
+    if (!auth || (!auth && type !== "seller")) {
+      navigate("/404");
     }
-  }, []);
-
-  useLayoutEffect(() => {
-    console.log(!user.auth || (!user.auth && user.type !== "user"));
-    if (!user.auth || (!user.auth && user.type !== "seller")) {
-      console.log("sellerrrrr2");
-      // navigate("/404");
-    }
-  }, [user.auth, user.type, navigate]);
+  }, [auth, type, navigate]);
 
   return (
     <>

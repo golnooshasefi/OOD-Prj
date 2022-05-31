@@ -15,6 +15,7 @@ const override = `
 function Favorites() {
   let [loading, setLoading] = useState(true);
   let [favorites, setFavorites] = useState([]);
+  console.log(favorites);
 
   useEffect(() => {
     axiosInstance.get(`/accounts/show_favorite/`).then((res) => {
@@ -27,7 +28,20 @@ function Favorites() {
 
   function favoriteHandler(e) {
     console.log(e.target);
-    console.log(e.target.id);
+    console.log(e.target.id + "");
+
+    axiosInstance
+      .post(`accounts/delete_from_favorite/`, {
+        data: e.target.id,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(favorites);
+          favorites.map((el) => console.log(Number(el.id)));
+          setFavorites((prev) => prev.filter((el) => el.id != e.target.id));
+          console.log(favorites);
+        }
+      });
   }
 
   return (

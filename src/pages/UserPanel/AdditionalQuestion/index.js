@@ -49,12 +49,11 @@ function AdditionalQuestion() {
   const { user } = useContext(UserContext);
 
   let [loading, setLoading] = useState(false);
-  // let [questions, setQuestions] = useState([]);
+  let [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const navigate = useNavigate();
 
   const setAnswerHandler = useCallback((id, option) => {
-    // console.log(answers);
     setAnswers((answers) => ({ ...answers, [id]: option }));
   }, []);
   console.log(answers);
@@ -81,8 +80,8 @@ function AdditionalQuestion() {
     axiosInstance.get(`/questions/get_pics/`).then((res) => {
       if (res.status === 200) {
         setLoading(false);
-        console.log(res)
-        // setQuestions(res.data);
+        console.log(res);
+        setQuestions(res.data);
       }
     });
   }, []);

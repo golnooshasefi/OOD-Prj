@@ -14,7 +14,7 @@ function Orders() {
   let [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axiosInstance.get(``).then((res) => {
+    axiosInstance.get(`/accounts/user_orders`).then((res) => {
       if (res.status === 200) {
         setLoading(false);
         setOrders(res.data);
