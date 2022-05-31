@@ -11,13 +11,16 @@ import UserContext from "../../store/UserContext";
 
 function SellerPanel() {
   const { user } = useContext(UserContext);
+  console.log(user.auth, user.type);
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(user.auth, user.type);
     if (!user.auth || (!user.auth && user.type !== "seller")) {
       navigate("/404");
     }
-  }, [user.auth, user.type, user.navigate]);
+    console.log(user.auth, user.type);
+  }, [user.auth, user.type, navigate]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import Button from "../../components/shared/Button";
 import MultipleChoicesQuestion from "./MultipleChoicesQuestion";
 import Question from "./Question";
@@ -7,6 +7,7 @@ import classes from "./Survey.module.scss";
 import axiosInstance from "../../axios";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import UserContext from "../../store/UserContext";
 const questions = [
   {
     id: "1",
@@ -110,6 +111,15 @@ function Survey() {
   const [canContinue, setCanContinue] = useState(false);
   const [answers, setAnswers] = useState({});
   const navigate = useNavigate();
+  let { user } = useContext(UserContext);
+
+  useEffect(() => {
+    if (!user.auth) {
+      navigate("/account-box");
+    } else if (user.type === "seller") {
+      navigate("/products-list");
+    }
+  }, [user.auth, user.type, navigate]);
 
   const canContinueHandler = () => {
     setCanContinue(true);
@@ -149,7 +159,7 @@ function Survey() {
       })
       .then((res) => {
         if (res.status === 201) {
-          navigate("/products-list", { replace: true });
+          navigate("/products-list?product=survey1", { replace: true });
         }
       });
   };

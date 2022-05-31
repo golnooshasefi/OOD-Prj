@@ -63,7 +63,7 @@ function Product() {
       console.log(`Example 2: new value is ${newValue}`);
       console.log([product.id, newValue]);
       axiosInstance
-        .post(`/accounts/show_better_clothes/`, {
+        .post(`/accounts/vote_for_product/`, {
           data: [product.id, newValue],
         })
         .then((res) => {

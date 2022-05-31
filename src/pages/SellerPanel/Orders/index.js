@@ -25,15 +25,15 @@ function Orders() {
     });
   }, []);
 
-  const { user } = useContext(UserContext);
-  const navigate = useNavigate();
-  useLayoutEffect(() => {
-    console.log(!user.auth || (!user.auth && user.type !== "user"));
-    if (!user.auth || (!user.auth && user.type !== "seller")) {
-      console.log("sellerrrrr2");
-      navigate("/404");
-    }
-  }, [user.auth, user.type, navigate]);
+  // const { user } = useContext(UserContext);
+  // const navigate = useNavigate();
+  // useLayoutEffect(() => {
+  //   console.log(!user.auth || (!user.auth && user.type !== "user"));
+  //   if (!user.auth || (!user.auth && user.type !== "seller")) {
+  //     console.log("sellerrrrr2");
+  //     navigate("/404");
+  //   }
+  // }, [user.auth, user.type, navigate]);
 
   return (
     <div className={classes.container}>
