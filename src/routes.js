@@ -42,7 +42,7 @@ export const routes = [
   },
 
   {
-    path: "/shop-page",
+    path: "/shop-page/:shopId",
     element: <ShopInfoPage />,
   },
 

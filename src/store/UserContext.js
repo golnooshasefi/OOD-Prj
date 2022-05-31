@@ -1,5 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axios";
 
 const UserContext = createContext({
   type: "",
@@ -28,10 +29,45 @@ export function UserContextProvider({ children }) {
       email: email,
       auth: true,
     });
+    localStorage.setItem(
+      "userInformation",
+      JSON.stringify({
+        type: type,
+        username: username,
+        phoneNumber: phoneNumber,
+        email: email,
+        auth: true,
+      })
+    );
     // navigate(isSurvey ? "/survey" : "-1", { replace: true });
     // navigate(-1);
   };
+
+  const checkLogin = () => {
+    if (localStorage.getItem("access_token") !== null) {
+      console.log("test");
+      axiosInstance
+        .post(`accounts/api/token/verify/`, {
+          token: localStorage.getItem("access_token"),
+        })
+        .then((res) => {
+          console.log("res" + res);
+          if (res.status === 200) {
+            console.log(res);
+            console.log(localStorage.getItem("userInformation"));
+            setUser(JSON.parse(localStorage.getItem("userInformation")));
+          } else {
+            console.log("logout checklogin");
+            logout();
+          }
+        });
+    }
+  };
+
   const logout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("userInformation");
     setUser({
       type: "",
       username: "",
@@ -42,7 +78,7 @@ export function UserContextProvider({ children }) {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, login, logout, checkLogin }}>
       {children}
     </UserContext.Provider>
   );

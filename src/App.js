@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { routes } from "./routes";
 import { Route, Routes } from "react-router-dom";
 import ShopInfoPage from "./pages/ShopInfoPage";
@@ -8,8 +8,14 @@ import ShoppingList from "./pages/ShoppingList";
 import FAQ from "./pages/FAQ";
 import AddProductSurvey from "./pages/SellerPanel/AddProduct/AddProductSurvey";
 import axiosInstance from "./axios";
+import UserContext from "./store/UserContext";
 
 function App() {
+  const { checkLogin } = useContext(UserContext);
+  useEffect(() => {
+    checkLogin();
+  }, []);
+
   useEffect(() => {
     axiosInstance.post(`/accounts/initialze_recom/`).then((res) => {
       console.log(res);

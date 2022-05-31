@@ -102,7 +102,7 @@ function AdditionalQuestion() {
         data: newAnswers,
       })
       .then((res) => {
-        navigate("/products-list", { replace: true });
+        navigate("/products-list?product=survey2", { replace: true });
       });
   };
 

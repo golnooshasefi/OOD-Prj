@@ -1,6 +1,9 @@
 .ShopInfoPage {
-  //   height: 70rem;
   margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
   &__icon {
     font-size: 2rem;
     margin-left: 1rem;
@@ -25,6 +28,25 @@
     }
     &__phone {
       font-size: 1.8rem;
+    }
+  }
+
+  &__itemContainer {
+    grid-column: 2 / span 4;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: start;
+    border: 1px solid #e0e0e2;
+    border-radius: 1rem;
+    overflow: hidden;
+    @media (max-width: 80em) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 68em) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 50em) {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 }

@@ -31,14 +31,14 @@ const expandingTransition = {
 };
 
 export default function AccountBox(props) {
-  let { auth, type } = useContext(UserContext);
+  let { user } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (auth) {
+    if (user.auth) {
       navigate("/");
     }
-  }, [auth, navigate]);
+  }, [user.auth, navigate]);
 
   let backdropVariants = getBackdropVariants();
   const [isExpanded, setExpanded] = useState(false);

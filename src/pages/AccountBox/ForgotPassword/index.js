@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { Marginer } from "../../../components/marginer";
 import classes from "./ForgotPassword.module.scss";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../../../store/UserContext";
+import axiosInstance from "../../../axios";
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
+
+  let { user } = useContext(UserContext);
+
+  useEffect(() => {
+    if (user.auth) {
+      navigate("/");
+    }
+  }, [user.auth, navigate]);
 
   const initialFormData = Object.freeze({
     email: "",
@@ -22,6 +32,14 @@ export default function ForgotPassword() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
+    axiosInstance
+      .post(`accounts/reset_password/`, {
+        email: formData.email,
+      })
+      .then((res) => {
+        navigate(-1);
+      });
     console.log(formData);
   };
 

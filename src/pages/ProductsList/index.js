@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../axios";
 import MainNavigation from "../../components/layout/MainNavigation";
 import Footer from "../../components/layout/Footer";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Filter from "../../components/filter";
 
 import DotLoader from "react-spinners/DotLoader";
@@ -18,16 +18,40 @@ const override = `
 function ProductsList() {
   const [userStyles, setUserStyle] = useState([]);
   let [loading, setLoading] = useState(true);
+  const [searchParams] = useSearchParams();
+  const url = searchParams.get("product");
+  console.log(searchParams.get("product"));
 
   useEffect(() => {
-    axiosInstance.get(`accounts/show_all_products/`).then((res) => {
-      if (res.status === 200) {
-        setLoading(false);
-        console.log(res);
-        console.log(res.data);
-        setUserStyle(res.data);
-      }
-    });
+    if (url === null) {
+      axiosInstance.get(`accounts/show_all_products/`).then((res) => {
+        if (res.status === 200) {
+          setLoading(false);
+          console.log(res);
+          console.log(res.data);
+          setUserStyle(res.data);
+        }
+      });
+    } else if (url === "survey1") {
+      console.log("survey1 run");
+      axiosInstance.get(`accounts/user_styles/`).then((res) => {
+        if (res.status === 200) {
+          console.log(res);
+          console.log(res.data);
+          setUserStyle(res.data);
+          setLoading(false);
+        }
+      });
+    } else if (url === "survey2") {
+      axiosInstance.post(`questions/more_questions/`).then((res) => {
+        if (res.status === 200) {
+          console.log(res);
+          console.log(res.data);
+          setUserStyle(res.data);
+          setLoading(false);
+        }
+      });
+    }
   }, []);
   return (
     <>

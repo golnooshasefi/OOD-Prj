@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Login } from "./Login";
 import { motion } from "framer-motion";
 import { AccountContext } from "./accountContext";
 import { Signup } from "./Signup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "./SellerAccountBox.module.scss";
+import UserContext from "../../store/UserContext";
 
 function getBackdropVariants() {
   return {
@@ -36,6 +37,15 @@ export default function SellerAccountBox(props) {
   const [biggerThan400, setBiggerThan400] = useState(
     window.innerWidth >= 400 ? true : false
   );
+
+  let { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user.auth) {
+      navigate("/");
+    }
+  }, [user.auth, navigate]);
 
   useEffect(() => {
     function handleResize() {
