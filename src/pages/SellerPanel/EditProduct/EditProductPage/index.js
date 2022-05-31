@@ -15,7 +15,7 @@ function EditProductPage() {
     register,
     handleSubmit,
     formState: { isValid },
-  } = useForm();
+  } = useForm({});
 
   let [loading, setLoading] = useState(false);
   const [answers, setAnswers] = useState([]);
