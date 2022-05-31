@@ -2,7 +2,7 @@ import Footer from "../../components/layout/Footer";
 import MainNavigation from "../../components/layout/MainNavigation";
 import Button from "../../components/shared/Button";
 import classes from "./Product.module.scss";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import axiosInstance from "./../../axios";
 
@@ -43,6 +43,8 @@ function Product() {
   const { productId } = useParams();
   const [product, setProduct] = useState([]);
   const [similar, setSimilar] = useState([]);
+  console.log(similar);
+  console.log("shop id" + product.shop);
 
   const navigate = useNavigate();
 
@@ -339,11 +341,13 @@ function Product() {
                 >
                   {shop}
                 </span>
-                <span
-                  className={classes.Product__sellerBox__nameBox__sellerName}
-                >
-                  بزرگ
-                </span>
+                <Link to={`/shop-page/${product.shop}`}>
+                  <span
+                    className={classes.Product__sellerBox__nameBox__sellerName}
+                  >
+                    بزرگ
+                  </span>
+                </Link>
               </div>
               <div className={classes.Product__sellerBox__featureBox}>
                 <span className={classes.Product__sellerBox__featureBox__icon}>
@@ -396,7 +400,15 @@ function Product() {
                 محصولات مشابه
               </span>
               <div className={classes.Product__similarBox__items}>
-                <SimilarItem
+                {similar.map((element) => (
+                  <SimilarItem
+                    link={element.upload}
+                    name={"شلوار مردانه سیدونا مدل MSI03072-403"}
+                    price={"199999"}
+                    priceOff={"200000"}
+                  />
+                ))}
+                {/* <SimilarItem
                   link={"./images/clothes/11bg.png"}
                   name={"شلوار مردانه سیدونا مدل MSI03072-403"}
                   price={"199999"}
@@ -425,7 +437,7 @@ function Product() {
                   name={"شلوار مردانه سیدونا مدل MSI03072-403"}
                   price={"199999"}
                   priceOff={"200000"}
-                />
+                /> */}
               </div>
             </div>
           </section>

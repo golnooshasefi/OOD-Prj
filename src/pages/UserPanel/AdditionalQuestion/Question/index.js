@@ -2,7 +2,7 @@ import classes from "./Question.module.scss";
 import { Marginer } from "../../../../components/marginer";
 import ReactStars from "react-rating-stars-component";
 
-function Question({ id, option, onSelect }) {
+function Question({ id, upload, option, onSelect }) {
   const Stars = {
     size: 25,
     count: 5,
@@ -24,7 +24,7 @@ function Question({ id, option, onSelect }) {
       <Marginer direction="vertical" margin="3rem" />
       <div className={classes.Question__container}>
         <div className={classes.Question__container__box}>
-          <img className={classes.Question__img} src={option} alt="" />
+          <img className={classes.Question__img} src={upload} alt="" />
           <ReactStars classNames={classes.Question__star} {...Stars} />
         </div>
       </div>

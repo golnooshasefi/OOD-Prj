@@ -1,12 +1,21 @@
 import classes from "./Sidebar.module.scss";
 import MainNavigation from "../../../components/layout/MainNavigation";
 import classNames from "classnames";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../../../store/UserContext";
 
 function Sidebar() {
-  const { user } = useContext(UserContext);
+  const { user, logout } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  function logoutHandler() {
+    logout();
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    navigate("/");
+  }
+
   return (
     <>
       <nav className={classes.sidebar}>
@@ -99,19 +108,19 @@ function Sidebar() {
             </li>
           </Link>
 
-          <Link to={"/"} className={classes.link}>
-            <li className={classes["side-nav__item"]}>
-              <a href="#" className={classNames(classes["side-nav__link"])}>
-                <i
-                  className={classNames(
-                    classes["side-nav__icon"],
-                    "fa-solid fa-arrow-right-from-bracket"
-                  )}
-                />
-                <span>خروج</span>
-              </a>
-            </li>
-          </Link>
+          {/* <Link to={"/"} className={classes.link}> */}
+          <li onClick={logoutHandler} className={classes["side-nav__item"]}>
+            <a href="#/" className={classNames(classes["side-nav__link"])}>
+              <i
+                className={classNames(
+                  classes["side-nav__icon"],
+                  "fa-solid fa-arrow-right-from-bracket"
+                )}
+              />
+              <span>خروج</span>
+            </a>
+          </li>
+          {/* </Link> */}
         </ul>
       </nav>
     </>

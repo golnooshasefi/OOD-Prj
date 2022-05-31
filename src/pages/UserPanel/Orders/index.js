@@ -12,12 +12,13 @@ const override = `
 function Orders() {
   let [loading, setLoading] = useState(true);
   let [orders, setOrders] = useState([]);
+  console.log(orders);
 
   useEffect(() => {
-    axiosInstance.get(`/accounts/user_orders`).then((res) => {
+    axiosInstance.get(`/accounts/user_orders/`).then((res) => {
       if (res.status === 200) {
-        setLoading(false);
         setOrders(res.data);
+        setLoading(false);
       }
     });
   }, []);
@@ -35,7 +36,16 @@ function Orders() {
       <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
       {!loading && (
         <div className={classes.container__orderItems}>
-          <OrderItem
+          {orders.map((element) => (
+            <OrderItem
+              name={element.product_name}
+              price={element.product_price}
+              img={element.upload}
+              size={element.product_size}
+              color={element.product_color}
+            />
+          ))}
+          {/* <OrderItem
             name={" شلوار مردانه سیدونا مدل MSI03072-403"}
             price={199000}
             img={"./images/clothes/11bg.png"}
@@ -59,7 +69,7 @@ function Orders() {
             name={" شلوار مردانه سیدونا مدل MSI03072-403"}
             price={199000}
             img={"./images/clothes/11bg.png"}
-          />
+          /> */}
         </div>
       )}
     </div>

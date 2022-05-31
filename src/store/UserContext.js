@@ -33,6 +33,9 @@ export function UserContextProvider({ children }) {
   };
   const logout = () => {
     setUser({
+      type: "",
+      username: "",
+      phoneNumber: "",
       email: "",
       auth: false,
     });
