@@ -14,13 +14,13 @@ function SellerPanel() {
   console.log(user.auth, user.type);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(user.auth, user.type);
-    if (!user.auth || (!user.auth && user.type !== "seller")) {
-      navigate("/404");
-    }
-    console.log(user.auth, user.type);
-  }, [user.auth, user.type, navigate]);
+  // useEffect(() => {
+  //   console.log(user.auth, user.type);
+  //   if (!user.auth || (!user.auth && user.type !== "seller")) {
+  //     navigate("/404");
+  //   }
+  //   console.log(user.auth, user.type);
+  // }, [user.auth, user.type, navigate]);
 
   return (
     <>

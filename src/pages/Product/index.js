@@ -370,13 +370,15 @@ function Product() {
                   {money}
                 </span>
                 <span className={classes.Product__sellerBox__featureBox__text}>
-                  {digitsEnToFa(addCommas(product.product_off_percent))} تومان
+                  {digitsEnToFa(addCommas(product.product_price))} تومان
                 </span>
               </div>
               <div className={classes.Product__sellerBox__featureBox}>
-                <span className={classes.Product__sellerBox__featureBox__off}>
-                  {digitsEnToFa(addCommas(product.product_price))}
-                </span>
+                {product.product_off_percent !== 0 && (
+                  <span className={classes.Product__sellerBox__featureBox__off}>
+                    {digitsEnToFa(addCommas(product.product_off_percent))}
+                  </span>
+                )}
               </div>
               <Button
                 color="purple"

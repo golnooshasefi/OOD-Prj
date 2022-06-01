@@ -71,13 +71,16 @@ function Favorites() {
                 {element.product_name}
               </span>
               <span className={classes.container__favoriteItems__item__price}>
-                {digitsEnToFa(addCommas(element.product_off_percent))} تومان
+                {digitsEnToFa(addCommas(element.product_price))} تومان
               </span>
-              <span
-                className={classes.container__favoriteItems__item__priceOff}
-              >
-                {digitsEnToFa(addCommas(element.product_price))}
-              </span>
+              {element.product_off_percent !== 0 && (
+                <span
+                  className={classes.container__favoriteItems__item__priceOff}
+                >
+                  {digitsEnToFa(addCommas(element.product_off_percent))}
+                </span>
+              )}
+
               <button
                 id={element.id}
                 onClick={favoriteHandler.bind(element.id)}

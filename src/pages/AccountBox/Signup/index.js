@@ -51,7 +51,11 @@ export function Signup(props) {
       })
       .then((res) => {
         if (res.status === 200) {
-          login(formData.email);
+          login(res.data.type, res.data.username, res.data.user_phone_number);
+          localStorage.setItem("access_token", res.data.access);
+          localStorage.setItem("refresh_token", res.data.refresh);
+          axiosInstance.defaults.headers["Authorization"] =
+            "Bearer " + localStorage.getItem("access_token");
           navigate(-1);
           // history.push("/login");
           // console.log("axios");

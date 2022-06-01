@@ -5,6 +5,7 @@ import Survey from "./AddProductSurvey";
 import AddProductSurvey from "./AddProductSurvey";
 import { useState } from "react";
 import axiosInstance from "../../../axios";
+import { useNavigate } from "react-router-dom";
 
 function AddProduct() {
   const {
@@ -14,6 +15,7 @@ function AddProduct() {
   } = useForm({ mode: "onChange" });
 
   const [answers, setAnswers] = useState([]);
+  const navigate = useNavigate();
   // console.log(1, answers);
 
   let newObject = {};
@@ -54,7 +56,10 @@ function AddProduct() {
         style_param_5: newValues.style_param_5,
       })
       .then((res) => {
-        console.log(res);
+        if (res.status === 201) {
+          console.log("add product");
+          navigate("/seller-panel");
+        }
       });
     console.log(1, newValues);
   };

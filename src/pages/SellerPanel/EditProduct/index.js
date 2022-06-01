@@ -19,13 +19,16 @@ function EditProduct() {
   let [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axiosInstance.get(``).then((res) => {
+    axiosInstance.post(`/accounts/show_products_of_shop/`).then((res) => {
       if (res.status === 200) {
+        console.log(res.data.products);
+        setProducts(res.data.products);
         setLoading(false);
-        setProducts(res.data);
       }
     });
   }, []);
+
+  function deleteProductHandler() {}
 
   return (
     <div className={classes.container}>
@@ -39,7 +42,38 @@ function EditProduct() {
       <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
       {!loading && (
         <div className={classes.container__favoriteItems}>
-          <div className={classes.container__favoriteItems__item}>
+          {products.map((element) => (
+            <div className={classes.container__favoriteItems__item}>
+              <img
+                className={classes.container__favoriteItems__item__pic}
+                src={element.upload}
+                alt={element.product_name}
+              />
+              <span className={classes.container__favoriteItems__item__name}>
+                {element.product_name}
+              </span>
+              <div className={classes.container__favoriteItems__item__btns}>
+                <Link to={`edit-product/${1}`}>
+                  <button
+                    className={
+                      classes.container__favoriteItems__item__btns__btn
+                    }
+                  >
+                    {edit}
+                    &nbsp; ویرایش
+                  </button>
+                </Link>
+                <button
+                  className={classes.container__favoriteItems__item__btns__btn}
+                  onClick={deleteProductHandler}
+                >
+                  {trash}
+                  &nbsp; حذف
+                </button>
+              </div>
+            </div>
+          ))}
+          {/* <div className={classes.container__favoriteItems__item}>
             <img
               className={classes.container__favoriteItems__item__pic}
               src={"./images/clothes/11bg.png"}
@@ -64,8 +98,8 @@ function EditProduct() {
                 &nbsp; حذف
               </button>
             </div>
-          </div>
-          <div className={classes.container__favoriteItems__item}>
+          </div> */}
+          {/* <div className={classes.container__favoriteItems__item}>
             <img
               className={classes.container__favoriteItems__item__pic}
               src={"./images/clothes/11bg.png"}
@@ -136,7 +170,7 @@ function EditProduct() {
                 &nbsp; حذف
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       )}
     </div>
