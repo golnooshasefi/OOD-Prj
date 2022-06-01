@@ -25,16 +25,20 @@ function Item(props) {
         <h2 className={classes.item__description__name}>{props.name}</h2>
         <div className={classes.item__description__priceContainer}>
           <span className={classes.item__description__priceContainer__price}>
-            {digitsEnToFa(addCommas(props.price))}
+            {digitsEnToFa(addCommas(props.priceOff))}
           </span>
           <span className={classes.item__description__priceContainer__toman}>
             تومان
           </span>
         </div>
         <div className={classes.item__description__priceContainer}>
-          <span className={classes.item__description__priceContainer__priceOff}>
-            {digitsEnToFa(addCommas(props.priceOff))}
-          </span>
+          {props.price !== 0 && (
+            <span
+              className={classes.item__description__priceContainer__priceOff}
+            >
+              {digitsEnToFa(addCommas(props.price))}
+            </span>
+          )}
         </div>
       </div>
     </div>
