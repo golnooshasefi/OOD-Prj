@@ -2,11 +2,34 @@ import classes from "./filter.module.scss";
 
 import { useState } from "react";
 import classNames from "classnames";
+import axiosInstance from "../../axios";
 
-function Filter() {
+function Filter({ setProducts }) {
   const [subMenuOneIsOpen, setSubMenuOneIsOpen] = useState(false);
   const [subMenuTwoIsOpen, setSubMenuTwoIsOpen] = useState(false);
   const [subMenuThreeIsOpen, setSubMenuThreeIsOpen] = useState(false);
+
+  const handleFilter = (e) => {
+    console.log(e.target.id);
+    console.log([e.target.id]);
+    if (e.target.id === "محبوب ترین سبک ها") {
+      axiosInstance.get(`accounts/show_popular_product/`).then((res) => {
+        if (res.status === 200) {
+          setProducts(res.data);
+        }
+      });
+    } else {
+      axiosInstance
+        .post(`accounts/filters/`, {
+          group: [e.target.id],
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            setProducts(res.data);
+          }
+        });
+    }
+  };
 
   return (
     <div className={classes.Filter}>
@@ -41,7 +64,12 @@ function Filter() {
           >
             {/* <Link to={"/seller-panel/add-product"} className={classes.link}> */}
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"شلوار"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 شلوار
               </a>
             </li>
@@ -49,17 +77,32 @@ function Filter() {
 
             {/* <Link to={"/seller-panel/edit-product"} className={classes.link}> */}
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"پیراهن"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 پیراهن
               </a>
             </li>
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"تیشرت"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 تیشرت
               </a>
             </li>
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"هودی"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 هودی
               </a>
             </li>
@@ -96,7 +139,12 @@ function Filter() {
           >
             {/* <Link to={"/seller-panel/add-product"} className={classes.link}> */}
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"XS"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 XS
               </a>
             </li>
@@ -104,27 +152,52 @@ function Filter() {
 
             {/* <Link to={"/seller-panel/edit-product"} className={classes.link}> */}
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"S"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 S
               </a>
             </li>
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"M"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 M
               </a>
             </li>
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"L"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 L
               </a>
             </li>
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"XL"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 XL
               </a>
             </li>
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"XXL"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 XXL
               </a>
             </li>
@@ -161,7 +234,12 @@ function Filter() {
           >
             {/* <Link to={"/seller-panel/add-product"} className={classes.link}> */}
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"آبی"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 آبی
               </a>
             </li>
@@ -169,29 +247,54 @@ function Filter() {
 
             {/* <Link to={"/seller-panel/edit-product"} className={classes.link}> */}
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"قرمز"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 قرمز
               </a>
             </li>
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"زرد"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 زرد
               </a>
             </li>
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"مشکی"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 مشکی
               </a>
             </li>
             <li className={classes["Filter__submenu__item"]}>
-              <a href="#/" className={classes["Filter__submenu__link"]}>
+              <a
+                onClick={handleFilter}
+                id={"سفید"}
+                href="#/"
+                className={classes["Filter__submenu__link"]}
+              >
                 سفید
               </a>
             </li>
           </ul>
         </li>
-        <li>
-          <a href="#/" className={classNames(classes["Filter__list__link"])}>
+        {/* <li>
+          <a
+            onClick={handleFilter}
+            id={"سبک من"}
+            href="#/"
+            className={classNames(classes["Filter__list__link"])}
+          >
             <i
               className={classNames(
                 classes["Filter__icon"],
@@ -200,10 +303,15 @@ function Filter() {
             />
             سبکِ من
           </a>
-        </li>
+        </li> */}
 
         <li>
-          <a href="#/" className={classNames(classes["Filter__list__link"])}>
+          <a
+            onClick={handleFilter}
+            id={"محبوب ترین سبک ها"}
+            href="#/"
+            className={classNames(classes["Filter__list__link"])}
+          >
             <i
               className={classNames(
                 classes["Filter__icon"],

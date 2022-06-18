@@ -11,6 +11,9 @@ const override = `
 `;
 
 function EditProductPage() {
+  let [loading, setLoading] = useState(false);
+  const [answers, setAnswers] = useState([]);
+  // console.log(1, answers);
   const {
     register,
     handleSubmit,
@@ -25,10 +28,6 @@ function EditProductPage() {
   useEffect(() => {
     reset(answers);
   }, [answers]);
-
-  let [loading, setLoading] = useState(false);
-  const [answers, setAnswers] = useState([]);
-  // console.log(1, answers);
 
   let newObject = {};
   for (let [key, value] of Object.entries(answers)) {

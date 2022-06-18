@@ -1,12 +1,13 @@
 import classes from "./Modal.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axiosInstance from "../../../../axios";
 
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Marginer } from "../../../../components/marginer";
+import UserContext from "../../../../store/UserContext";
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
@@ -35,6 +36,7 @@ function Modal(props) {
   });
 
   const [formData, updateFormData] = useState(initialFormData);
+  const { updateName, updatePhone } = useContext(UserContext);
 
   const handleChange = (e) => {
     updateFormData({
@@ -65,6 +67,8 @@ function Modal(props) {
         .then((res) => {
           if (res.status === 200) {
             props.onConfirm();
+            formData.fullName && updateName(formData.fullName);
+            formData.shopNumber && updatePhone(formData.shopNumber);
             props.setInformation(res.data);
           }
         });

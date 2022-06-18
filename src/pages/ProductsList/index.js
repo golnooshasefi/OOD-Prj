@@ -16,7 +16,7 @@ const override = `
 `;
 
 function ProductsList() {
-  const [userStyles, setUserStyle] = useState([]);
+  const [products, setProducts] = useState([]);
   let [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
   const url = searchParams.get("product");
@@ -29,7 +29,7 @@ function ProductsList() {
           setLoading(false);
           console.log(res);
           console.log(res.data);
-          setUserStyle(res.data);
+          setProducts(res.data);
         }
       });
     } else if (url === "survey1") {
@@ -38,7 +38,7 @@ function ProductsList() {
         if (res.status === 200) {
           console.log(res);
           console.log(res.data);
-          setUserStyle(res.data);
+          setProducts(res.data);
           setLoading(false);
         }
       });
@@ -47,7 +47,7 @@ function ProductsList() {
         if (res.status === 200) {
           console.log(res);
           console.log(res.data);
-          setUserStyle(res.data);
+          setProducts(res.data);
           setLoading(false);
         }
       });
@@ -66,7 +66,7 @@ function ProductsList() {
             margin={2}
           />
           {!loading &&
-            userStyles.map((element) => (
+            products.map((element) => (
               <Link
                 to={`/products-list/${element.id}`}
                 className={classes.link}
@@ -126,7 +126,7 @@ function ProductsList() {
           />{" "} */}
         </div>
         <div className={classes.Products__filterContainer}>
-          <Filter />
+          <Filter setProducts={setProducts} />
         </div>
       </div>
       <Footer />

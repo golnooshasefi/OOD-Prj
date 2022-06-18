@@ -43,6 +43,18 @@ export function UserContextProvider({ children }) {
     // navigate(-1);
   };
 
+  const updateName = (username = user.username) => {
+    setUser((prev) => ({ ...prev, username }));
+    localStorage.removeItem("userInformation");
+    localStorage.setItem("userInformation", JSON.stringify(user));
+  };
+
+  const updatePhone = (phoneNumber = user.phoneNumber) => {
+    setUser((prev) => ({ ...prev, phoneNumber }));
+    localStorage.removeItem("userInformation");
+    localStorage.setItem("userInformation", JSON.stringify(user));
+  };
+
   const checkLogin = () => {
     if (localStorage.getItem("access_token") !== null) {
       console.log("test");
@@ -78,7 +90,9 @@ export function UserContextProvider({ children }) {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout, checkLogin }}>
+    <UserContext.Provider
+      value={{ user, login, logout, checkLogin, updateName, updatePhone }}
+    >
       {children}
     </UserContext.Provider>
   );
