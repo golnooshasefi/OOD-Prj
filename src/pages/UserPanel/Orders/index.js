@@ -40,7 +40,7 @@ function Orders() {
             <OrderItem
               name={element.product_name}
               price={element.product_price}
-              img={element.upload}
+              img={element.product_image}
               size={element.product_size}
               color={element.product_color}
             />

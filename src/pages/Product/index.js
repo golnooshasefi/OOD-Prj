@@ -180,7 +180,7 @@ function Product() {
             <div className={classes.Product__imgBox}>
               <img
                 className={classes.Product__imgBox__img}
-                src={product.upload}
+                src={product.product_image}
                 alt={product.product_name}
               ></img>
               {!product.is_favorite && (

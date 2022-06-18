@@ -15,7 +15,7 @@ const override = `
 `;
 
 function EditProduct() {
-  let [loading, setLoading] = useState(false);
+  let [loading, setLoading] = useState(true);
   let [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -28,7 +28,21 @@ function EditProduct() {
     });
   }, []);
 
-  function deleteProductHandler() {}
+  function deleteProductHandler(e) {
+    console.log(e.target);
+    console.log(e.target.id + "");
+
+    axiosInstance
+      .delete(`/accounts/delete_product/${e.target.id}/`)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(products);
+          products.map((el) => console.log(Number(el.id)));
+          setProducts((prev) => prev.filter((el) => el.id != e.target.id));
+          console.log(products);
+        }
+      });
+  }
 
   return (
     <div className={classes.container}>
@@ -43,7 +57,10 @@ function EditProduct() {
       {!loading && (
         <div className={classes.container__favoriteItems}>
           {products.map((element) => (
-            <div className={classes.container__favoriteItems__item}>
+            <div
+              id={element.id}
+              className={classes.container__favoriteItems__item}
+            >
               <img
                 className={classes.container__favoriteItems__item__pic}
                 src={element.upload}
@@ -53,7 +70,7 @@ function EditProduct() {
                 {element.product_name}
               </span>
               <div className={classes.container__favoriteItems__item__btns}>
-                <Link to={`edit-product/${1}`}>
+                <Link to={`${element.id}`}>
                   <button
                     className={
                       classes.container__favoriteItems__item__btns__btn
@@ -64,6 +81,7 @@ function EditProduct() {
                   </button>
                 </Link>
                 <button
+                  id={element.id}
                   className={classes.container__favoriteItems__item__btns__btn}
                   onClick={deleteProductHandler}
                 >
