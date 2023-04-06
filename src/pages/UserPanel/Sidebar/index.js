@@ -25,6 +25,19 @@ function Sidebar() {
               {user.phoneNumber}
             </div>
           </div>
+          
+        </div>
+        <div className={classes.wallet}>
+          <div className={classes.wallet__info}>
+          <i className= {classNames(classes["side-nav__icon"], "fa-solid fa-wallet")}></i>
+          
+          موجودی کیف پول
+          <div className={classes.wallet__balance}> 0 تومان</div>
+          </div>
+          
+          <a href="#" className={classes.wallet__link}>افزایش موجودی
+          <i className={classNames(classes.wallet__icon, "fa-solid fa-arrow-left")}></i>
+          </a>
         </div>
 
         <ul className={classes["side-nav"]}>
@@ -86,25 +99,7 @@ function Sidebar() {
             </li>
           </Link>
 
-          <Link to="/user-panel/additional-questions" className={classes.link}>
-            <li className={classes["side-nav__item"]}>
-              <a
-                href="#"
-                className={classNames(
-                  classes["side-nav__link--active"],
-                  classes["side-nav__link"]
-                )}
-              >
-                <i
-                  className={classNames(
-                    classes["side-nav__icon"],
-                    "fa-solid fa-circle-question"
-                  )}
-                />
-                سوالات تکمیلی
-              </a>
-            </li>
-          </Link>
+         
 
           {/* <Link to={"/"} className={classes.link}> */}
           <li onClick={logoutHandler} className={classes["side-nav__item"]}>

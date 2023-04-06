@@ -28,6 +28,7 @@ function SellerPanelSidebar() {
             </div>
           </div>
         </div>
+        
         <ul className={classes["side-nav"]}>
           <li className={classes["side-nav__item"]}>
             <a

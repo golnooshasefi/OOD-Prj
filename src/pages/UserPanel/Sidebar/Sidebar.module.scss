@@ -27,6 +27,34 @@
     margin-bottom: 1rem;
   }
 }
+
+.wallet{
+  
+  padding: 2rem 3rem;
+  border-bottom : #f1f3f5 solid 2px;
+  border-top: #f1f3f5 solid 2px;
+  &__info{
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  &__link{
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin-right: 4rem;
+    
+  }
+  &__balance{
+    font-size: 1.2rem;
+  }
+  &__icon{
+    margin-right: 0.6rem;
+    justify-items: center;
+
+  }
+}
 .side-nav {
   list-style: none;
   margin-top: 2rem;

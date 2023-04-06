@@ -1,5 +1,5 @@
 import Homepage from "./pages/Homepage";
-import Survey from "./pages/Survey";
+// import Survey from "./pages/Survey";
 import AccountBox from "./pages/AccountBox";
 import SellerAccountBox from "./pages/SellerAccountBox";
 import ProductsList from "./pages/ProductsList";
@@ -25,7 +25,7 @@ import EditProductPage from "./pages/SellerPanel/EditProduct/EditProductPage";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
-  { path: "/survey", element: <Survey /> },
+  
   {
     path: "/account-box",
     element: <AccountBox />,
@@ -75,10 +75,7 @@ export const routes = [
       { path: "/user-panel/favorites", element: <Favorites /> },
       { path: "/user-panel/orders", element: <UserOrders /> },
       { path: "/user-panel/personal-info", element: <UserPersonalInfo /> },
-      {
-        path: "/user-panel/additional-questions",
-        element: <AdditionalQuestion />,
-      },
+      
     ],
   },
 ];
