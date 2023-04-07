@@ -1,0 +1,63 @@
+.Payment {
+  margin: 2rem;
+  // height: 40vh;
+
+  &__type {
+    border: 1px solid #e0e0e2;
+    border-radius: 1rem;
+  }
+  &__header {
+    font-size: 2rem;
+    margin: 2rem;
+  }
+
+  &__radioButtons {
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+  }
+  &__off {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding: 2rem 3rem;
+    padding-left: 20rem;
+    border: 1px solid #e0e0e2;
+    border-radius: 1rem;
+    // width: 100rem;
+  }
+
+  &__form {
+    display: flex;
+    // justify-content:space-around ;
+  }
+}
+
+.right {
+  flex-grow: 1;
+}
+.left {
+  margin-left: 1rem;
+  border: 1px solid #e0e0e2;
+  border-radius: 1rem;
+  padding: 2rem 3rem;
+  font-size: 1.6rem;
+  width: 35rem;
+  &__submitbtn{
+    margin-left: 2rem;
+  }
+  &__items {
+    padding: 2rem ;
+    border-bottom: 1px solid #e0e0e2;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__price {
+   
+  }
+}
+
+.balance {
+  margin-right: 6rem;
+  font-size: 1.2rem;
+  color: #adb5bd;
+}

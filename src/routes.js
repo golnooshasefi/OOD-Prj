@@ -22,10 +22,11 @@ import AdditionalQuestion from "./pages/UserPanel/AdditionalQuestion";
 import { default as UserPersonalInfo } from "./pages/UserPanel/PersonalInfo";
 import ShopInfoPage from "./pages/ShopInfoPage";
 import EditProductPage from "./pages/SellerPanel/EditProduct/EditProductPage";
+import PaymentType from "./pages/PaymentType";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
-  
+
   {
     path: "/account-box",
     element: <AccountBox />,
@@ -75,7 +76,7 @@ export const routes = [
       { path: "/user-panel/favorites", element: <Favorites /> },
       { path: "/user-panel/orders", element: <UserOrders /> },
       { path: "/user-panel/personal-info", element: <UserPersonalInfo /> },
-      
     ],
   },
+  { path: "/payment", element: <PaymentType /> },
 ];
