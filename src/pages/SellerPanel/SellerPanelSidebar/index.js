@@ -4,6 +4,10 @@ import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import UserContext from "../../../store/UserContext";
+import SummarizeIcon from "@mui/icons-material/Summarize";
+
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function SellerPanelSidebar() {
   const [subMenuIsOpen, setSubMenuIsOpen] = useState(false);
@@ -15,109 +19,137 @@ function SellerPanelSidebar() {
     navigate("/");
   }
 
+  const theme = createTheme({
+    palette: {
+      secondary: {
+        main: "#6667ab",
+      },
+    },
+  });
   return (
     <>
-      <nav className={classes.sidebar}>
-        <div className={classes["seller-info"]}>
-          <img src="./images/user1.png" className={classes.userImage} />
+      <ThemeProvider theme={theme}>
+        <nav className={classes.sidebar}>
+          <div className={classes["seller-info"]}>
+            <img src="./images/user1.png" className={classes.userImage} />
 
-          <div className={classes["seller-info__description"]}>
-            <div className={classes["seller-info__title"]}>{user.username}</div>
-            <div className={classes["seller-info__phone"]}>
-              {user.phoneNumber}
+            <div className={classes["seller-info__description"]}>
+              <div className={classes["seller-info__title"]}>
+                {user.username}
+              </div>
+              <div className={classes["seller-info__phone"]}>
+                {user.phoneNumber}
+              </div>
             </div>
           </div>
-        </div>
-        
-        <ul className={classes["side-nav"]}>
-          <li className={classes["side-nav__item"]}>
-            <a
-              href="#"
-              className={classNames(
-                classes["side-nav__link--active"],
-                classes["side-nav__link"]
-              )}
-              onClick={() =>
-                setSubMenuIsOpen((subMenuIsOpen) => !subMenuIsOpen)
-              }
-            >
-              <i
-                className={classNames(
-                  classes["side-nav__icon"],
-                  "fa-solid fa-bars-progress"
-                )}
-              />
-              مدیریت کالاها
-              <i
-                className={classNames("fa-solid fa-angle-down", classes.icon)}
-              />
-            </a>
-            <ul
-              className={
-                subMenuIsOpen
-                  ? classes["side-nav__submenu--show"]
-                  : classes["side-nav__submenu"]
-              }
-            >
-              <Link to={"/seller-panel/add-product"} className={classes.link}>
-                <li className={classes["side-nav__submenu__item"]}>
-                  <a href="#" className={classes["side-nav__submenu__link"]}>
-                    افزودن کالا
-                  </a>
-                </li>
-              </Link>
 
-              <Link to={"/seller-panel/edit-product"} className={classes.link}>
-                <li className={classes["side-nav__submenu__item"]}>
-                  <a href="#" className={classes["side-nav__submenu__link"]}>
-                    ویرایش کالاها
-                  </a>
-                </li>
-              </Link>
-            </ul>
-          </li>
-
-          <Link to={"/seller-panel/orders"} className={classes.link}>
+          <ul className={classes["side-nav"]}>
             <li className={classes["side-nav__item"]}>
-              <a href="#" className={classNames(classes["side-nav__link"])}>
+              <a
+                href="#"
+                className={classNames(
+                  classes["side-nav__link--active"],
+                  classes["side-nav__link"]
+                )}
+                onClick={() =>
+                  setSubMenuIsOpen((subMenuIsOpen) => !subMenuIsOpen)
+                }
+              >
                 <i
                   className={classNames(
                     classes["side-nav__icon"],
-                    "fa-solid fa-bag-shopping"
+                    "fa-solid fa-bars-progress"
                   )}
                 />
-                <span> سفارش‌ها </span>
+                مدیریت کالاها
+                <i
+                  className={classNames("fa-solid fa-angle-down", classes.icon)}
+                />
               </a>
-            </li>
-          </Link>
+              <ul
+                className={
+                  subMenuIsOpen
+                    ? classes["side-nav__submenu--show"]
+                    : classes["side-nav__submenu"]
+                }
+              >
+                <Link to={"/seller-panel/add-product"} className={classes.link}>
+                  <li className={classes["side-nav__submenu__item"]}>
+                    <a href="#" className={classes["side-nav__submenu__link"]}>
+                      افزودن کالا
+                    </a>
+                  </li>
+                </Link>
 
-          <Link to={"/seller-panel/personal-info"} className={classes.link}>
-            <li className={classes["side-nav__item"]}>
-              <a href="#" className={classNames(classes["side-nav__link"])}>
+                <Link
+                  to={"/seller-panel/edit-product"}
+                  className={classes.link}
+                >
+                  <li className={classes["side-nav__submenu__item"]}>
+                    <a href="#" className={classes["side-nav__submenu__link"]}>
+                      ویرایش کالاها
+                    </a>
+                  </li>
+                </Link>
+              </ul>
+            </li>
+
+            <Link to={"/seller-panel/orders"} className={classes.link}>
+              <li className={classes["side-nav__item"]}>
+                <a href="#" className={classNames(classes["side-nav__link"])}>
+                  <i
+                    className={classNames(
+                      classes["side-nav__icon"],
+                      "fa-solid fa-bag-shopping"
+                    )}
+                  />
+                  <span> سفارش‌ها </span>
+                </a>
+              </li>
+            </Link>
+
+            <Link to={"/seller-panel/personal-info"} className={classes.link}>
+              <li className={classes["side-nav__item"]}>
+                <a href="#" className={classNames(classes["side-nav__link"])}>
+                  <i
+                    className={classNames(
+                      classes["side-nav__icon"],
+                      "fa-regular fa-user"
+                    )}
+                  />
+                  <span>اطلاعات حساب کاربری</span>
+                </a>
+              </li>
+            </Link>
+            <Link to={"/seller-panel/report"} className={classes.link}>
+              <li className={classes["side-nav__item"]}>
+                <a href="#" className={classNames(classes["side-nav__link"])}>
+                  <SummarizeIcon
+                    color="secondary"
+                    fontSize="2rem"
+                    sx={{
+                      ml: "1rem",
+                    }}
+                  />
+                  <span>گزارش کالاها</span>
+                </a>
+              </li>
+            </Link>
+
+            <li onClick={logoutHandler} className={classes["side-nav__item"]}>
+              <a href="#/" className={classNames(classes["side-nav__link"])}>
                 <i
                   className={classNames(
                     classes["side-nav__icon"],
-                    "fa-regular fa-user"
+                    "fa-solid fa-arrow-right-from-bracket"
                   )}
                 />
-                <span>اطلاعات حساب کاربری</span>
+                <span>خروج</span>
               </a>
             </li>
-          </Link>
-
-          <li onClick={logoutHandler} className={classes["side-nav__item"]}>
-            <a href="#/" className={classNames(classes["side-nav__link"])}>
-              <i
-                className={classNames(
-                  classes["side-nav__icon"],
-                  "fa-solid fa-arrow-right-from-bracket"
-                )}
-              />
-              <span>خروج</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      </ThemeProvider>
     </>
   );
 }
