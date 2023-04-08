@@ -10,15 +10,20 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 
 import { purple } from "@mui/material/colors";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
+
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import HorizontalRuleOutlinedIcon from "@mui/icons-material/HorizontalRuleOutlined";
+import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
 
 function PaymentType() {
   React.useEffect(() => {
     // axiosInstance.get(`/Accounts/ConfigGetHomeDir/`).then((res) => {
     //   if(res.status === 200) {
-    //     setCurrentDirectory(res.data.HomeDir) 
+    //     setCurrentDirectory(res.data.HomeDir)
     //   }
     //   else {
     //     setErrorCurrentDirectory(true);
@@ -70,7 +75,29 @@ function PaymentType() {
 
   return (
     <>
-      <MainNavigation />
+      <div className={classes.header}>
+        <h1 className={classes.header__title}>سبکینو</h1>
+        <div>
+          <ShoppingCartOutlinedIcon
+            sx={{ fontSize: "2.5rem", ml: "1rem", mr: "1rem" }}
+          />
+          <span className={classes.header__item}>سبد خرید</span>
+
+          <HorizontalRuleOutlinedIcon sx={{ fontSize: "2.5rem" }} />
+          <CreditCardOutlinedIcon
+          color="secondary"
+            sx={{ fontSize: "2.5rem", ml: "1rem", mr: "1rem" }}
+          />
+          <span
+            className={classNames(
+              classes.header__item,
+              classes["header__item--active"]
+            )}
+          >
+            پرداخت
+          </span>
+        </div>
+      </div>
       <div className={classes.Payment}>
         <form className={classes.Payment__form}>
           <div className={classes.right}>
@@ -186,12 +213,12 @@ function PaymentType() {
               <span>هزینه ارسال</span>
               <span>30 هزار تومان</span>
             </div>
-            <div
+            {/* <div
               className={classNames(classes.left__amount, classes.left__items)}
             >
               <span>تعداد کالاها</span>
               <span>4 کالا</span>
-            </div>
+            </div> */}
             <div
               className={classNames(
                 classes.left__items,
@@ -200,6 +227,16 @@ function PaymentType() {
             >
               <span>مبلغ قابل پرداخت</span>
               <span>130 هزار تومان</span>
+            </div>
+            <div
+              className={classNames(
+                classes.left__shipping,
+                classes.left__items
+              )}
+            >
+              <span>امتیاز شما از این خرید</span>
+              <CardGiftcardIcon />
+              <span>100</span>
             </div>
             <Button
               className="left__submitbtn"

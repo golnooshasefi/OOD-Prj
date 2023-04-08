@@ -19,12 +19,12 @@ function HeroSection() {
             پیشنهاد میدهیم.
           </p>
           <div>
-            <Link to={user.auth ? "/survey" : "/account-box"}>
+            <Link to={user.auth ? "/products-list/" : "/account-box"}>
               <Button
                 color="purple"
                 className={classes["HeroSection__button--right"]}
               >
-                امتحان کنید
+                مشاهده محصولات
               </Button>
             </Link>
 
