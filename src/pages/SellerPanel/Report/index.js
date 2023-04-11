@@ -23,6 +23,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 
 import classes from "./Report.module.scss";
+import axiosInstance from "../../../axios";
 
 function createData(name, inventory, number, totalPrice, date) {
   return {
@@ -34,7 +35,20 @@ function createData(name, inventory, number, totalPrice, date) {
   };
 }
 
+// useEffect(() => {
+//   axiosInstance.get("").then((res) => {});
+//   if (res.status === 200) {
+//     setProducts(res.data);
+//   }
+// }, []);
+
+// const [products, setProducts] = React.useState([]);
+
 const rows = [
+  // products.map((element) => {
+  //   createData(element.name, element.inventory, ..)
+
+  // })
   createData("شلوار", 305, 3.7, 67, 4.3),
   createData("Donut", 452, 25.0, 51, 4.9),
   createData("Eclair", 262, 16.0, 24, 6.0),

@@ -229,7 +229,7 @@ function AddProduct() {
                 <i class="fa-regular fa-file-image"></i>
               </label>
               <input
-                type="text"
+                type="file"
                 {...register("product_image", {
                   required: true,
                 })}
@@ -238,7 +238,7 @@ function AddProduct() {
             </div>
           </div>
         </form>
-        <AddProductSurvey answersHandler={setAnswers} />
+        {/* <AddProductSurvey answersHandler={setAnswers} /> */}
         <button
           onClick={handleSubmit(onSubmit)}
           className={isValid ? classes.btn : classes["btn--disable"]}
