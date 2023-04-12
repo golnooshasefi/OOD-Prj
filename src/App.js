@@ -6,7 +6,6 @@ import MainNavigation from "./components/layout/MainNavigation";
 import SellerPanel from "./pages/SellerPanel";
 import ShoppingList from "./pages/ShoppingList";
 import FAQ from "./pages/FAQ";
-import AddProductSurvey from "./pages/SellerPanel/AddProduct/AddProductSurvey";
 import axiosInstance from "./axios";
 import UserContext from "./store/UserContext";
 
@@ -34,9 +33,6 @@ function App() {
           </Route>
         ))}
       </Routes>
-      {/* <FAQ /> */}
-      {/* <SellerPanel /> */}
-      {/* <AddProductSurvey /> */}
     </>
   );
 }

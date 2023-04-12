@@ -19,7 +19,7 @@ function EditProduct() {
   let [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axiosInstance.post(`/accounts/show_products_of_shop/`).then((res) => {
+    axiosInstance.get(`/accounts/show_products_of_shop/`).then((res) => {
       if (res.status === 200) {
         console.log(res.data.products);
         setProducts(res.data.products);

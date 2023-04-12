@@ -1,8 +1,6 @@
 import { useForm } from "react-hook-form";
 import classes from "./AddProduct.module.scss";
 import Button from "../../../components/shared/Button";
-import Survey from "./AddProductSurvey";
-import AddProductSurvey from "./AddProductSurvey";
 import { useState } from "react";
 import axiosInstance from "../../../axios";
 import { useNavigate } from "react-router-dom";
@@ -229,7 +227,7 @@ function AddProduct() {
                 <i class="fa-regular fa-file-image"></i>
               </label>
               <input
-                type="file"
+                type="text"
                 {...register("product_image", {
                   required: true,
                 })}
