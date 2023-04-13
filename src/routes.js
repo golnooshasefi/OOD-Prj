@@ -24,6 +24,7 @@ import ShopInfoPage from "./pages/ShopInfoPage";
 import EditProductPage from "./pages/SellerPanel/EditProduct/EditProductPage";
 import PaymentType from "./pages/PaymentType";
 import EnhancedTable from "./pages/SellerPanel/Report";
+import Gifts from "./pages/UserPanel/Gifts";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
@@ -77,9 +78,9 @@ export const routes = [
       { path: "/user-panel/favorites", element: <Favorites /> },
       { path: "/user-panel/orders", element: <UserOrders /> },
       { path: "/user-panel/personal-info", element: <UserPersonalInfo /> },
+      { path: "/user-panel/gifts", element: <Gifts /> },
     ],
   },
   { path: "/payment", element: <PaymentType /> },
   { path: "/report", element: <EnhancedTable /> },
-
 ];

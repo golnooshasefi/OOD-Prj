@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../../../store/UserContext";
 import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Sidebar() {
   const { user, logout } = useContext(UserContext);
@@ -37,9 +38,7 @@ function Sidebar() {
             ></i>
             موجودی کیف پول
             <div className={classes.wallet__balance}>
-              <span
-                className={classes["wallet__balance--price"]}
-              >
+              <span className={classes["wallet__balance--price"]}>
                 {/* {digitsEnToFa(addCommas(user.priceOff))} */}
                 {digitsEnToFa(addCommas(100000))}
               </span>
@@ -101,6 +100,26 @@ function Sidebar() {
               </a>
             </li>
           </Link>
+          <Link to="/user-panel/gifts" className={classes.link}>
+            <li className={classes["side-nav__item"]}>
+              <a
+                href="#"
+                className={classNames(
+                  classes["side-nav__link--active"],
+                  classes["side-nav__link"]
+                )}
+              >
+                <i
+                  className={classNames(
+                    classes["side-nav__icon"],
+                    "fa-solid fa-gift"
+                  )}
+                />
+                جوایز
+              </a>
+            </li>
+          </Link>
+
           <Link to="/user-panel/personal-info" className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a
