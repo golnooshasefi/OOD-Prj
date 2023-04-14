@@ -1,9 +1,9 @@
 import classes from "./PaymentType.module.scss";
 import MainNavigation from "../../components/layout/MainNavigation";
-
 import classNames from "classnames";
 import * as React from "react";
 // import React, { useContext, useState } from "react";
+
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -11,16 +11,29 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
-
 import { purple } from "@mui/material/colors";
 import { Button, TextField, Typography } from "@mui/material";
-
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import HorizontalRuleOutlinedIcon from "@mui/icons-material/HorizontalRuleOutlined";
 import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
+import axios from "axios";
+import axiosInstance from "../../axios";
+import { useState, useEffect } from "react";
+
+import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
 
 function PaymentType() {
-  React.useEffect(() => {
+  const formControlLabelStyle = {
+    "& .MuiFormControlLabel-label": {
+      fontSize: "2rem",
+    },
+  };
+
+  let [totalPrice, setTotalPrice] = useState(0);
+  let [shippingPrice, setShippingPrice] = useState(0);
+  let [finalPrice, setFinalPrice] = useState(0);
+  let [score, setScore] = useState(0);
+  useEffect(() => {
     // axiosInstance.get(`/Accounts/ConfigGetHomeDir/`).then((res) => {
     //   if(res.status === 200) {
     //     setCurrentDirectory(res.data.HomeDir)
@@ -33,18 +46,35 @@ function PaymentType() {
     //   setErrorCurrentDirectory(true);
     // });
   }, []);
+
   const initialFormData = {
     offcode: "",
     type: "",
   };
-  const [formData, updateFormData] = React.useState(initialFormData);
-
-  const formControlLabelStyle = {
-    "& .MuiFormControlLabel-label": {
-      fontSize: "2rem",
-    },
+  const [formData, updateFormData] = useState(initialFormData);
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+      // Trimming any whitespace
+      [e.target.name]: e.target.value.trim(),
+    });
   };
 
+  const handlePriceChange = (e) => {
+    e.preventDefault();
+    axiosInstance
+      .get(``, {
+        code: formData.offcode,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          setTotalPrice();
+          setShippingPrice();
+          setScore();
+          setFinalPrice();
+        }
+      });
+  };
   const handleBtnChange = (e) => {
     updateFormData({
       ...formData,
@@ -53,24 +83,17 @@ function PaymentType() {
   };
   const handleSumbit = (e) => {
     e.preventDefault();
-    // axiosInstance
-    //   .post(`accounts/register/`, {
-    //     username: formData.username,
-    //     email: formData.email,
-    //     type: formData.type,
-    //     password: formData.password,
-    //   })
-    //   .then((res) => {
-    //     console.log(res)
-    //     if (res.status === 200) {
-    //       login(res.data.type, res.data.username);
-    //       localStorage.setItem("access_token", res.data.access);
-    //       localStorage.setItem("refresh_token", res.data.refresh);
-    //       axiosInstance.defaults.headers.common["Authorization"] =
-    //         "Bearer " + localStorage.getItem("access_token");
-    //       navigate("/panel");
-    //     }
-    //   });
+    axiosInstance
+      .post(``, {
+        type: formData.type,
+        code: formData.offcode,
+      })
+      .then((res) => {
+        //
+        //     if (res.status === 200) {
+        //
+        //     }
+      });
   };
 
   return (
@@ -85,7 +108,7 @@ function PaymentType() {
 
           <HorizontalRuleOutlinedIcon sx={{ fontSize: "2.5rem" }} />
           <CreditCardOutlinedIcon
-          color="secondary"
+            color="secondary"
             sx={{ fontSize: "2.5rem", ml: "1rem", mr: "1rem" }}
           />
           <span
@@ -181,20 +204,35 @@ function PaymentType() {
             </div>
             <div className={classes.Payment__off}>
               <h2 className={classes.Payment__header}>کد تخفیف</h2>
-              <TextField
-                id="standard-basic"
-                label="کد تخفیف"
-                color="secondary"
-                variant="standard"
-                inputProps={{ style: { fontSize: 20 } }} // font size of input text
-                InputLabelProps={{ style: { fontSize: 20 } }}
-                sx={{
-                  width: { sm: 300, md: 300 },
-                  "& .MuiInputBase-root": {
-                    height: 50,
-                  },
-                }}
-              />
+              <div>
+                <TextField
+                  onChange={handleChange}
+                  name="offcode"
+                  value={formData.offcode}
+                  id="standard-basic"
+                  label="کد تخفیف"
+                  color="secondary"
+                  variant="standard"
+                  inputProps={{ style: { fontSize: 20 } }} // font size of input text
+                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  sx={{
+                    width: { sm: 300, md: 300 },
+                    "& .MuiInputBase-root": {
+                      height: 50,
+                    },
+                  }}
+                />
+              </div>
+              <div>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  sx={{ width: 150, padding: 1, margin: 2, fontSize: 18 }}
+                  onClick={handlePriceChange}
+                >
+                  اعمال کد تخفیف
+                </Button>
+              </div>
             </div>
           </div>
           <div className={classes.left}>
@@ -202,7 +240,8 @@ function PaymentType() {
               className={classNames(classes.left__price, classes.left__items)}
             >
               <span>قیمت کالاها</span>
-              <span>100 هزار تومان</span>
+              <span>{digitsEnToFa(totalPrice)}</span>
+              <span>تومان</span>
             </div>
             <div
               className={classNames(
@@ -211,7 +250,8 @@ function PaymentType() {
               )}
             >
               <span>هزینه ارسال</span>
-              <span>30 هزار تومان</span>
+              <span>{digitsEnToFa(shippingPrice)}</span>
+              <span>تومان</span>
             </div>
             {/* <div
               className={classNames(classes.left__amount, classes.left__items)}
@@ -226,7 +266,8 @@ function PaymentType() {
               )}
             >
               <span>مبلغ قابل پرداخت</span>
-              <span>130 هزار تومان</span>
+              <span>{digitsEnToFa(finalPrice)}</span>
+              <span>تومان</span>
             </div>
             <div
               className={classNames(
@@ -235,8 +276,8 @@ function PaymentType() {
               )}
             >
               <span>امتیاز شما از این خرید</span>
-              <CardGiftcardIcon />
-              <span>100</span>
+
+              <span>{digitsEnToFa(score)}</span>
             </div>
             <Button
               className="left__submitbtn"
