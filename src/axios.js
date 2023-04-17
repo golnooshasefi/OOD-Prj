@@ -1,13 +1,12 @@
 import axios from "axios";
 
-const baseUrl = "http://127.0.0.1:8000/";
+const baseUrl = "http://mahlashams.pythonanywhere.com/";
 
 const hasAuthorization =
   localStorage.getItem("access_token") !== null &&
   localStorage.getItem("access_token") !== undefined &&
   localStorage.getItem("access_toen") !== "undefined" &&
   localStorage.getItem("access_toen") !== "";
-
 
 // const axiosInstance = axios.create({
 //   baseURL: baseUrl,
