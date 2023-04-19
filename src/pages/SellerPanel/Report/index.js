@@ -1,5 +1,7 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import * as React from "react";
+
 import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
@@ -35,16 +37,41 @@ function createData(name, inventory, number, totalPrice, date) {
   };
 }
 
+// const [products, setProducts] = useState([]);
+
 // useEffect(() => {
-//   axiosInstance.get("").then((res) => {});
-//   if (res.status === 200) {
-//     setProducts(res.data);
-//   }
+//   axiosInstance.get(`/accounts/report/`).then((res) => {});
+
 // }, []);
 
-// const [products, setProducts] = React.useState([]);
+// const apiReports = [
+//   {
+//     productName: "شلوار",
+//     inventory: 10,
+//     initial_inventory: 10,
+//     price: 450000,
+//     totalPriceOfProduct: 0,
+//   },
+//   {
+//     productName: "شلوار",
+//     inventory: 10,
+//     initial_inventory: 10,
+//     price: 450000,
+//     totalPriceOfProduct: 0,
+//   },
+//   {
+//     productName: "کلاه",
+//     inventory: 10,
+//     initial_inventory: 10,
+//     price: 45000,
+//     totalPriceOfProduct: 0,
+//   },
+//   {
+//     totalSell: 0,
+//   },
+// ];
 
-const rows = [
+const rows2 = [
   // products.map((element) => {
   //   createData(element.name, element.inventory, ..)
 
@@ -63,6 +90,22 @@ const rows = [
   createData("Nougat", 360, 19.0, 9, 37.0),
   createData("Oreo", 437, 18.0, 63, 4.0),
 ];
+
+console.log(rows2);
+
+// const rows = apiReports.map((r) =>
+//   createData(
+//     r.productName,
+//     r.inventory,
+//     r.initial_inventory,
+//     r.price,
+//     r.totalPriceOfProduct
+//   )
+// );
+// console.log(rows);
+// const totalSell = rows.pop();
+// console.log(rows);
+// console.log(apiReports[apiReports.length - 1].totalSell);
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -267,6 +310,34 @@ export default function EnhancedTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE);
   const [paddingHeight, setPaddingHeight] = React.useState(0);
 
+  const [report, setReport] = useState([]);
+  // const apiReports = [
+  //   {
+  //     productName: "شلوار",
+  //     inventory: 10,
+  //     initial_inventory: 10,
+  //     price: 450000,
+  //     totalPriceOfProduct: 0,
+  //   },
+  //   {
+  //     productName: "شلوار",
+  //     inventory: 10,
+  //     initial_inventory: 10,
+  //     price: 450000,
+  //     totalPriceOfProduct: 0,
+  //   },
+  //   {
+  //     productName: "کلاه",
+  //     inventory: 10,
+  //     initial_inventory: 10,
+  //     price: 45000,
+  //     totalPriceOfProduct: 0,
+  //   },
+  //   {
+  //     totalSell: 0,
+  //   },
+  // ];
+
   React.useEffect(() => {
     let rowsOnMount = stableSort(
       rows,
@@ -280,6 +351,27 @@ export default function EnhancedTable() {
 
     setVisibleRows(rowsOnMount);
   }, []);
+
+  useEffect(() => {
+    axiosInstance.get(`/accounts/report/`).then((res) => {
+      if (res.status === 200) {
+        setReport(res.data);
+      }
+    });
+  }, []);
+
+  const rows = report.map((r) =>
+    createData(
+      r.productName,
+      r.inventory,
+      r.initial_inventory,
+      r.price,
+      r.totalPriceOfProduct
+    )
+  );
+
+
+  // const totalPrice = report[report.length - 1].totalSell;
 
   const handleRequestSort = React.useCallback(
     (event, newOrderBy) => {
@@ -391,6 +483,10 @@ export default function EnhancedTable() {
               گزارش موجودی
             </span>
           </div>
+        </div>
+        <div className={classes.totalPrice}>
+          <span>میزان فروش کل شما در این ماه:</span>
+          {/* <span>{totalPrice}</span> */}
         </div>
         <Box>
           <Paper sx={{ width: "100%", mb: 2 }}>
