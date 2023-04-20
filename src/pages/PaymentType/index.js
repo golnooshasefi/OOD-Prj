@@ -66,15 +66,12 @@ function PaymentType() {
   const handlePriceChange = (e) => {
     e.preventDefault();
     axiosInstance
-      .get(``, {
-        code: formData.offcode,
+      .get(`/accounts/apply_discount/`, {
+        discount_code: formData.offcode,
       })
       .then((res) => {
         if (res.status === 200) {
-          setTotalPrice();
-          setShippingPrice();
-          setScore();
-          setFinalPrice();
+          setFinalPrice(discounted_total_cost);
         }
       });
   };
