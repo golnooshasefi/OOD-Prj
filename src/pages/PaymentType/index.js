@@ -89,7 +89,6 @@ function PaymentType() {
     axiosInstance
       .post(``, {
         type: formData.type,
-        code: formData.offcode,
       })
       .then((res) => {
         //
