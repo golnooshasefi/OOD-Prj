@@ -17,11 +17,23 @@ function Gifts() {
   let [loading, setLoading] = useState(true);
   let [score, setScore] = useState(0);
   const [gifts, setGifts] = useState([]);
+  const [offCode, setOffCode] = useState();
+  const [available, setAvailable] = useState(false);
+
+  const offCodeHandler = (escore) => {
+    axiosInstance.post(``, { score: escore }).then((res) => {
+      if (res.status === 200) {
+        setAvailable(true);
+        setOffCode(res.data.offCode);
+      }
+    });
+  };
 
   useEffect(() => {
     axiosInstance.get(``).then((res) => {
       if (res.status === 200) {
-        setGifts(res.data);
+        setGifts(res.data.gifts);
+        setScore(res.data.score)
         setLoading(false);
       }
     });
@@ -57,15 +69,21 @@ function Gifts() {
               <span>{element.score}</span>
               <span> امتیاز</span>
             </div>
-            {/* <button className={classes["container__gifts--box-btn"]}></button> */}
             <Button
               variant="contained"
               disabled
               color="success"
               sx={{ fontSize: 17 }}
+              onClick={offCodeHandler(element.score)}
             >
               دریافت کد تخفیف
             </Button>
+            {available && 
+            <div className={classes.offCode__container}>
+              {offCode}
+            </div>}
+            {setAvailable(false)}
+            {setOffCode()}
           </div>;
         })}
       </div>

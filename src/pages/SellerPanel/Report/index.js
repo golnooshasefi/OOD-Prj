@@ -24,8 +24,15 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 
+import { BeatLoader } from "react-spinners";
+
 import classes from "./Report.module.scss";
 import axiosInstance from "../../../axios";
+
+const override = `
+  display: inline-block;
+  margin: 15rem auto 0;
+`;
 
 function createData(name, inventory, number, totalPrice, date) {
   return {
@@ -69,29 +76,29 @@ function createData(name, inventory, number, totalPrice, date) {
 //   {
 //     totalSell: 0,
 //   },
+// // ];
+
+// const rows2 = [
+//   // products.map((element) => {
+//   //   createData(element.name, element.inventory, ..)
+
+//   // })
+//   createData("شلوار", 305, 3.7, 67, 4.3),
+//   createData("Donut", 452, 25.0, 51, 4.9),
+//   createData("Eclair", 262, 16.0, 24, 6.0),
+//   createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+//   createData("Gingerbread", 356, 16.0, 49, 3.9),
+//   createData("Honeycomb", 408, 3.2, 87, 6.5),
+//   createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+//   createData("Jelly Bean", 375, 0.0, 94, 0.0),
+//   createData("KitKat", 518, 26.0, 65, 7.0),
+//   createData("Lollipop", 392, 0.2, 98, 0.0),
+//   createData("Marshmallow", 318, 0, 81, 2.0),
+//   createData("Nougat", 360, 19.0, 9, 37.0),
+//   createData("Oreo", 437, 18.0, 63, 4.0),
 // ];
 
-const rows2 = [
-  // products.map((element) => {
-  //   createData(element.name, element.inventory, ..)
-
-  // })
-  createData("شلوار", 305, 3.7, 67, 4.3),
-  createData("Donut", 452, 25.0, 51, 4.9),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-  createData("Honeycomb", 408, 3.2, 87, 6.5),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Jelly Bean", 375, 0.0, 94, 0.0),
-  createData("KitKat", 518, 26.0, 65, 7.0),
-  createData("Lollipop", 392, 0.2, 98, 0.0),
-  createData("Marshmallow", 318, 0, 81, 2.0),
-  createData("Nougat", 360, 19.0, 9, 37.0),
-  createData("Oreo", 437, 18.0, 63, 4.0),
-];
-
-console.log(rows2);
+// console.log(rows2);
 
 // const rows = apiReports.map((r) =>
 //   createData(
@@ -166,7 +173,7 @@ const headCells = [
   },
   {
     id: "date",
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: "تاریخ",
   },
@@ -258,41 +265,7 @@ function EnhancedTableToolbar(props) {
             ),
         }),
       }}
-    >
-      {/* {numSelected > 0 ? (
-        <Typography
-          sx={{ flex: "1 1 100%" }}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Typography
-          sx={{ flex: "1 1 100%" }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-        >
-          Nutrition
-        </Typography>
-      )} */}
-      {/* 
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )} */}
-    </Toolbar>
+    ></Toolbar>
   );
 }
 
@@ -311,6 +284,7 @@ export default function EnhancedTable() {
   const [paddingHeight, setPaddingHeight] = React.useState(0);
 
   const [report, setReport] = useState([]);
+  const [loading, setLoading] = useState(true);
   // const apiReports = [
   //   {
   //     productName: "شلوار",
@@ -369,7 +343,6 @@ export default function EnhancedTable() {
       r.totalPriceOfProduct
     )
   );
-
 
   // const totalPrice = report[report.length - 1].totalSell;
 
@@ -484,44 +457,57 @@ export default function EnhancedTable() {
             </span>
           </div>
         </div>
-        <div className={classes.totalPrice}>
-          <span>میزان فروش کل شما در این ماه:</span>
-          {/* <span>{totalPrice}</span> */}
+        <div className={classes.header}>
+          <h3>میزان فروش ماهیانه</h3>
+          {/* <span>1401/12/3</span>
+          <span>تا</span>
+          <span>1401/3/15</span> */}
         </div>
-        <Box>
-          <Paper sx={{ width: "100%", mb: 2 }}>
-            <EnhancedTableToolbar numSelected={selected.length} />
-            <TableContainer>
-              <Table
-                //   sx={{ minWidth: 750 }}
-                aria-labelledby="tableTitle"
-                size={dense ? "small" : "medium"}
-              >
-                <EnhancedTableHead
-                  numSelected={selected.length}
-                  order={order}
-                  orderBy={orderBy}
-                  onSelectAllClick={handleSelectAllClick}
-                  onRequestSort={handleRequestSort}
-                  rowCount={rows.length}
-                />
-                <TableBody>
-                  {visibleRows
-                    ? visibleRows.map((row, index) => {
-                        const isItemSelected = isSelected(row.name);
-                        const labelId = `enhanced-table-checkbox-${index}`;
+        {/* <div className={classes.totalPrice}>
+          <span>میزان فروش کل شما در این ماه:</span> */}
+        {/* <span>{totalPrice}</span> */}
+        {/* </div> */}
+        <BeatLoader
+          color="#6667ab"
+          loading={loading}
+          css={override}
+          size={30}
+        />
+        {!loading && (
+          <Box>
+            <Paper sx={{ width: "100%", mb: 2 }}>
+              <EnhancedTableToolbar numSelected={selected.length} />
+              <TableContainer>
+                <Table
+                  //   sx={{ minWidth: 750 }}
+                  aria-labelledby="tableTitle"
+                  size={dense ? "small" : "medium"}
+                >
+                  <EnhancedTableHead
+                    numSelected={selected.length}
+                    order={order}
+                    orderBy={orderBy}
+                    onSelectAllClick={handleSelectAllClick}
+                    onRequestSort={handleRequestSort}
+                    rowCount={rows.length}
+                  />
+                  <TableBody>
+                    {visibleRows
+                      ? visibleRows.map((row, index) => {
+                          const isItemSelected = isSelected(row.name);
+                          const labelId = `enhanced-table-checkbox-${index}`;
 
-                        return (
-                          <TableRow
-                            hover
-                            role="checkbox"
-                            aria-checked={isItemSelected}
-                            tabIndex={-1}
-                            key={row.name}
-                            selected={isItemSelected}
-                            sx={{ cursor: "pointer" }}
-                          >
-                            {/* <TableCell padding="checkbox">
+                          return (
+                            <TableRow
+                              hover
+                              role="checkbox"
+                              aria-checked={isItemSelected}
+                              tabIndex={-1}
+                              key={row.name}
+                              selected={isItemSelected}
+                              sx={{ cursor: "pointer" }}
+                            >
+                              {/* <TableCell padding="checkbox">
                             <Checkbox
                               color="primary"
                               checked={isItemSelected}
@@ -530,91 +516,94 @@ export default function EnhancedTable() {
                               }}
                             />
                           </TableCell> */}
-                            <TableCell
-                              component="th"
-                              align="right"
-                              id={labelId}
-                              scope="row"
-                              sx={{
-                                paddingRight: "1rem",
-                                fontSize: "1.2rem",
-                              }}
-                            >
-                              {row.name}
-                            </TableCell>
-                            <TableCell
-                              align="right"
-                              sx={{
-                                fontSize: "1.2rem",
-                              }}
-                            >
-                              {row.inventory}
-                            </TableCell>
-                            <TableCell
-                              align="right"
-                              sx={{
-                                fontSize: "1.2rem",
-                              }}
-                            >
-                              {row.number}
-                            </TableCell>
-                            <TableCell
-                              align="right"
-                              sx={{
-                                fontSize: "1.2rem",
-                              }}
-                            >
-                              {row.totalPrice}
-                            </TableCell>
-                            <TableCell
-                              align="right"
-                              sx={{
-                                fontSize: "1.2rem",
-                              }}
-                            >
-                              {row.date}
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })
-                    : null}
-                  {paddingHeight > 0 && (
-                    <TableRow
-                      style={{
-                        height: paddingHeight,
-                      }}
-                    >
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
-              // rowsPerPageOptions={[5, 10, 25]}
-              rowsPerPageOptions={[10, 15, { value: -1, label: "همه" }]}
-              labelDisplayedRows={({ from, to, count }) => {
-                return "" + from + "-" + to + " از " + count;
-              }}
-              // labelRowsPerPage="نمایش"
-              labelRowsPerPage={<div style={{ fontSize: "1.6rem" }}>نمایش</div>}
-              backIconButtonProps={{ size: "large" }}
-              component="div"
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              sx={{
-                fontSize: "1.5rem",
-              }}
+                              <TableCell
+                                component="th"
+                                align="right"
+                                id={labelId}
+                                scope="row"
+                                sx={{
+                                  paddingRight: "1rem",
+                                  fontSize: "1.2rem",
+                                }}
+                              >
+                                {row.name}
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                sx={{
+                                  fontSize: "1.2rem",
+                                }}
+                              >
+                                {row.inventory}
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                sx={{
+                                  fontSize: "1.2rem",
+                                }}
+                              >
+                                {row.number}
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                sx={{
+                                  fontSize: "1.2rem",
+                                }}
+                              >
+                                {row.totalPrice}
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                sx={{
+                                  fontSize: "1.2rem",
+                                }}
+                              >
+                                {row.date}
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })
+                      : null}
+                    {paddingHeight > 0 && (
+                      <TableRow
+                        style={{
+                          height: paddingHeight,
+                        }}
+                      >
+                        <TableCell colSpan={6} />
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              <TablePagination
+                // rowsPerPageOptions={[5, 10, 25]}
+                rowsPerPageOptions={[10, 15, { value: -1, label: "همه" }]}
+                labelDisplayedRows={({ from, to, count }) => {
+                  return "" + from + "-" + to + " از " + count;
+                }}
+                // labelRowsPerPage="نمایش"
+                labelRowsPerPage={
+                  <div style={{ fontSize: "1.6rem" }}>نمایش</div>
+                }
+                backIconButtonProps={{ size: "large" }}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                sx={{
+                  fontSize: "1.5rem",
+                }}
+              />
+            </Paper>
+            <FormControlLabel
+              control={<Switch checked={dense} onChange={handleChangeDense} />}
+              label="حذف فاصله"
             />
-          </Paper>
-          <FormControlLabel
-            control={<Switch checked={dense} onChange={handleChangeDense} />}
-            label="حذف فاصله"
-          />
-        </Box>
+          </Box>
+        )}
       </div>
     </>
   );

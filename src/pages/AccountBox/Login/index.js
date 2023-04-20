@@ -10,6 +10,9 @@ import { AccountContext } from "../accountContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 
@@ -52,6 +55,7 @@ export function Login(props) {
           localStorage.setItem("refresh_token", res.data.refresh);
           axiosInstance.defaults.headers["Authorization"] =
             "Bearer " + localStorage.getItem("access_token");
+          toast(" ورود با موفقیت انجام شد! ");
           navigate(-1);
         }
       });
@@ -117,6 +121,7 @@ export function Login(props) {
           ثبت‌نام کنید
         </a>
       </a>
+      <ToastContainer />
     </div>
   );
 }
