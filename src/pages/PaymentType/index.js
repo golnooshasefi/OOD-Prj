@@ -4,6 +4,9 @@ import classNames from "classnames";
 import * as React from "react";
 // import React, { useContext, useState } from "react";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -38,6 +41,8 @@ function PaymentType() {
   let [score, setScore] = useState(0);
   const { user } = useContext(UserContext);
 
+  const toastSuccess = () => toast.success("خرید شما با موفقیت انجام شد!");
+
   useEffect(() => {
     axiosInstance.get(`/accounts/show_checkout_info/`).then((res) => {
       if (res.status === 200) {
@@ -71,7 +76,7 @@ function PaymentType() {
       })
       .then((res) => {
         if (res.status === 200) {
-          setFinalPrice(discounted_total_cost);
+          setFinalPrice(res.data.discounted_total_cost);
         }
       });
   };
@@ -84,14 +89,13 @@ function PaymentType() {
   const handleSumbit = (e) => {
     e.preventDefault();
     axiosInstance
-      .post(``, {
+      .get(`/accounts/checkout/`, {
         type: formData.type,
       })
       .then((res) => {
-        //
-        //     if (res.status === 200) {
-        //
-        //     }
+        if (res.status === 200) {
+          toastSuccess();
+        }
       });
   };
 
@@ -290,7 +294,7 @@ function PaymentType() {
               variant="outlined"
               color="secondary"
               sx={{ mt: 3, mb: 2, width: 150, height: 50, fontSize: 20 }}
-              onClick={handleSumbit}
+              onClick={toastSuccess}
             >
               پرداخت
             </Button>

@@ -25,7 +25,7 @@ export function UserContextProvider({ children }) {
   console.log(user);
   const navigate = useNavigate();
 
-  const login = (type, username, phoneNumber, email = "", isSurvey = false) => {
+  const login = (type, username, phoneNumber, email , balance, score, isSurvey = false) => {
     setUser({
       type: type,
       username: username,
@@ -47,8 +47,7 @@ export function UserContextProvider({ children }) {
         auth: true,
       })
     );
-    // navigate(isSurvey ? "/survey" : "-1", { replace: true });
-    // navigate(-1);
+    
   };
 
   const updateName = (username = user.username) => {
@@ -59,6 +58,12 @@ export function UserContextProvider({ children }) {
 
   const updatePhone = (phoneNumber = user.phoneNumber) => {
     setUser((prev) => ({ ...prev, phoneNumber }));
+    localStorage.removeItem("userInformation");
+    localStorage.setItem("userInformation", JSON.stringify(user));
+  };
+
+  const updateScore = (score = user.score) => {
+    setUser((prev) => ({ ...prev, score }));
     localStorage.removeItem("userInformation");
     localStorage.setItem("userInformation", JSON.stringify(user));
   };
@@ -101,7 +106,7 @@ export function UserContextProvider({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ user, login, logout, checkLogin, updateName, updatePhone }}
+      value={{ user, login, logout, checkLogin, updateName, updatePhone, updateScore }}
     >
       {children}
     </UserContext.Provider>

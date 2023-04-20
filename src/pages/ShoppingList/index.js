@@ -9,7 +9,7 @@ import { useInView } from "react-intersection-observer";
 import { useContext, useEffect, useState } from "react";
 import axiosInstance from "../../axios";
 import { PuffLoader } from "react-spinners";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../store/UserContext";
 
 const override = `
@@ -42,16 +42,16 @@ function ShoppingList() {
     threshold: 1,
   });
 
-  function confirmShoppingHandler() {
-    axiosInstance.get(`/accounts/checkout/`).then((res) => {
-      if (res.status === 200) {
-        // setList(res.data);
-        // setLoading(false);
-        navigate("/user-panel/orders", { replace: true });
-      }
-    });
-    console.log("/accounts/checkout/");
-  }
+  // function confirmShoppingHandler() {
+  //   axiosInstance.get(`/accounts/checkout/`).then((res) => {
+  //     if (res.status === 200) {
+  //       // setList(res.data);
+  //       // setLoading(false);
+  //       navigate("/user-panel/orders", { replace: true });
+  //     }
+  //   });
+  //   console.log("/accounts/checkout/");
+  // }
 
   return (
     <>
@@ -140,13 +140,15 @@ function ShoppingList() {
                     افزودن کالا به سبد خرید به معنی رزرو آن نیست. با توجه به
                     محدودیت موجودی، سبد خود را ثبت و خرید را تکمیل کنید.
                   </span>
-                  <Button
-                    color="purple"
-                    className={classes["ShoppingList__confirmBox__btn"]}
-                    onClickHandler={confirmShoppingHandler}
-                  >
-                    تکمیل خرید
-                  </Button>
+                  <Link to="/payment">
+                    <Button
+                      color="purple"
+                      className={classes["ShoppingList__confirmBox__btn"]}
+                      // onClickHandler={confirmShoppingHandler}
+                    >
+                      تکمیل خرید
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </>

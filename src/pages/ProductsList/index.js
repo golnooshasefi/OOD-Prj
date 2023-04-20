@@ -80,50 +80,7 @@ function ProductsList() {
                 ></Item>
               </Link>
             ))}
-          {/* <Link to={`/product-list/${id}`} className={classes.link}> */}
-          {/* <Item
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={99000}
-            priceOff={100000}
-            img={"./images/clothes/11bg.png"}
-          /> */}
-          {/* </Link> */}
-          {/* <Item
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={99000}
-            priceOff={100000}
-            img={"./images/clothes/11bg.png"} */}
-          {/* />  */}
-          {/* <Item
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={99000}
-            priceOff={100000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <Item
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={99000}
-            priceOff={100000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <Item
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={99000}
-            priceOff={100000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <Item
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={99000}
-            priceOff={100000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <Item
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={99000}
-            priceOff={100000}
-            img={"./images/clothes/11bg.png"}
-          />{" "} */}
+        
         </div>
         <div className={classes.Products__filterContainer}>
           <Filter setProducts={setProducts} />

@@ -50,7 +50,14 @@ export function Login(props) {
       })
       .then((res) => {
         if (res.status === 200) {
-          login(res.data.type, res.data.username, res.data.user_phone_number);
+          login(
+            res.data.type,
+            res.data.username,
+            res.data.user_phone_number,
+            res.data.email,
+            res.data.balance,
+            res.data.score
+          );
           localStorage.setItem("access_token", res.data.access);
           localStorage.setItem("refresh_token", res.data.refresh);
           axiosInstance.defaults.headers["Authorization"] =
@@ -62,66 +69,68 @@ export function Login(props) {
   };
 
   return (
-    <div className={classes.boxContainer}>
-      <Marginer direction="vertical" margin="2rem" />
-      <form className={classes.boxContainer__formContainer}>
-        <input
-          className={classes.boxContainer__formContainer__input}
-          type="email"
-          placeholder="ایمیل"
-          autoFocus
-          onChange={handleChange}
-          name="email"
-        />
-        <Marginer direction="vertical" margin={10} />
-        <div className={classes.boxContainer__formContainer__passWrapper}>
+    <>
+      <ToastContainer />
+      <div className={classes.boxContainer}>
+        <Marginer direction="vertical" margin="2rem" />
+        <form className={classes.boxContainer__formContainer}>
           <input
             className={classes.boxContainer__formContainer__input}
-            type={passwordShown ? "text" : "password"}
-            placeholder="رمز عبور"
+            type="email"
+            placeholder="ایمیل"
+            autoFocus
             onChange={handleChange}
-            name="password"
+            name="email"
           />
-          <i
-            className={classes.boxContainer__formContainer__passWrapper__icon}
-            onClick={togglePasswordVisibility}
-          >
-            {passwordShown ? eye : eye_slash}
-          </i>
-        </div>
-      </form>
-      <Marginer direction="vertical" margin={20} />
-      <Link
-        to={"/forgot-password"}
-        className={classes.boxContainer__forgotLink}
-      >
-        رمز عبور خود را فراموش کرده‌اید؟
-      </Link>
-      <Marginer direction="vertical" margin="1.2em" />
-      <button
-        onClick={handleSubmit}
-        type="submit"
-        disabled={!formData.email || !formData.password}
-        className={
-          !formData.email || !formData.password
-            ? classes.boxContainer__btn__disable
-            : classes.boxContainer__btn
-        }
-      >
-        ورود
-      </button>
-      <Marginer direction="vertical" margin="1.5rem" />
-      <a className={classes.boxContainer__mutedLink} href="#">
-        عضو نیستید؟{" "}
-        <a
-          className={classes.boxContainer__boldLink}
-          href="#"
-          onClick={switchToSignup}
+          <Marginer direction="vertical" margin={10} />
+          <div className={classes.boxContainer__formContainer__passWrapper}>
+            <input
+              className={classes.boxContainer__formContainer__input}
+              type={passwordShown ? "text" : "password"}
+              placeholder="رمز عبور"
+              onChange={handleChange}
+              name="password"
+            />
+            <i
+              className={classes.boxContainer__formContainer__passWrapper__icon}
+              onClick={togglePasswordVisibility}
+            >
+              {passwordShown ? eye : eye_slash}
+            </i>
+          </div>
+        </form>
+        <Marginer direction="vertical" margin={20} />
+        <Link
+          to={"/forgot-password"}
+          className={classes.boxContainer__forgotLink}
         >
-          ثبت‌نام کنید
+          رمز عبور خود را فراموش کرده‌اید؟
+        </Link>
+        <Marginer direction="vertical" margin="1.2em" />
+        <button
+          onClick={handleSubmit}
+          type="submit"
+          disabled={!formData.email || !formData.password}
+          className={
+            !formData.email || !formData.password
+              ? classes.boxContainer__btn__disable
+              : classes.boxContainer__btn
+          }
+        >
+          ورود
+        </button>
+        <Marginer direction="vertical" margin="1.5rem" />
+        <a className={classes.boxContainer__mutedLink} href="#">
+          عضو نیستید؟{" "}
+          <a
+            className={classes.boxContainer__boldLink}
+            href="#"
+            onClick={switchToSignup}
+          >
+            ثبت‌نام کنید
+          </a>
         </a>
-      </a>
-      <ToastContainer />
-    </div>
+      </div>
+    </>
   );
 }

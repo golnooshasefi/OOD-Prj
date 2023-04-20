@@ -12,23 +12,23 @@ function Filter({ setProducts }) {
   const handleFilter = (e) => {
     console.log(e.target.id);
     console.log([e.target.id]);
-    if (e.target.id === "محبوب ترین سبک ها") {
-      axiosInstance.get(`accounts/show_popular_product/`).then((res) => {
+    // if (e.target.id === "محبوب ترین سبک ها") {
+    // axiosInstance.get(`accounts/show_popular_product/`).then((res) => {
+    //   if (res.status === 200) {
+    //     setProducts(res.data);
+    //   }
+    // });
+    // } else {
+    axiosInstance
+      .post(`accounts/filters/`, {
+        group: [e.target.id],
+      })
+      .then((res) => {
         if (res.status === 200) {
           setProducts(res.data);
         }
       });
-    } else {
-      axiosInstance
-        .post(`accounts/filters/`, {
-          group: [e.target.id],
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            setProducts(res.data);
-          }
-        });
-    }
+    // }
   };
 
   return (
@@ -110,7 +110,7 @@ function Filter({ setProducts }) {
           </ul>
         </li>
 
-        <li>
+        {/* <li>
           <a
             onClick={handleFilter}
             id={"محبوب ترین سبک ها"}
@@ -125,7 +125,7 @@ function Filter({ setProducts }) {
             />
             محبوب‌ترین سبک‌ها
           </a>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

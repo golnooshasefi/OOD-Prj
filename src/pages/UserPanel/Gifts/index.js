@@ -19,7 +19,7 @@ const override = `
 `;
 
 function Gifts() {
-  const { user } = useContext(UserContext);
+  const { user, updateScore } = useContext(UserContext);
 
   let [loading, setLoading] = useState(true);
   let [score, setScore] = useState(0);
@@ -32,7 +32,7 @@ function Gifts() {
       if (res.status === 200) {
         setAvailable(true);
         setOffCode(res.data.discount_code);
-        setScore(res.data.new_score);
+        updateScore(res.data.new_score);
         setLoading(false);
       }
     });
@@ -42,8 +42,12 @@ function Gifts() {
     axiosInstance.get(`/accounts/show_gift/`).then((res) => {
       if (res.status === 200) {
         setGifts(res.data);
+        setLoading(false);
       }
     });
+
+    
+    
   }, []);
 
   return (
@@ -61,42 +65,42 @@ function Gifts() {
         <span> {digitsEnToFa(addCommas(user.score))}</span>
       </div>
 
-      <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
-      {!loading && (
-        <div className={classes.container__gifts}>
-          {gifts.map((element) => {
-            <div className={classes["container__gifts--box"]}>
-              <div>
-                <div className={classes["container__gifts--box-header"]}>
-                  {element.description}
-                </div>
-                <i
-                  className={classNames(
-                    classes["container__gifts--box-icon"],
-                    "fa-regular fa-star"
-                  )}
-                ></i>
-                <span>{element.score}</span>
-                <span> امتیاز</span>
+      {/* <BeatLoader color="#6667ab" loading={loading} css={override} size={30} /> */}
+      {/* {!loading && ( */}
+      <div className={classes.container__gifts}>
+        {gifts.map((element) => {
+          <div className={classes["container__gifts--box"]}>
+            <div>
+              <div className={classes["container__gifts--box-header"]}>
+                {element.description}
               </div>
-              <Button
-                variant="contained"
-                disabled={user.score < element.score}
-                color="success"
-                sx={{ fontSize: 17 }}
-                onClick={offCodeHandler(element.score)}
-              >
-                دریافت کد تخفیف
-              </Button>
-              {available && (
-                <div className={classes.offCode__container}>{offCode}</div>
-              )}
-              {setAvailable(false)}
-              {setOffCode()}
-            </div>;
-          })}
-        </div>
-      )}
+              <i
+                className={classNames(
+                  classes["container__gifts--box-icon"],
+                  "fa-regular fa-star"
+                )}
+              ></i>
+              <span>{element.score}</span>
+              <span> امتیاز</span>
+            </div>
+            <Button
+              variant="contained"
+              disabled={user.score < element.score}
+              color="success"
+              sx={{ fontSize: 17 }}
+              onClick={() => {offCodeHandler(element.score)}}
+            >
+              دریافت کد تخفیف
+            </Button>
+            {available && (
+              <div className={classes.offCode__container}>{offCode}</div>
+            )}
+            {setAvailable(false)}
+            {setOffCode()}
+          </div>;
+        })}
+      </div>
+      {/* )} */}
     </div>
   );
 }

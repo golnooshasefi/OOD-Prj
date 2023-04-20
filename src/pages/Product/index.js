@@ -87,14 +87,14 @@ function Product() {
         }
       });
 
-      axiosInstance.get(`/questions/similar/${productId}/`).then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          console.log(res.data);
-          setSimilar(res.data);
-          setLoading(false);
-        }
-      });
+      // axiosInstance.get(`/questions/similar/${productId}/`).then((res) => {
+      //   if (res.status === 200) {
+      //     console.log(res);
+      //     console.log(res.data);
+      //     setSimilar(res.data);
+      //     setLoading(false);
+      //   }
+      // });
     } else {
       // navigate("/404", { replace: true });
     }
@@ -204,9 +204,9 @@ function Product() {
               <span className={classes.Product__descriptionBox__name}>
                 {product.product_name}
               </span>
-              <div className={classes.Product__descriptionBox__starBox}>
+              {/* <div className={classes.Product__descriptionBox__starBox}>
                 <ReactStars {...Stars} />
-              </div>
+              </div> */}
 
               <span className={classes.Product__descriptionBox__spec}>
                 {"مشخصات"}
