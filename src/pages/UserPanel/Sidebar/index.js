@@ -40,7 +40,7 @@ function Sidebar() {
             <div className={classes.wallet__balance}>
               <span className={classes["wallet__balance--price"]}>
                 {/* {digitsEnToFa(addCommas(user.priceOff))} */}
-                {digitsEnToFa(addCommas(100000))}
+                {digitsEnToFa(addCommas(user.balance))}
               </span>
               <span
                 className={classes.item__description__priceContainer__toman}
