@@ -18,9 +18,12 @@ import HorizontalRuleOutlinedIcon from "@mui/icons-material/HorizontalRuleOutlin
 import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
 import axios from "axios";
 import axiosInstance from "../../axios";
+
 import { useState, useEffect } from "react";
 
 import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
+import { useContext } from "react";
+import UserContext from "../../store/UserContext";
 
 function PaymentType() {
   const formControlLabelStyle = {
@@ -33,18 +36,17 @@ function PaymentType() {
   let [shippingPrice, setShippingPrice] = useState(0);
   let [finalPrice, setFinalPrice] = useState(0);
   let [score, setScore] = useState(0);
+  const { user } = useContext(UserContext);
+
   useEffect(() => {
-    // axiosInstance.get(`/Accounts/ConfigGetHomeDir/`).then((res) => {
-    //   if(res.status === 200) {
-    //     setCurrentDirectory(res.data.HomeDir)
-    //   }
-    //   else {
-    //     setErrorCurrentDirectory(true);
-    //   }
-    // })
-    // .catch((err) => {
-    //   setErrorCurrentDirectory(true);
-    // });
+    axiosInstance.get(`/accounts/show_checkout_info/`).then((res) => {
+      if (res.status === 200) {
+        setTotalPrice(res.data.discounted_price);
+        setShippingPrice(res.data.shippingPrice);
+        setFinalPrice(res.data.total_cost);
+        setScore(res.data.score);
+      }
+    });
   }, []);
 
   const initialFormData = {
@@ -52,6 +54,7 @@ function PaymentType() {
     type: "",
   };
   const [formData, updateFormData] = useState(initialFormData);
+
   const handleChange = (e) => {
     updateFormData({
       ...formData,
@@ -132,10 +135,12 @@ function PaymentType() {
                   <RadioGroup
                     aria-labelledby="demo-row-radio-buttons-group-label"
                     name="row-radio-buttons-group"
+                    value={formData.type}
                     onChange={handleBtnChange}
                   >
                     <FormControlLabel
-                      value="female"
+                      value="wallet"
+                      name="type"
                       control={
                         <Radio
                           sx={{
@@ -154,10 +159,14 @@ function PaymentType() {
                         ...formControlLabelStyle,
                       }}
                     />
-                    <span className={classes.balance}>موجودی 0 تومان</span>
+                    <span className={classes.balance}>موجودی</span>
+                    <span className={classes.balance}>
+                      {digitsEnToFa(addCommas(user.balance))}
+                    </span>
+                    <span className={classes.balance}>تومان</span>
 
                     <FormControlLabel
-                      value="male"
+                      value="online"
                       control={
                         <Radio
                           sx={{
@@ -178,7 +187,7 @@ function PaymentType() {
                       }}
                     />
                     <FormControlLabel
-                      value="other"
+                      value="home"
                       control={
                         <Radio
                           sx={{

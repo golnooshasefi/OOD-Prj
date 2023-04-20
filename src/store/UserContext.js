@@ -7,6 +7,8 @@ const UserContext = createContext({
   username: "",
   phoneNumber: "",
   email: "",
+  balance: "",
+  score: "",
   auth: false,
 });
 
@@ -16,6 +18,8 @@ export function UserContextProvider({ children }) {
     username: "",
     phoneNumber: "",
     email: "",
+    balance: "",
+    score: "",
     auth: false,
   });
   console.log(user);
@@ -27,6 +31,8 @@ export function UserContextProvider({ children }) {
       username: username,
       phoneNumber: phoneNumber,
       email: email,
+      balance: balance,
+      score: score,
       auth: true,
     });
     localStorage.setItem(
@@ -36,6 +42,8 @@ export function UserContextProvider({ children }) {
         username: username,
         phoneNumber: phoneNumber,
         email: email,
+        balance: balance,
+        score: score,
         auth: true,
       })
     );
@@ -85,6 +93,8 @@ export function UserContextProvider({ children }) {
       username: "",
       phoneNumber: "",
       email: "",
+      balance: "",
+      score: "",
       auth: false,
     });
   };
