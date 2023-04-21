@@ -70,7 +70,19 @@ export function Login(props) {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer 
+      position="top-right"
+      autoClose = {3000}
+      hideProgressBar = {false}
+      newestOnTop = {false}
+      closeOnClick
+      rtl={true}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+      toastStyle={{fontSize: "16px", fontFamily: "Vazirmatn"}}/>
+
       <div className={classes.boxContainer}>
         <Marginer direction="vertical" margin="2rem" />
         <form className={classes.boxContainer__formContainer}>

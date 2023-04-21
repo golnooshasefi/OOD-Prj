@@ -285,32 +285,7 @@ export default function EnhancedTable() {
 
   const [report, setReport] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const apiReports = [
-  //   {
-  //     productName: "شلوار",
-  //     inventory: 10,
-  //     initial_inventory: 10,
-  //     price: 450000,
-  //     totalPriceOfProduct: 0,
-  //   },
-  //   {
-  //     productName: "شلوار",
-  //     inventory: 10,
-  //     initial_inventory: 10,
-  //     price: 450000,
-  //     totalPriceOfProduct: 0,
-  //   },
-  //   {
-  //     productName: "کلاه",
-  //     inventory: 10,
-  //     initial_inventory: 10,
-  //     price: 45000,
-  //     totalPriceOfProduct: 0,
-  //   },
-  //   {
-  //     totalSell: 0,
-  //   },
-  // ];
+  
 
   React.useEffect(() => {
     let rowsOnMount = stableSort(
