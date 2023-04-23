@@ -3,6 +3,7 @@ import MainNavigation from "../../components/layout/MainNavigation";
 import classNames from "classnames";
 import * as React from "react";
 // import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -40,6 +41,7 @@ function PaymentType() {
   let [finalPrice, setFinalPrice] = useState(0);
   let [score, setScore] = useState(0);
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const toastSuccess = () => toast.success("خرید شما با موفقیت انجام شد!");
 
@@ -95,6 +97,7 @@ function PaymentType() {
       .then((res) => {
         if (res.status === 200) {
           console.log("success");
+          navigate("/successpay");
           // toastSuccess();
         }
       });

@@ -32,12 +32,6 @@ function createData(name, inventory, number, price, totalPrice, date) {
 }
 
 export default function Report() {
-  const showToastMessage = () => {
-    toast.success("Success Notification !", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
-
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState();
@@ -62,7 +56,7 @@ export default function Report() {
         // console.log("total", totalPrice);
 
         setLoading(false);
-        showToastMessage();
+        // showToastMessage();
       }
     });
   }, []);

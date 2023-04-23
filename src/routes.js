@@ -25,6 +25,7 @@ import EditProductPage from "./pages/SellerPanel/EditProduct/EditProductPage";
 import PaymentType from "./pages/PaymentType";
 import Report from "./pages/SellerPanel/Report";
 import Gifts from "./pages/UserPanel/Gifts";
+import SuccessPay from "./pages/PaymentType/successfulPay";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
@@ -82,5 +83,5 @@ export const routes = [
     ],
   },
   { path: "/payment", element: <PaymentType /> },
-  { path: "/report", element: <Report /> },
+  {path: "/successpay", element: <SuccessPay/>}
 ];
