@@ -40,8 +40,7 @@
       &-icon {
         padding-left: 1rem;
       }
-      &-btn{
-        
+      &-btn {
       }
       &-header {
         // border-bottom: 1px solid #e0e0e2;
@@ -49,15 +48,19 @@
     }
   }
 
-  &__score{
+  &__score {
     display: flex;
     justify-content: center;
     font-size: 1.8rem;
     margin-top: 2rem;
+
+    &--text {
+      margin-left: 1rem;
+    }
   }
 }
 
-.offCode__container{
+.offCode__container {
   padding: 1rem;
   margin: 2rem;
   border: 1px solid #e0e0e2;

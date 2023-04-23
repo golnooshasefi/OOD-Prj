@@ -89,7 +89,7 @@ function PaymentType() {
   const handleSumbit = (e) => {
     e.preventDefault();
     axiosInstance
-      .get(`/accounts/checkout/`, {
+      .post(`/accounts/checkout/`, {
         type: formData.type,
       })
       .then((res) => {
@@ -295,7 +295,7 @@ function PaymentType() {
               variant="outlined"
               color="secondary"
               sx={{ mt: 3, mb: 2, width: 150, height: 50, fontSize: 20 }}
-              onClick={toastSuccess}
+              onClick={handleSumbit}
             >
               پرداخت
             </Button>

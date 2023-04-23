@@ -57,49 +57,57 @@ function Gifts() {
           </span>
         </div>
       </div>
-
-      <div className={classes.container__score}>
-        <span className={classes["container__score--text"]}>امتیاز شما: </span>
-        <span> {digitsEnToFa(addCommas(user.score))}</span>
-      </div>
-
-      {/* <BeatLoader color="#6667ab" loading={loading} css={override} size={30} /> */}
-      {/* {!loading && ( */}
-      <div className={classes.container__gifts}>
-        {gifts.map((element) => (
-          <div className={classes["container__gifts--box"]}>
-            <div>
-              <div className={classes["container__gifts--box-header"]}>
-                {element.description}
-              </div>
-              <i
-                className={classNames(
-                  classes["container__gifts--box-icon"],
-                  "fa-regular fa-star"
-                )}
-              ></i>
-              <span>{element.score}</span>
-              <span> امتیاز</span>
-            </div>
-            <Button
-              variant="contained"
-              disabled={user.score < element.score}
-              color="success"
-              sx={{ fontSize: 17 }}
-              onClick={() => {
-                offCodeHandler(element.score);
-              }}
-            >
-              دریافت کد تخفیف
-            </Button>
-            {/* {available && ( */}
-            <div className={classes.offCode__container}>{offCode}</div>
-            {/* )} */}
-            {/* {setAvailable(false)}
-            {setOffCode()} */}
+      <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
+      {!loading && (
+        <>
+          <div className={classes.container__score}>
+            <span className={classes["container__score--text"]}>
+              امتیاز شما:{" "}
+            </span>
+            <span> {digitsEnToFa(addCommas(user.score))}</span>
           </div>
-        ))}
-      </div>
+
+          <div className={classes.container__gifts}>
+            {gifts.map((element) => (
+              <div className={classes["container__gifts--box"]}>
+                <div>
+                  <div className={classes["container__gifts--box-header"]}>
+                    {element.description}
+                  </div>
+                  <i
+                    className={classNames(
+                      classes["container__gifts--box-icon"],
+                      "fa-regular fa-star"
+                    )}
+                  ></i>
+                  <span>{element.score}</span>
+                  <span> امتیاز</span>
+                </div>
+                {!available && (
+                  <Button
+                    variant="contained"
+                    disabled={user.score < element.score}
+                    color="success"
+                    sx={{ fontSize: 17 }}
+                    onClick={() => {
+                      offCodeHandler(element.score);
+                    }}
+                  >
+                    دریافت کد تخفیف
+                  </Button>
+                )}
+                {available && (
+                  <div className={classes.offCode__container}>{offCode}</div>
+                )}
+                {/* )} */}
+                {/* {setAvailable(false)} */}
+                {/* {setOffCode()} */}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
       {/* )} */}
     </div>
   );

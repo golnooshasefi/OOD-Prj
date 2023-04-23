@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import classes from "./Report.module.scss";
 import axiosInstance from "../../../axios";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -29,6 +32,12 @@ function createData(name, inventory, number, price, totalPrice, date) {
 }
 
 export default function Report() {
+  const showToastMessage = () => {
+    toast.success("Success Notification !", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState();
@@ -53,85 +62,89 @@ export default function Report() {
         // console.log("total", totalPrice);
 
         setLoading(false);
+        showToastMessage();
       }
     });
   }, []);
   return (
-    <div className={classes.container}>
-      <div className={classes.container__headerContainer}>
-        <div className={classes.container__headerContainer__header}>
-          <span className={classes.container__headerContainer__text}>
-            گزارش موجودی
-          </span>
+    <>
+      <ToastContainer />
+      <div className={classes.container}>
+        <div className={classes.container__headerContainer}>
+          <div className={classes.container__headerContainer__header}>
+            <span className={classes.container__headerContainer__text}>
+              گزارش موجودی
+            </span>
+          </div>
         </div>
-      </div>
-      {!loading && (
-        <>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell sx={{ fontSize: 18 }} align="right">
-                    نام محصول
-                  </TableCell>
-                  <TableCell sx={{ fontSize: 18 }} align="right">
-                    تعداد باقی‌مانده
-                  </TableCell>
+        {!loading && (
+          <>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell sx={{ fontSize: 18 }} align="right">
+                      نام محصول
+                    </TableCell>
+                    <TableCell sx={{ fontSize: 18 }} align="right">
+                      تعداد باقی‌مانده
+                    </TableCell>
 
-                  <TableCell sx={{ fontSize: 18 }} align="right">
-                    موجودی اولیه
-                  </TableCell>
-                  <TableCell sx={{ fontSize: 18 }} align="right">
-                    مبلغ کالا
-                  </TableCell>
-                  <TableCell sx={{ fontSize: 18 }} align="right">
-                    مبلغ کل فروش
-                  </TableCell>
-                  <TableCell sx={{ fontSize: 18 }} align="right">
-                    تاریخ آخرین فروش
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow
-                    key={row.name}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
-                      sx={{ fontSize: 17 }}
-                      align="right"
-                      component="th"
-                      scope="row"
-                    >
-                      {row.name}
+                    <TableCell sx={{ fontSize: 18 }} align="right">
+                      موجودی اولیه
                     </TableCell>
-                    <TableCell sx={{ fontSize: 16 }} align="right">
-                      {digitsEnToFa(addCommas(row.inventory))}
+                    <TableCell sx={{ fontSize: 18 }} align="right">
+                      مبلغ کالا
                     </TableCell>
-                    <TableCell sx={{ fontSize: 16 }} align="right">
-                      {digitsEnToFa(addCommas(row.number))}
+                    <TableCell sx={{ fontSize: 18 }} align="right">
+                      مبلغ کل فروش
                     </TableCell>
-                    <TableCell sx={{ fontSize: 16 }} align="right">
-                      {digitsEnToFa(addCommas(row.price))}
-                    </TableCell>
-                    <TableCell sx={{ fontSize: 16 }} align="right">
-                      {digitsEnToFa(addCommas(row.totalPrice))}
-                    </TableCell>
-                    <TableCell sx={{ fontSize: 16 }} align="right">
-                      {row.date}
+                    <TableCell sx={{ fontSize: 18 }} align="right">
+                      تاریخ آخرین فروش
                     </TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <div className={classes.totalPrice__container}>
-            <span >مبلغ کل فروش:</span>
-            <span>{digitsEnToFa(addCommas(total))}</span>
-          </div>
-        </>
-      )}
-    </div>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <TableRow
+                      key={row.name}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell
+                        sx={{ fontSize: 17 }}
+                        align="right"
+                        component="th"
+                        scope="row"
+                      >
+                        {row.name}
+                      </TableCell>
+                      <TableCell sx={{ fontSize: 16 }} align="right">
+                        {digitsEnToFa(addCommas(row.inventory))}
+                      </TableCell>
+                      <TableCell sx={{ fontSize: 16 }} align="right">
+                        {digitsEnToFa(addCommas(row.number))}
+                      </TableCell>
+                      <TableCell sx={{ fontSize: 16 }} align="right">
+                        {digitsEnToFa(addCommas(row.price))}
+                      </TableCell>
+                      <TableCell sx={{ fontSize: 16 }} align="right">
+                        {digitsEnToFa(addCommas(row.totalPrice))}
+                      </TableCell>
+                      <TableCell sx={{ fontSize: 16 }} align="right">
+                        {row.date}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <div className={classes.totalPrice__container}>
+              <span>مبلغ کل فروش:</span>
+              <span>{digitsEnToFa(addCommas(total))}</span>
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 }
