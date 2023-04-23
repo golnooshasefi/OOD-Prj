@@ -40,7 +40,7 @@ function PaymentType() {
   let [shippingPrice, setShippingPrice] = useState(0);
   let [finalPrice, setFinalPrice] = useState(0);
   let [score, setScore] = useState(0);
-  const { user } = useContext(UserContext);
+  const { user, updateBalance } = useContext(UserContext);
   const navigate = useNavigate();
 
   const toastSuccess = () => toast.success("خرید شما با موفقیت انجام شد!");
@@ -101,8 +101,10 @@ function PaymentType() {
       })
       .then((res) => {
         if (res.status === 200) {
+
           console.log("success");
           navigate("/successpay");
+          updateBalance(res.data.balance)
           // toastSuccess();
         } else if (res.status === 204) {
           toastWalletError();

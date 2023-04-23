@@ -53,10 +53,7 @@ export default function Report() {
           )
         );
         const totalPrice = setTotal(res.data[res.data.length - 1].totalSell);
-        // console.log("total", totalPrice);
-
         setLoading(false);
-        // showToastMessage();
       }
     });
   }, []);
@@ -135,6 +132,7 @@ export default function Report() {
             <div className={classes.totalPrice__container}>
               <span>مبلغ کل فروش:</span>
               <span>{digitsEnToFa(addCommas(total))}</span>
+              <span>تومان </span>
             </div>
           </>
         )}

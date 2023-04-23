@@ -61,6 +61,11 @@ export function UserContextProvider({ children }) {
     localStorage.removeItem("userInformation");
     localStorage.setItem("userInformation", JSON.stringify(user));
   };
+  const updateBalance = (balance = user.balance) => {
+    setUser((prev) => ({ ...prev, balance }));
+    localStorage.removeItem("userInformation");
+    localStorage.setItem("userInformation", JSON.stringify(user));
+  };
 
   const updateScore = (score = user.score) => {
     setUser((prev) => ({ ...prev, score }));
@@ -106,7 +111,7 @@ export function UserContextProvider({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ user, login, logout, checkLogin, updateName, updatePhone, updateScore }}
+      value={{ user, login, logout, checkLogin, updateName, updatePhone, updateScore, updateBalance}}
     >
       {children}
     </UserContext.Provider>

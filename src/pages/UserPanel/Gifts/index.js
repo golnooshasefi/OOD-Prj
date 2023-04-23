@@ -74,6 +74,7 @@ function Gifts() {
               <Giftcard
                 description={element.description}
                 score={element.score}
+                date={element.date}
               />
             </div>
           ))}

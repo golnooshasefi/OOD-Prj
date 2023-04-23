@@ -29,6 +29,15 @@ function Giftcard(props) {
           ></i>
           <span>{props.score}</span>
           <span> امتیاز</span>
+          <div>
+            <i
+              className={classNames(
+                classes["gift__icon"],
+                "fa-regular fa-calendar"
+              )}
+            ></i>
+            <span>{props.date}</span>
+          </div>
         </div>
         {!offcode && (
           <Button
