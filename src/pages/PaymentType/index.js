@@ -44,6 +44,7 @@ function PaymentType() {
   const navigate = useNavigate();
 
   const toastSuccess = () => toast.success("خرید شما با موفقیت انجام شد!");
+  const toastWalletError = () => toast.error("موجودی کیف پول شما کافی نیست!");
 
   useEffect(() => {
     axiosInstance.get(`/accounts/show_checkout_info/`).then((res) => {
@@ -99,12 +100,24 @@ function PaymentType() {
           console.log("success");
           navigate("/successpay");
           // toastSuccess();
+        } else if (res.status === 204) {
+          toastWalletError();
         }
       });
   };
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnHover
+        toastStyle={{ fontSize: "16px", fontFamily: "Vazirmatn" }}
+      />
       <div className={classes.header}>
         <h1 className={classes.header__title}>سبکینو</h1>
         <div>

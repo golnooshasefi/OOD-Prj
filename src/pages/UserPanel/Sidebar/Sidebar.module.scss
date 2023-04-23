@@ -48,9 +48,12 @@
   }
   &__balance{
     font-size: 1.2rem;
+    &--price {
+      margin-left: .5rem;
+    }
   }
   &__icon{
-    margin-right: 0.6rem;
+    margin-right: 0.4rem;
     justify-items: center;
 
   }
