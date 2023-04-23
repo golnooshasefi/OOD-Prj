@@ -285,9 +285,16 @@ export default function EnhancedTable() {
 
   const [report, setReport] = useState([]);
   const [loading, setLoading] = useState(true);
-  
 
   React.useEffect(() => {
+    axiosInstance.get(`/accounts/report/`).then((res) => {
+      if (res.status === 200) {
+        console.log("reponse 200");
+        setReport(res.data);
+        setLoading(false);
+      }
+    });
+
     let rowsOnMount = stableSort(
       rows,
       getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY)
@@ -301,14 +308,16 @@ export default function EnhancedTable() {
     setVisibleRows(rowsOnMount);
   }, []);
 
-  useEffect(() => {
-    axiosInstance.get(`/accounts/report/`).then((res) => {
-      if (res.status === 200) {
-        setReport(res.data);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   axiosInstance.get(`/accounts/report/`).then((res) => {
+  //     if (res.status === 200) {
+  //       setReport(res.data);
+  //       setLoading(false);
+  //     }
+  //   });
+  // }, []);
 
+  console.log(report);
   const rows = report.map((r) =>
     createData(
       r.productName,
@@ -319,6 +328,7 @@ export default function EnhancedTable() {
     )
   );
 
+  console.log(rows);
   // const totalPrice = report[report.length - 1].totalSell;
 
   const handleRequestSort = React.useCallback(
@@ -448,7 +458,10 @@ export default function EnhancedTable() {
           css={override}
           size={30}
         />
-        {!loading && (
+        {console.log("report " + report)}
+        {console.log(report.length)}
+
+        {!loading && report.length !== 0 && (
           <Box>
             <Paper sx={{ width: "100%", mb: 2 }}>
               <EnhancedTableToolbar numSelected={selected.length} />

@@ -19,10 +19,11 @@ const override = `
 `;
 
 function Gifts() {
+  console.log("hello");
   const { user, updateScore } = useContext(UserContext);
 
   let [loading, setLoading] = useState(true);
-  let [score, setScore] = useState(0);
+  // let [score, setScore] = useState(0);
   const [gifts, setGifts] = useState([]);
   const [offCode, setOffCode] = useState();
   const [available, setAvailable] = useState(false);
@@ -45,9 +46,6 @@ function Gifts() {
         setLoading(false);
       }
     });
-
-    
-    
   }, []);
 
   return (
@@ -68,7 +66,7 @@ function Gifts() {
       {/* <BeatLoader color="#6667ab" loading={loading} css={override} size={30} /> */}
       {/* {!loading && ( */}
       <div className={classes.container__gifts}>
-        {gifts.map((element) => {
+        {gifts.map((element) => (
           <div className={classes["container__gifts--box"]}>
             <div>
               <div className={classes["container__gifts--box-header"]}>
@@ -88,17 +86,19 @@ function Gifts() {
               disabled={user.score < element.score}
               color="success"
               sx={{ fontSize: 17 }}
-              onClick={() => {offCodeHandler(element.score)}}
+              onClick={() => {
+                offCodeHandler(element.score);
+              }}
             >
               دریافت کد تخفیف
             </Button>
-            {available && (
-              <div className={classes.offCode__container}>{offCode}</div>
-            )}
-            {setAvailable(false)}
-            {setOffCode()}
-          </div>;
-        })}
+            {/* {available && ( */}
+            <div className={classes.offCode__container}>{offCode}</div>
+            {/* )} */}
+            {/* {setAvailable(false)}
+            {setOffCode()} */}
+          </div>
+        ))}
       </div>
       {/* )} */}
     </div>

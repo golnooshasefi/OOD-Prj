@@ -94,7 +94,8 @@ function PaymentType() {
       })
       .then((res) => {
         if (res.status === 200) {
-          toastSuccess();
+          console.log("success");
+          // toastSuccess();
         }
       });
   };

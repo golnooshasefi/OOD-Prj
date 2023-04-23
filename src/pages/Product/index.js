@@ -341,13 +341,13 @@ function Product() {
                 >
                   {shop}
                 </span>
-                <Link to={`/shop-page/${product.shop}`}>
-                  <span
-                    className={classes.Product__sellerBox__nameBox__sellerName}
-                  >
-                    بزرگ
-                  </span>
-                </Link>
+                {/* <Link to={`/shop-page/${product.shop}`}> */}
+                <span
+                  className={classes.Product__sellerBox__nameBox__sellerName}
+                >
+                  بزرگ
+                </span>
+                {/* </Link> */}
               </div>
               <div className={classes.Product__sellerBox__featureBox}>
                 <span className={classes.Product__sellerBox__featureBox__icon}>
@@ -397,7 +397,7 @@ function Product() {
                   : " حذف از سبد"}
               </Button>
             </div>
-            <div className={classes.Product__similarBox}>
+            {/* <div className={classes.Product__similarBox}>
               <span className={classes.Product__similarBox__text}>
                 محصولات مشابه
               </span>
@@ -410,38 +410,9 @@ function Product() {
                     priceOff={"200000"}
                   />
                 ))}
-                {/* <SimilarItem
-                  link={"./images/clothes/11bg.png"}
-                  name={"شلوار مردانه سیدونا مدل MSI03072-403"}
-                  price={"199999"}
-                  priceOff={"200000"}
-                />
-                <SimilarItem
-                  link={"./images/clothes/11bg.png"}
-                  name={"شلوار مردانه سیدونا مدل MSI03072-403"}
-                  price={"199999"}
-                  priceOff={"200000"}
-                />
-                <SimilarItem
-                  link={"./images/clothes/11bg.png"}
-                  name={"شلوار مردانه سیدونا مدل MSI03072-403"}
-                  price={"199999"}
-                  priceOff={"200000"}
-                />
-                <SimilarItem
-                  link={"./images/clothes/11bg.png"}
-                  name={"شلوار مردانه سیدونا مدل MSI03072-403"}
-                  price={"199999"}
-                  priceOff={"200000"}
-                />
-                <SimilarItem
-                  link={"./images/clothes/11bg.png"}
-                  name={"شلوار مردانه سیدونا مدل MSI03072-403"}
-                  price={"199999"}
-                  priceOff={"200000"}
-                /> */}
+                
               </div>
-            </div>
+            </div> */}
           </section>
         )}
       </div>
