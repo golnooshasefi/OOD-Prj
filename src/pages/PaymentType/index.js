@@ -45,6 +45,8 @@ function PaymentType() {
 
   const toastSuccess = () => toast.success("خرید شما با موفقیت انجام شد!");
   const toastWalletError = () => toast.error("موجودی کیف پول شما کافی نیست!");
+  const toastOffCode = () =>
+    toast.error("اعتبار این کد تخفیف به پایان رسیده است!");
 
   useEffect(() => {
     axiosInstance.get(`/accounts/show_checkout_info/`).then((res) => {
@@ -80,6 +82,8 @@ function PaymentType() {
       .then((res) => {
         if (res.status === 200) {
           setFinalPrice(res.data.discounted_total_cost);
+        } else if (res.status === 204) {
+          toastOffCode();
         }
       });
   };
