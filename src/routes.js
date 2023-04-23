@@ -23,7 +23,7 @@ import { default as UserPersonalInfo } from "./pages/UserPanel/PersonalInfo";
 import ShopInfoPage from "./pages/ShopInfoPage";
 import EditProductPage from "./pages/SellerPanel/EditProduct/EditProductPage";
 import PaymentType from "./pages/PaymentType";
-import EnhancedTable from "./pages/SellerPanel/Report";
+import Report from "./pages/SellerPanel/Report";
 import Gifts from "./pages/UserPanel/Gifts";
 
 export const routes = [
@@ -64,7 +64,7 @@ export const routes = [
       },
       { path: "/seller-panel/orders", element: <SellerOrders /> },
       { path: "/seller-panel/personal-info", element: <SellerPersonalInfo /> },
-      { path: "/seller-panel/report", element: <EnhancedTable /> },
+      { path: "/seller-panel/report", element: <Report /> },
     ],
   },
 
@@ -82,5 +82,5 @@ export const routes = [
     ],
   },
   { path: "/payment", element: <PaymentType /> },
-  { path: "/report", element: <EnhancedTable /> },
+  { path: "/report", element: <Report /> },
 ];
