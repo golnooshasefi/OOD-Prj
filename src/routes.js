@@ -83,5 +83,5 @@ export const routes = [
     ],
   },
   { path: "/payment", element: <PaymentType /> },
-  {path: "/successpay", element: <SuccessPay/>}
+  { path: "/successpay", element: <SuccessPay /> },
 ];
