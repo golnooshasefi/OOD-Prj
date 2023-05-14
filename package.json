@@ -15,7 +15,7 @@
     "@mui/styled-engine-sc": "^5.11.11",
     "@persian-tools/persian-tools": "3.3.0",
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^12.1.4",
+    "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^14.4.3",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
@@ -39,7 +39,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "yarn test --coverage"
   },
   "eslintConfig": {
     "extends": [

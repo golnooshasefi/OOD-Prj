@@ -52,7 +52,7 @@ export default function Report() {
             )
           )
         );
-        const totalPrice = setTotal(res.data[res.data.length - 1].totalSell);
+        // const totalPrice = setTotal(res.data[res.data.length - 1].totalSell);
         setLoading(false);
       }
     });

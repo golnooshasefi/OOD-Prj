@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 function HeroSection() {
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
   return (
     <section className={classes.HeroSection}>
       <div className={classes.HeroSection__content}>
@@ -19,7 +19,7 @@ function HeroSection() {
             پیشنهاد میدهیم.
           </p>
           <div>
-            <Link to={user.auth ? "/products-list/" : "/account-box"}>
+            <Link to="/products-list/">
               <Button
                 color="purple"
                 className={classes["HeroSection__button--right"]}
