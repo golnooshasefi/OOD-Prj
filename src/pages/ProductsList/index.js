@@ -57,6 +57,7 @@ function ProductsList() {
     <>
       <MainNavigation />
       <div className={classes.Products}>
+        <h2 className={classes.Products__header}>محصولات</h2>
         <div className={classes.Products__itemContainer}>
           <DotLoader
             color="#6667ab"
@@ -80,7 +81,6 @@ function ProductsList() {
                 ></Item>
               </Link>
             ))}
-        
         </div>
         <div className={classes.Products__filterContainer}>
           <Filter setProducts={setProducts} />

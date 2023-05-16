@@ -5,6 +5,9 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   margin: 2rem;
+  &__header {
+    font-size: 3rem;
+  }
   &__itemContainer {
     grid-column: 2 / span 4;
     // padding: 2rem;
