@@ -31,7 +31,11 @@ function SellerPanelSidebar() {
       <ThemeProvider theme={theme}>
         <nav className={classes.sidebar}>
           <div className={classes["seller-info"]}>
-            <img src="./images/user1.png" className={classes.userImage} />
+            <img
+              src="./images/user1.png"
+              className={classes.userImage}
+              alt="user"
+            />
 
             <div className={classes["seller-info__description"]}>
               <div className={classes["seller-info__title"]}>

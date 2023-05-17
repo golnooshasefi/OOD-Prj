@@ -42,17 +42,6 @@ function ShoppingList() {
     threshold: 1,
   });
 
-  // function confirmShoppingHandler() {
-  //   axiosInstance.get(`/accounts/checkout/`).then((res) => {
-  //     if (res.status === 200) {
-  //       // setList(res.data);
-  //       // setLoading(false);
-  //       navigate("/user-panel/orders", { replace: true });
-  //     }
-  //   });
-  //   console.log("/accounts/checkout/");
-  // }
-
   return (
     <>
       <MainNavigation />
@@ -66,96 +55,88 @@ function ShoppingList() {
           />
         </div>
       )}
-
-      {!loading && (
-        <section className={classes.ShoppingList}>
-          <div className={classes.ShoppingList__headerContainer} ref={ref}>
-            <div className={classes.ShoppingList__header}>
-              <span className={classes.ShoppingList__header__text}>
-                سبد خرید
-              </span>
-              <span className={classes.ShoppingList__header__number}>
-                {digitsEnToFa(list.products.length)}
-              </span>
-            </div>
+      {/* {!loading && ( */}
+      <section className={classes.ShoppingList}>
+        <div className={classes.ShoppingList__headerContainer} ref={ref}>
+          <div className={classes.ShoppingList__header}>
+            <h3 className={classes.ShoppingList__header__text}>سبد خرید</h3>
+            <span className={classes.ShoppingList__header__number}>
+              {digitsEnToFa(list.products.length)}
+            </span>
           </div>
+        </div>
 
-          {list.products.length !== 0 && (
-            <>
-              <div className={classes.ShoppingList__shoppingItems}>
-                {console.log(list.total_price)}
-                {list.products.map((element) => (
-                  <ShoppingItem
-                    id={element.id}
-                    name={element.product_name}
-                    price={element.product_price}
-                    img={element.upload}
-                    setProducts={setList}
-                  />
-                ))}
-              </div>
+        {list.products.length !== 0 && (
+          <>
+            <div className={classes.ShoppingList__shoppingItems}>
+              {console.log(list.total_price)}
+              {list.products.map((element) => (
+                <ShoppingItem
+                  id={element.id}
+                  name={element.product_name}
+                  price={element.product_price}
+                  img={element.upload}
+                  setProducts={setList}
+                />
+              ))}
+            </div>
 
-              <div
-                className={
-                  inView
-                    ? classes.ShoppingList__confirmBox
-                    : classes.ShoppingList__confirmBox__sticky
-                }
-              >
-                <div className={classes.ShoppingList__confirmContainer}>
-                  <div className={classes.ShoppingList__confirmBox__totalPrice}>
-                    <span
-                      className={
-                        classes.ShoppingList__confirmBox__totalPrice__text
-                      }
-                    >
-                      قیمت کل سفارش
-                    </span>
-                    <span
-                      className={
-                        classes.ShoppingList__confirmBox__totalPrice__price
-                      }
-                    >
-                      {digitsEnToFa(addCommas(list.total_price))} تومان
-                    </span>
-                  </div>
-                  <div className={classes.ShoppingList__confirmBox__payable}>
-                    <span
-                      className={
-                        classes.ShoppingList__confirmBox__payable__text
-                      }
-                    >
-                      قیمت قابل پرداخت
-                    </span>
-                    <span
-                      className={
-                        classes.ShoppingList__confirmBox__payable__price
-                      }
-                    >
-                      {digitsEnToFa(addCommas(list.total_price_with_discount))}{" "}
-                      تومان
-                    </span>
-                  </div>
-                  <span className={classes.ShoppingList__confirmBox__note}>
-                    افزودن کالا به سبد خرید به معنی رزرو آن نیست. با توجه به
-                    محدودیت موجودی، سبد خود را ثبت و خرید را تکمیل کنید.
+            <div
+              className={
+                inView
+                  ? classes.ShoppingList__confirmBox
+                  : classes.ShoppingList__confirmBox__sticky
+              }
+            >
+              <div className={classes.ShoppingList__confirmContainer}>
+                <div className={classes.ShoppingList__confirmBox__totalPrice}>
+                  <span
+                    className={
+                      classes.ShoppingList__confirmBox__totalPrice__text
+                    }
+                  >
+                    قیمت کل سفارش
                   </span>
-                  <Link to="/payment">
-                    <Button
-                      color="purple"
-                      className={classes["ShoppingList__confirmBox__btn"]}
-                      // onClickHandler={confirmShoppingHandler}
-                    >
-                      تکمیل خرید
-                    </Button>
-                  </Link>
+                  <span
+                    className={
+                      classes.ShoppingList__confirmBox__totalPrice__price
+                    }
+                  >
+                    {digitsEnToFa(addCommas(list.total_price))} تومان
+                  </span>
                 </div>
+                <div className={classes.ShoppingList__confirmBox__payable}>
+                  <span
+                    className={classes.ShoppingList__confirmBox__payable__text}
+                  >
+                    قیمت قابل پرداخت
+                  </span>
+                  <span
+                    className={classes.ShoppingList__confirmBox__payable__price}
+                  >
+                    {digitsEnToFa(addCommas(list.total_price_with_discount))}{" "}
+                    تومان
+                  </span>
+                </div>
+                <span className={classes.ShoppingList__confirmBox__note}>
+                  افزودن کالا به سبد خرید به معنی رزرو آن نیست. با توجه به
+                  محدودیت موجودی، سبد خود را ثبت و خرید را تکمیل کنید.
+                </span>
+                <Link to="/payment">
+                  <Button
+                    color="purple"
+                    className={classes["ShoppingList__confirmBox__btn"]}
+                    // onClickHandler={confirmShoppingHandler}
+                  >
+                    تکمیل خرید
+                  </Button>
+                </Link>
               </div>
-            </>
-          )}
-        </section>
-      )}
-
+            </div>
+          </>
+        )}
+      </section>
+      // )}
       <Footer />
     </>
   );

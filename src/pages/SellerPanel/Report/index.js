@@ -100,6 +100,7 @@ export default function Report() {
                     <TableRow
                       key={row.name}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                      data-testid="tableRow"
                     >
                       <TableCell
                         sx={{ fontSize: 17 }}
