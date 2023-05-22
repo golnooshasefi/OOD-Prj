@@ -78,7 +78,7 @@ function Product() {
   useEffect(() => {
     console.log(productId);
     if (productId) {
-      axiosInstance.get(`/accounts/product_info/${productId}/`).then((res) => {
+      axiosInstance.get(`/products/product_info/${productId}/`).then((res) => {
         if (res.status === 200) {
           console.log(res);
           console.log(res.data);
@@ -119,7 +119,7 @@ function Product() {
     console.log(product);
     if (product.is_favorite) {
       axiosInstance
-        .post(`accounts/delete_from_favorite/`, {
+        .post(`/favoriteProducts/delete_from_favorite/`, {
           data: product.id,
         })
         .then((res) => {
@@ -129,7 +129,7 @@ function Product() {
         });
     } else {
       axiosInstance
-        .post(`accounts/add_to_favorite/`, {
+        .post(`/favoriteProducts/add_to_favorite/`, {
           data: product.id,
         })
         .then((res) => {
@@ -143,7 +143,7 @@ function Product() {
   const addProductHandler = () => {
     if (product.is_in_cart) {
       axiosInstance
-        .post(`accounts/delete_from_cart/`, {
+        .post(`/shoppingCarts/delete_from_cart/`, {
           data: product.id,
         })
         .then((res) => {
@@ -153,7 +153,7 @@ function Product() {
         });
     } else {
       axiosInstance
-        .post(`accounts/add_to_cart/`, {
+        .post(`/shoppingCarts/add_to_cart/`, {
           data: product.id,
         })
         .then((res) => {

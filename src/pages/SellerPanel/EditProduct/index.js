@@ -19,7 +19,7 @@ function EditProduct() {
   let [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axiosInstance.get(`/accounts/show_products_of_shop/`).then((res) => {
+    axiosInstance.get(`/products/show_products_of_shop/`).then((res) => {
       if (res.status === 200) {
         console.log(res.data.products);
         setProducts(res.data.products);
@@ -33,7 +33,7 @@ function EditProduct() {
     console.log(e.target.id + "");
 
     axiosInstance
-      .delete(`/accounts/delete_product/${e.target.id}/`)
+      .delete(`/products/delete_product/${e.target.id}/`)
       .then((res) => {
         if (res.status === 200) {
           console.log(products);

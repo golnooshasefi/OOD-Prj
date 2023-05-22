@@ -35,7 +35,7 @@ function AddProduct() {
     // console.log(...newValues);
 
     axiosInstance
-      .post(`accounts/add_products_to_shop/`, {
+      .post(`/products/add_products_to_shop/`, {
         inventory: Number(newValues.inventory),
         product_color: newValues.product_color,
         product_country: newValues.product_country,

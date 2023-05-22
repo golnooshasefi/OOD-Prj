@@ -10,7 +10,7 @@ function Giftcard(props) {
   const [offcode, setOffCode] = useState();
 
   const offCodeHandler = (escore) => {
-    axiosInstance.post(`/accounts/get_gift/`, { score: escore }).then((res) => {
+    axiosInstance.post(`/gifts/get_gift/`, { score: escore }).then((res) => {
       if (res.status === 200) {
         setOffCode(res.data.discount_code);
         updateScore(res.data.new_score);

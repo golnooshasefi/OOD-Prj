@@ -18,7 +18,7 @@ function Favorites() {
   console.log(favorites);
 
   useEffect(() => {
-    axiosInstance.get(`/accounts/show_favorite/`).then((res) => {
+    axiosInstance.get(`/favoriteProducts/show_favorite/`).then((res) => {
       if (res.status === 200) {
         setLoading(false);
         setFavorites(res.data);
@@ -31,7 +31,7 @@ function Favorites() {
     console.log(e.target.id + "");
 
     axiosInstance
-      .post(`accounts/delete_from_favorite/`, {
+      .post(`/favoriteProducts/delete_from_favorite/`, {
         data: e.target.id,
       })
       .then((res) => {

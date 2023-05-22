@@ -25,7 +25,7 @@ function ShopInfoPage() {
     console.log(shopId);
     if (shopId) {
       axiosInstance
-        .post(`/accounts/show_products_of_shop/`, {
+        .post(`/products/show_products_of_shop/`, {
           id: shopId,
         })
         .then((res) => {

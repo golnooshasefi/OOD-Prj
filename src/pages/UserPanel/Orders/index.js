@@ -15,7 +15,7 @@ function Orders() {
   console.log(orders);
 
   useEffect(() => {
-    axiosInstance.get(`/accounts/user_orders/`).then((res) => {
+    axiosInstance.get(`/orders/user_orders/`).then((res) => {
       if (res.status === 200) {
         setOrders(res.data);
         setLoading(false);
