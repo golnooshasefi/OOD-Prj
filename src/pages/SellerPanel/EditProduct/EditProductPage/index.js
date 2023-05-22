@@ -42,7 +42,7 @@ function EditProductPage() {
   useEffect(() => {
     console.log(productId);
     if (productId) {
-      axiosInstance.get(`/accounts/edit_product/${productId}/`).then((res) => {
+      axiosInstance.get(`/products/edit_product/${productId}/`).then((res) => {
         if (res.status === 200) {
           console.log(res);
           console.log(res.data);

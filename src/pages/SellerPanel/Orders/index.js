@@ -16,7 +16,7 @@ function Orders() {
   let [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axiosInstance.get(`/accounts/show_order_to_shop/`).then((res) => {
+    axiosInstance.get(`/orders/show_order_to_shop/`).then((res) => {
       if (res.status === 200) {
         console.log(res);
         setOrders(res.data);

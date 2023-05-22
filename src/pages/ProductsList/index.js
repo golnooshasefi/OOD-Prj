@@ -24,7 +24,7 @@ function ProductsList() {
 
   useEffect(() => {
     if (url === null) {
-      axiosInstance.get(`accounts/show_all_products/`).then((res) => {
+      axiosInstance.get(`/products/show_all_products/`).then((res) => {
         if (res.status === 200) {
           setLoading(false);
           console.log(res);

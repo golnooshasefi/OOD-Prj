@@ -30,7 +30,7 @@ function ShoppingList() {
   }, [user.auth, user.type, navigate]);
 
   useEffect(() => {
-    axiosInstance.get(`/accounts/show_cart/`).then((res) => {
+    axiosInstance.get(`/shoppingCarts/show_cart/`).then((res) => {
       if (res.status === 200) {
         setList(res.data);
         setLoading(false);

@@ -23,6 +23,7 @@ const override = `
 function Gifts() {
   console.log("hello");
   const { user, updateScore } = useContext(UserContext);
+  const { msg, setMsg } = useState("");
 
   let [loading, setLoading] = useState(true);
   // let [score, setScore] = useState(0);
@@ -33,6 +34,8 @@ function Gifts() {
       if (res.status === 200) {
         setGifts(res.data);
         setLoading(false);
+      } else if (res.status === 204) {
+        setMsg("جایزه‌ای برای نمایش وجود ندارد.");
       }
     });
   }, []);

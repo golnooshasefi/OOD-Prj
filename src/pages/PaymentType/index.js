@@ -49,7 +49,7 @@ function PaymentType() {
     toast.error("اعتبار این کد تخفیف به پایان رسیده است!");
 
   useEffect(() => {
-    axiosInstance.get(`/accounts/show_checkout_info/`).then((res) => {
+    axiosInstance.get(`/orders/show_checkout_info/`).then((res) => {
       if (res.status === 200) {
         setTotalPrice(res.data.discounted_price);
         setShippingPrice(res.data.shippingPrice);
@@ -76,7 +76,7 @@ function PaymentType() {
   const handlePriceChange = (e) => {
     e.preventDefault();
     axiosInstance
-      .get(`/accounts/apply_discount/`, {
+      .post(`/gifts/apply_discount/`, {
         discount_code: formData.offcode,
       })
       .then((res) => {
@@ -96,15 +96,14 @@ function PaymentType() {
   const handleSumbit = (e) => {
     e.preventDefault();
     axiosInstance
-      .post(`/accounts/checkout/`, {
+      .post(`/orders/checkout/`, {
         type: formData.type,
       })
       .then((res) => {
         if (res.status === 200) {
-
           console.log("success");
           navigate("/successpay");
-          updateBalance(res.data.balance)
+          updateBalance(res.data.balance);
           // toastSuccess();
         } else if (res.status === 204) {
           toastWalletError();

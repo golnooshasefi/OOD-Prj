@@ -37,7 +37,7 @@ export default function Report() {
   const [total, setTotal] = useState();
 
   useEffect(() => {
-    axiosInstance.get(`/accounts/report/`).then((res) => {
+    axiosInstance.get(`/products/report/`).then((res) => {
       if (res.status === 200) {
         console.log("reponse 200");
         setRows(

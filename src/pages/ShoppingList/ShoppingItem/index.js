@@ -26,7 +26,7 @@ function ShoppingItem({ name, price, img, id, setProducts }) {
       })
       .then((res) => {
         if (res.status === 200) {
-          axiosInstance.get(`/accounts/show_cart/`).then((res) => {
+          axiosInstance.get(`/shoppingCarts/show_cart/`).then((res) => {
             if (res.status === 200) {
               setProducts(res.data);
             }

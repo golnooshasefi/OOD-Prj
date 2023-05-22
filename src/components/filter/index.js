@@ -20,7 +20,7 @@ function Filter({ setProducts }) {
     // });
     // } else {
     axiosInstance
-      .post(`accounts/filters/`, {
+      .post(`/products/filters/`, {
         group: [e.target.id],
       })
       .then((res) => {
