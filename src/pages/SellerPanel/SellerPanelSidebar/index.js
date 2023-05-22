@@ -51,6 +51,7 @@ function SellerPanelSidebar() {
             <li className={classes["side-nav__item"]}>
               <a
                 href="#"
+                data-testid="first"
                 className={classNames(
                   classes["side-nav__link--active"],
                   classes["side-nav__link"]
@@ -100,7 +101,11 @@ function SellerPanelSidebar() {
 
             <Link to={"/seller-panel/orders"} className={classes.link}>
               <li className={classes["side-nav__item"]}>
-                <a href="#" className={classNames(classes["side-nav__link"])}>
+                <a
+                  href="#"
+                  className={classNames(classes["side-nav__link"])}
+                  data-testid="second"
+                >
                   <i
                     className={classNames(
                       classes["side-nav__icon"],
@@ -114,7 +119,11 @@ function SellerPanelSidebar() {
 
             <Link to={"/seller-panel/personal-info"} className={classes.link}>
               <li className={classes["side-nav__item"]}>
-                <a href="#" className={classNames(classes["side-nav__link"])}>
+                <a
+                  href="#"
+                  className={classNames(classes["side-nav__link"])}
+                  data-testid="third"
+                >
                   <i
                     className={classNames(
                       classes["side-nav__icon"],
@@ -127,7 +136,11 @@ function SellerPanelSidebar() {
             </Link>
             <Link to={"/seller-panel/report"} className={classes.link}>
               <li className={classes["side-nav__item"]}>
-                <a href="#" className={classNames(classes["side-nav__link"])}>
+                <a
+                  href="#"
+                  className={classNames(classes["side-nav__link"])}
+                  data-testid="forth"
+                >
                   <SummarizeIcon
                     color="secondary"
                     fontSize="2rem"

@@ -18,7 +18,7 @@ import NotFound from "./pages/NotFound";
 import ForgotPassword from "./pages/AccountBox/ForgotPassword";
 import UserPanel from "./pages/UserPanel";
 import Favorites from "./pages/UserPanel/Favorites";
-import AdditionalQuestion from "./pages/UserPanel/AdditionalQuestion";
+// import AdditionalQuestion from "./pages/UserPanel/AdditionalQuestion";
 import { default as UserPersonalInfo } from "./pages/UserPanel/PersonalInfo";
 import ShopInfoPage from "./pages/ShopInfoPage";
 import EditProductPage from "./pages/SellerPanel/EditProduct/EditProductPage";
@@ -26,6 +26,7 @@ import PaymentType from "./pages/PaymentType";
 import Report from "./pages/SellerPanel/Report";
 import Gifts from "./pages/UserPanel/Gifts";
 import SuccessPay from "./pages/PaymentType/successfulPay";
+import RegisterConfirm from "./pages/AccountBox/RegisterConfirm";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
@@ -39,7 +40,10 @@ export const routes = [
     path: "/forgot-password",
     element: <ForgotPassword />,
   },
-
+  {
+    path: "/confirm-register",
+    element: <RegisterConfirm />,
+  },
   {
     path: "/seller-account-box",
     element: <SellerAccountBox />,

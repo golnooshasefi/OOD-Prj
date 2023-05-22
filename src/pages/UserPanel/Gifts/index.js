@@ -27,22 +27,9 @@ function Gifts() {
   let [loading, setLoading] = useState(true);
   // let [score, setScore] = useState(0);
   const [gifts, setGifts] = useState([]);
-  const [offCode, setOffCode] = useState();
-  const [available, setAvailable] = useState(false);
-
-  // const offCodeHandler = (escore) => {
-  //   axiosInstance.post(`/accounts/get_gift/`, { score: escore }).then((res) => {
-  //     if (res.status === 200) {
-  //       setAvailable(true);
-  //       setOffCode(res.data.discount_code);
-  //       updateScore(res.data.new_score);
-  //       setLoading(false);
-  //     }
-  //   });
-  // };
 
   useEffect(() => {
-    axiosInstance.get(`/accounts/show_gift/`).then((res) => {
+    axiosInstance.get(`/gifts/show_gift/`).then((res) => {
       if (res.status === 200) {
         setGifts(res.data);
         setLoading(false);

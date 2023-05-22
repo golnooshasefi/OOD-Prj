@@ -17,7 +17,7 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 
 export function Login(props) {
-  const { switchToSignup } = useContext(AccountContext);
+  // const { switchToSignup } = useContext(AccountContext);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -49,39 +49,61 @@ export function Login(props) {
         password: formData.password,
       })
       .then((res) => {
-        if (res.status === 200) {
-          login(
-            res.data.type,
-            res.data.username,
-            res.data.user_phone_number,
-            res.data.email,
-            res.data.balance,
-            res.data.score
-          );
-          localStorage.setItem("access_token", res.data.access);
-          localStorage.setItem("refresh_token", res.data.refresh);
-          axiosInstance.defaults.headers["Authorization"] =
-            "Bearer " + localStorage.getItem("access_token");
-          toast(" ورود با موفقیت انجام شد! ");
-          navigate(-1);
+        if (res.status >= 200 && res.status < 300) {
+          // notifySuccess();
+          toast("ورود با موفقیت انجام شد!");
+
+          setTimeout(() => {
+            login(
+              res.data.type,
+              res.data.username,
+              res.data.user_phone_number,
+              res.data.email,
+              res.data.balance,
+              res.data.score
+            );
+            localStorage.setItem("token", res.data.token);
+            axiosInstance.defaults.headers["Authorization"] =
+              "Token " + localStorage.getItem("token");
+          }, 3000);
         }
+        // if (res.status === 200) {
+        //   login(
+        //     res.data.type,
+        //     res.data.username,
+        //     res.data.user_phone_number,
+        //     res.data.email,
+        //     res.data.balance,
+        //     res.data.score
+        //   );
+        //   localStorage.setItem("access_token", res.data.access);
+        //   localStorage.setItem("refresh_token", res.data.refresh);
+        //   axiosInstance.defaults.headers["Authorization"] =
+        //     "Bearer " + localStorage.getItem("access_token");
+        //   toast("ورود با موفقیت انجام شد!");
+        //   const timer = setTimeout(function () {
+        //     navigate(-1);
+        //   }, 5000);
+        //   clearTimeout(timer);
+        // }
       });
   };
 
   return (
     <>
-      <ToastContainer 
-      position="top-right"
-      autoClose = {3000}
-      hideProgressBar = {false}
-      newestOnTop = {false}
-      closeOnClick
-      rtl={true}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="light"
-      toastStyle={{fontSize: "16px", fontFamily: "Vazirmatn"}}/>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        toastStyle={{ fontSize: "16px", fontFamily: "Vazirmatn" }}
+      />
 
       <div className={classes.boxContainer}>
         <Marginer direction="vertical" margin="2rem" />
@@ -106,6 +128,7 @@ export function Login(props) {
             <i
               className={classes.boxContainer__formContainer__passWrapper__icon}
               onClick={togglePasswordVisibility}
+              data-testid="toggle"
             >
               {passwordShown ? eye : eye_slash}
             </i>
@@ -137,7 +160,7 @@ export function Login(props) {
           <a
             className={classes.boxContainer__boldLink}
             href="#"
-            onClick={switchToSignup}
+            // onClick={switchToSignup}
           >
             ثبت‌نام کنید
           </a>
