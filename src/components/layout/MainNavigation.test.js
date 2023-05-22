@@ -3,7 +3,7 @@ import { render, screen, within } from "@testing-library/react";
 import MainNavigation from "./MainNavigation";
 import { UserContextProvider } from "../../store/UserContext";
 import { MemoryRouter, BrowserRouter as Router } from "react-router-dom";
-// import { userEvent } from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 import user from "@testing-library/user-event";
 
 describe("Main Navigation", () => {
@@ -43,7 +43,8 @@ describe("Main Navigation", () => {
       </UserContextProvider>,
       { wrapper: Router }
     );
-    user.setup();
+    // user.setup();
+    const user = userEvent.setup();
 
     // verify page content for default route
     expect(screen.getByText(/سبکینو/i)).toBeInTheDocument();
