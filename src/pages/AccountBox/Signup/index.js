@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 import { Marginer } from "../../../components/marginer";
 import { AccountContext } from "../accountContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +17,32 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 
 export function Signup(props) {
-  const { switchToSignin } = useContext(AccountContext);
+  // const { switchToSignin } = useContext(AccountContext);
+  const notifySuccess = (message) => {
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+  const notifyError = (msg) => {
+    toast.error(msg, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -40,6 +67,18 @@ export function Signup(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const emailRegex = new RegExp(
+      /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/,
+      "gm"
+    );
+    if (!emailRegex.test(formData.email)) {
+      notifyError("لطفا یک ایمیل صحیح وارد کنید");
+      return;
+    }
+    if (!formData.phoneNumber.startsWith("09")) {
+      notifyError("لطفا شماره تلفن صحیح وارد کنید");
+      return;
+    }
     console.log(formData);
     // console.log("before axios");
     axiosInstance
@@ -51,6 +90,7 @@ export function Signup(props) {
       })
       .then((res) => {
         if (res.status === 200) {
+          notifySuccess();
           login(
             res.data.type,
             res.data.username,
@@ -63,6 +103,7 @@ export function Signup(props) {
           localStorage.setItem("refresh_token", res.data.refresh);
           axiosInstance.defaults.headers["Authorization"] =
             "Bearer " + localStorage.getItem("access_token");
+
           navigate(-1);
           // history.push("/login");
           // console.log("axios");
@@ -74,6 +115,19 @@ export function Signup(props) {
 
   return (
     <div className={classes.boxContainer}>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        toastStyle={{ fontSize: "16px", fontFamily: "Vazirmatn" }}
+      />
       <form className={classes.boxContainer__formContainer}>
         <input
           className={classes.boxContainer__formContainer__input}
@@ -111,6 +165,7 @@ export function Signup(props) {
           <i
             className={classes.boxContainer__formContainer__passWrapper__icon}
             onClick={togglePasswordVisibility}
+            data-testid="pass-icon"
           >
             {passwordShown ? eye : eye_slash}
           </i>
@@ -143,7 +198,7 @@ export function Signup(props) {
         <a
           className={classes.boxContainer__boldLink}
           href="#"
-          onClick={switchToSignin}
+          // onClick={switchToSignin}
         >
           وارد شوید
         </a>
