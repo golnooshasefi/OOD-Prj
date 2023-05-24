@@ -112,7 +112,7 @@ function AddProduct() {
               <label className={classes.form__label}>قد محصول</label>
               <input
                 type="number"
-                placeholder="قد"
+                placeholder="قد محصول"
                 {...register("product_height", {
                   required: true,
                 })}
@@ -227,6 +227,7 @@ function AddProduct() {
                 <i class="fa-regular fa-file-image"></i>
               </label>
               <input
+                placeholder="تصویر محصول"
                 type="text"
                 {...register("product_image", {
                   required: true,
