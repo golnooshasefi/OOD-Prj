@@ -12,8 +12,8 @@ const override = `
 `;
 
 function Orders() {
-  let [loading, setLoading] = useState(true);
-  let [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     axiosInstance.get(`/accounts/show_order_to_shop/`).then((res) => {
@@ -25,41 +25,39 @@ function Orders() {
     });
   }, []);
 
-  // const { user } = useContext(UserContext);
-  // const navigate = useNavigate();
-  // useLayoutEffect(() => {
-  //   console.log(!user.auth || (!user.auth && user.type !== "user"));
-  //   if (!user.auth || (!user.auth && user.type !== "seller")) {
-  //     console.log("sellerrrrr2");
-  //     navigate("/404");
-  //   }
-  // }, [user.auth, user.type, navigate]);
-
   return (
-    <div className={classes.container}>
-      {/* <h2 className={classes.header}>سفارش‌ها</h2> */}
-      <div className={classes.container__headerContainer}>
-        <div className={classes.container__headerContainer__header}>
-          <span className={classes.container__headerContainer__text}>
-            سفارش‌ها
-          </span>
+    <>
+      <div className={classes.container}>
+        {/* <h2 className={classes.header}>سفارش‌ها</h2> */}
+        <div className={classes.container__headerContainer}>
+          <div className={classes.container__headerContainer__header}>
+            <span className={classes.container__headerContainer__text}>
+              سفارش‌ها
+            </span>
+          </div>
         </div>
-      </div>
-      <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
-      {!loading && (
-        <div className={classes.container__orderItems}>
-          {orders.map((element) => (
-            <OrderItem
-              name={element.product_name}
-              price={element.product_price}
-              img={element.upload}
-              size={element.product_size}
-              color={element.product_color}
+        {!loading && (
+          <div className={classes.container__orderItems}>
+            {orders.map((element) => (
+              <OrderItem
+                name={element.product_name}
+                price={element.product_price}
+                img={element.upload}
+                size={element.product_size}
+                color={element.product_color}
+              />
+            ))}
+            <BeatLoader
+              data-testid="loader"
+              color="#6667ab"
+              loading={loading}
+              css={override}
+              size={30}
             />
-          ))}
-        </div>
-      )}
-    </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 export default Orders;

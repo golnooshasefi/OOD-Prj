@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://mahlashams.pythonanywhere.com/";
+const baseUrl = "http://mahlashamsabadi.pythonanywhere.com/";
 
 const hasAuthorization =
   localStorage.getItem("access_token") !== null &&
