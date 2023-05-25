@@ -2,7 +2,7 @@ import Footer from "../../components/layout/Footer";
 import MainNavigation from "../../components/layout/MainNavigation";
 import Button from "../../components/shared/Button";
 import classes from "./Product.module.scss";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import axiosInstance from "./../../axios";
 
@@ -38,15 +38,12 @@ const override = `
 `;
 
 function Product() {
-  let [loading, setLoading] = useState(true);
-  // let [isFavorite, setFavorite] = useState
+  const [loading, setLoading] = useState(true);
   const { productId } = useParams();
   const [product, setProduct] = useState([]);
   const [similar, setSimilar] = useState([]);
   console.log(similar);
   console.log("shop id" + product.shop);
-
-  const navigate = useNavigate();
 
   const Stars = {
     size: 25,
@@ -168,236 +165,267 @@ function Product() {
     <>
       <MainNavigation />
       <div className={classes.container}>
-        <SyncLoader
-          color="#6667ab"
-          loading={loading}
-          css={override}
-          size={15}
-          margin={2}
-        />
         {!loading && (
-          <section className={classes.Product}>
-            <div className={classes.Product__imgBox}>
-              <img
-                className={classes.Product__imgBox__img}
-                src={product.product_image}
-                alt={product.product_name}
-              ></img>
-              {!product.is_favorite && (
-                <span
-                  className={classes.Product__imgBox__regular}
-                  onClick={favoriteHandler}
-                >
-                  {heart}
-                </span>
-              )}
-              {product.is_favorite && (
-                <span
-                  onClick={favoriteHandler}
-                  className={classes.Product__imgBox__solid}
-                >
-                  {heartSolid}
-                </span>
-              )}
-            </div>
-            <div className={classes.Product__descriptionBox}>
-              <span className={classes.Product__descriptionBox__name}>
-                {product.product_name}
-              </span>
-              {/* <div className={classes.Product__descriptionBox__starBox}>
-                <ReactStars {...Stars} />
-              </div> */}
+          <>
+            <SyncLoader
+              color="#6667ab"
+              loading={loading}
+              css={override}
+              size={15}
+              margin={2}
+              data-testid="loader"
+            />
 
-              <span className={classes.Product__descriptionBox__spec}>
-                {"مشخصات"}
-              </span>
-              <div className={classes.Product__descriptionBox__specBoxFlex}>
-                <div className={classes.Product__descriptionBox__specBox}>
+            <section className={classes.Product}>
+              <div className={classes.Product__imgBox}>
+                <img
+                  className={classes.Product__imgBox__img}
+                  src={product.product_image}
+                  alt={product.product_name}
+                ></img>
+                {!product.is_favorite && (
                   <span
-                    className={classes.Product__descriptionBox__specBox__icon}
+                    className={classes.Product__imgBox__regular}
+                    onClick={favoriteHandler}
                   >
-                    {tag}
+                    {heart}
                   </span>
+                )}
+                {product.is_favorite && (
                   <span
-                    className={
-                      classes.Product__descriptionBox__specBox__property
-                    }
+                    onClick={favoriteHandler}
+                    className={classes.Product__imgBox__solid}
                   >
-                    {"اندازه:"}
-                  </span>
-                  <span
-                    className={classes.Product__descriptionBox__specBox__value}
-                  >
-                    {product.product_size}
-                  </span>
-                </div>
-
-                <div className={classes.Product__descriptionBox__specBox}>
-                  <span
-                    className={classes.Product__descriptionBox__specBox__icon}
-                  >
-                    {tag}
-                  </span>
-                  <span
-                    className={
-                      classes.Product__descriptionBox__specBox__property
-                    }
-                  >
-                    {"رنگ:"}
-                  </span>
-                  <span
-                    className={classes.Product__descriptionBox__specBox__value}
-                  >
-                    {product.product_color}
-                  </span>
-                </div>
-
-                <div className={classes.Product__descriptionBox__specBox}>
-                  <span
-                    className={classes.Product__descriptionBox__specBox__icon}
-                  >
-                    {tag}
-                  </span>
-                  <span
-                    className={
-                      classes.Product__descriptionBox__specBox__property
-                    }
-                  >
-                    {"قد:"}
-                  </span>
-                  <span
-                    className={classes.Product__descriptionBox__specBox__value}
-                  >
-                    {product.product_height}
-                  </span>
-                </div>
-
-                <div className={classes.Product__descriptionBox__specBox}>
-                  <span
-                    className={classes.Product__descriptionBox__specBox__icon}
-                  >
-                    {tag}
-                  </span>
-                  <span
-                    className={
-                      classes.Product__descriptionBox__specBox__property
-                    }
-                  >
-                    {"جنس:"}
-                  </span>
-                  <span
-                    className={classes.Product__descriptionBox__specBox__value}
-                  >
-                    {product.product_material}
-                  </span>
-                </div>
-
-                <div className={classes.Product__descriptionBox__specBox}>
-                  <span
-                    className={classes.Product__descriptionBox__specBox__icon}
-                  >
-                    {tag}
-                  </span>
-                  <span
-                    className={
-                      classes.Product__descriptionBox__specBox__property
-                    }
-                  >
-                    {"طرح:"}
-                  </span>
-                  <span
-                    className={classes.Product__descriptionBox__specBox__value}
-                  >
-                    {product.product_design}
-                  </span>
-                </div>
-
-                <div className={classes.Product__descriptionBox__specBox}>
-                  <span
-                    className={classes.Product__descriptionBox__specBox__icon}
-                  >
-                    {tag}
-                  </span>
-                  <span
-                    className={
-                      classes.Product__descriptionBox__specBox__property
-                    }
-                  >
-                    {"کشور تولید کننده:"}
-                  </span>
-                  <span
-                    className={classes.Product__descriptionBox__specBox__value}
-                  >
-                    {product.product_country}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className={classes.Product__sellerBox}>
-              <span className={classes.Product__sellerBox__text}>فروشنده</span>
-              <div className={classes.Product__sellerBox__nameBox}>
-                <span
-                  className={classes.Product__sellerBox__nameBox__sellerIcon}
-                >
-                  {shop}
-                </span>
-                {/* <Link to={`/shop-page/${product.shop}`}> */}
-                <span
-                  className={classes.Product__sellerBox__nameBox__sellerName}
-                >
-                  بزرگ
-                </span>
-                {/* </Link> */}
-              </div>
-              <div className={classes.Product__sellerBox__featureBox}>
-                <span className={classes.Product__sellerBox__featureBox__icon}>
-                  {shield}
-                </span>
-                <span className={classes.Product__sellerBox__featureBox__text}>
-                  گارانتی اصالت و سلامت فیزیکی کالا
-                </span>
-              </div>
-              <div className={classes.Product__sellerBox__featureBox}>
-                <span className={classes.Product__sellerBox__featureBox__icon}>
-                  {check}
-                </span>
-                <span className={classes.Product__sellerBox__featureBox__text}>
-                  {product.inventory === 0 ? "ناموجود" : "موجود در انبار"}
-                </span>
-              </div>
-              <div className={classes.Product__sellerBox__featureBox}>
-                <span className={classes.Product__sellerBox__featureBox__icon}>
-                  {money}
-                </span>
-                <span className={classes.Product__sellerBox__featureBox__text}>
-                  {digitsEnToFa(addCommas(product.product_price))} تومان
-                </span>
-              </div>
-              <div className={classes.Product__sellerBox__featureBox}>
-                {product.product_off_percent !== 0 && (
-                  <span className={classes.Product__sellerBox__featureBox__off}>
-                    {digitsEnToFa(addCommas(product.product_off_percent))}
+                    {heartSolid}
                   </span>
                 )}
               </div>
-              <Button
-                color="purple"
-                className={
-                  product.inventory === 0
-                    ? classes["Product__sellerBox__btn--disable"]
-                    : classes["Product__sellerBox__btn"]
-                }
-                isDisable={product.inventory === 0}
-                onClickHandler={addProductHandler}
-              >
-                {product.inventory === 0
-                  ? "ناموجود"
-                  : !product.is_in_cart
-                  ? "افزودن به سبد"
-                  : " حذف از سبد"}
-              </Button>
-            </div>
-            {/* <div className={classes.Product__similarBox}>
+              <div className={classes.Product__descriptionBox}>
+                <span className={classes.Product__descriptionBox__name}>
+                  {product.product_name}
+                </span>
+                {/* <div className={classes.Product__descriptionBox__starBox}>
+                <ReactStars {...Stars} />
+              </div> */}
+
+                <span className={classes.Product__descriptionBox__spec}>
+                  {"مشخصات"}
+                </span>
+                <div className={classes.Product__descriptionBox__specBoxFlex}>
+                  <div className={classes.Product__descriptionBox__specBox}>
+                    <span
+                      className={classes.Product__descriptionBox__specBox__icon}
+                    >
+                      {tag}
+                    </span>
+                    <span
+                      className={
+                        classes.Product__descriptionBox__specBox__property
+                      }
+                    >
+                      {"اندازه:"}
+                    </span>
+                    <span
+                      className={
+                        classes.Product__descriptionBox__specBox__value
+                      }
+                    >
+                      {product.product_size}
+                    </span>
+                  </div>
+
+                  <div className={classes.Product__descriptionBox__specBox}>
+                    <span
+                      className={classes.Product__descriptionBox__specBox__icon}
+                    >
+                      {tag}
+                    </span>
+                    <span
+                      className={
+                        classes.Product__descriptionBox__specBox__property
+                      }
+                    >
+                      {"رنگ:"}
+                    </span>
+                    <span
+                      className={
+                        classes.Product__descriptionBox__specBox__value
+                      }
+                    >
+                      {product.product_color}
+                    </span>
+                  </div>
+
+                  <div className={classes.Product__descriptionBox__specBox}>
+                    <span
+                      className={classes.Product__descriptionBox__specBox__icon}
+                    >
+                      {tag}
+                    </span>
+                    <span
+                      className={
+                        classes.Product__descriptionBox__specBox__property
+                      }
+                    >
+                      {"قد:"}
+                    </span>
+                    <span
+                      className={
+                        classes.Product__descriptionBox__specBox__value
+                      }
+                    >
+                      {product.product_height}
+                    </span>
+                  </div>
+
+                  <div className={classes.Product__descriptionBox__specBox}>
+                    <span
+                      className={classes.Product__descriptionBox__specBox__icon}
+                    >
+                      {tag}
+                    </span>
+                    <span
+                      className={
+                        classes.Product__descriptionBox__specBox__property
+                      }
+                    >
+                      {"جنس:"}
+                    </span>
+                    <span
+                      className={
+                        classes.Product__descriptionBox__specBox__value
+                      }
+                    >
+                      {product.product_material}
+                    </span>
+                  </div>
+
+                  <div className={classes.Product__descriptionBox__specBox}>
+                    <span
+                      className={classes.Product__descriptionBox__specBox__icon}
+                    >
+                      {tag}
+                    </span>
+                    <span
+                      className={
+                        classes.Product__descriptionBox__specBox__property
+                      }
+                    >
+                      {"طرح:"}
+                    </span>
+                    <span
+                      className={
+                        classes.Product__descriptionBox__specBox__value
+                      }
+                    >
+                      {product.product_design}
+                    </span>
+                  </div>
+
+                  <div className={classes.Product__descriptionBox__specBox}>
+                    <span
+                      className={classes.Product__descriptionBox__specBox__icon}
+                    >
+                      {tag}
+                    </span>
+                    <span
+                      className={
+                        classes.Product__descriptionBox__specBox__property
+                      }
+                    >
+                      {"کشور تولید کننده:"}
+                    </span>
+                    <span
+                      className={
+                        classes.Product__descriptionBox__specBox__value
+                      }
+                    >
+                      {product.product_country}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className={classes.Product__sellerBox}>
+                <span className={classes.Product__sellerBox__text}>
+                  فروشنده
+                </span>
+                <div className={classes.Product__sellerBox__nameBox}>
+                  <span
+                    className={classes.Product__sellerBox__nameBox__sellerIcon}
+                  >
+                    {shop}
+                  </span>
+                  {/* <Link to={`/shop-page/${product.shop}`}> */}
+                  <span
+                    className={classes.Product__sellerBox__nameBox__sellerName}
+                  >
+                    بزرگ
+                  </span>
+                  {/* </Link> */}
+                </div>
+                <div className={classes.Product__sellerBox__featureBox}>
+                  <span
+                    className={classes.Product__sellerBox__featureBox__icon}
+                  >
+                    {shield}
+                  </span>
+                  <span
+                    className={classes.Product__sellerBox__featureBox__text}
+                  >
+                    گارانتی اصالت و سلامت فیزیکی کالا
+                  </span>
+                </div>
+                <div className={classes.Product__sellerBox__featureBox}>
+                  <span
+                    className={classes.Product__sellerBox__featureBox__icon}
+                  >
+                    {check}
+                  </span>
+                  <span
+                    className={classes.Product__sellerBox__featureBox__text}
+                  >
+                    {product.inventory === 0 ? "ناموجود" : "موجود در انبار"}
+                  </span>
+                </div>
+                <div className={classes.Product__sellerBox__featureBox}>
+                  <span
+                    className={classes.Product__sellerBox__featureBox__icon}
+                  >
+                    {money}
+                  </span>
+                  <span
+                    className={classes.Product__sellerBox__featureBox__text}
+                  >
+                    {digitsEnToFa(addCommas(product.product_price))} تومان
+                  </span>
+                </div>
+                <div className={classes.Product__sellerBox__featureBox}>
+                  {product.product_off_percent !== 0 && (
+                    <span
+                      className={classes.Product__sellerBox__featureBox__off}
+                    >
+                      {digitsEnToFa(addCommas(product.product_off_percent))}
+                    </span>
+                  )}
+                </div>
+                <Button
+                  color="purple"
+                  className={
+                    product.inventory === 0
+                      ? classes["Product__sellerBox__btn--disable"]
+                      : classes["Product__sellerBox__btn"]
+                  }
+                  isDisable={product.inventory === 0}
+                  onClickHandler={addProductHandler}
+                >
+                  {product.inventory === 0
+                    ? "ناموجود"
+                    : !product.is_in_cart
+                    ? "افزودن به سبد"
+                    : " حذف از سبد"}
+                </Button>
+              </div>
+              {/* <div className={classes.Product__similarBox}>
               <span className={classes.Product__similarBox__text}>
                 محصولات مشابه
               </span>
@@ -413,7 +441,8 @@ function Product() {
                 
               </div>
             </div> */}
-          </section>
+            </section>
+          </>
         )}
       </div>
       <Footer />
