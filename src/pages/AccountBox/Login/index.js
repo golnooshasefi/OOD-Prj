@@ -49,9 +49,6 @@ export function Login(props) {
         password: formData.password,
       })
       .then((res) => {
-        if (res.status >= 200 && res.status < 300) {
-          toast("ورود با موفقیت انجام شد!");
-        }
         if (res.status === 200) {
           login(
             res.data.type,
