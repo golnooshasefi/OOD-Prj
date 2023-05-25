@@ -50,42 +50,23 @@ export function Login(props) {
       })
       .then((res) => {
         if (res.status >= 200 && res.status < 300) {
-          // notifySuccess();
           toast("ورود با موفقیت انجام شد!");
-
-          setTimeout(() => {
-            login(
-              res.data.type,
-              res.data.username,
-              res.data.user_phone_number,
-              res.data.email,
-              res.data.balance,
-              res.data.score
-            );
-            localStorage.setItem("token", res.data.token);
-            axiosInstance.defaults.headers["Authorization"] =
-              "Token " + localStorage.getItem("token");
-          }, 3000);
         }
-        // if (res.status === 200) {
-        //   login(
-        //     res.data.type,
-        //     res.data.username,
-        //     res.data.user_phone_number,
-        //     res.data.email,
-        //     res.data.balance,
-        //     res.data.score
-        //   );
-        //   localStorage.setItem("access_token", res.data.access);
-        //   localStorage.setItem("refresh_token", res.data.refresh);
-        //   axiosInstance.defaults.headers["Authorization"] =
-        //     "Bearer " + localStorage.getItem("access_token");
-        //   toast("ورود با موفقیت انجام شد!");
-        //   const timer = setTimeout(function () {
-        //     navigate(-1);
-        //   }, 5000);
-        //   clearTimeout(timer);
-        // }
+        if (res.status === 200) {
+          login(
+            res.data.type,
+            res.data.username,
+            res.data.user_phone_number,
+            res.data.email,
+            res.data.balance,
+            res.data.score
+          );
+          localStorage.setItem("access_token", res.data.access);
+          localStorage.setItem("refresh_token", res.data.refresh);
+          axiosInstance.defaults.headers["Authorization"] =
+            "Bearer " + localStorage.getItem("access_token");
+          navigate(-1);
+        }
       });
   };
 
