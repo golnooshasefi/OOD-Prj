@@ -109,7 +109,7 @@ export function Login(props) {
             <i
               className={classes.boxContainer__formContainer__passWrapper__icon}
               onClick={togglePasswordVisibility}
-              data-testid="toggle"
+              data-testid="pass-icon"
             >
               {passwordShown ? eye : eye_slash}
             </i>

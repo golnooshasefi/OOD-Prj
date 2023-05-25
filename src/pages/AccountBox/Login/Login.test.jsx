@@ -3,17 +3,25 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { Login } from ".";
-import { MemoryRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom";
 import { server } from "../../../mocks/server";
 import { UserContextProvider } from "../../../store/UserContext";
+import { toast } from "react-toastify";
+
+jest.mock("react-toastify", () => ({
+  ToastContainer: jest.fn(),
+  toast: {
+    success: jest.fn(),
+  },
+}));
 
 describe("Login Component", () => {
   test("renders Login form", () => {
     render(
-      <MemoryRouter>
+      <Router>
         <Login />
-      </MemoryRouter>
+      </Router>
     );
     const emailInput = screen.getByPlaceholderText("ایمیل");
     const passwordInput = screen.getByPlaceholderText("رمز عبور");
@@ -26,12 +34,12 @@ describe("Login Component", () => {
 
   test("Login should rendres form with password visibility toggle", () => {
     render(
-      <MemoryRouter>
+      <Router>
         <Login />
-      </MemoryRouter>
+      </Router>
     );
     const passwordElement = screen.getByPlaceholderText("رمز عبور");
-    const toggleButton = screen.getByTestId("toggle");
+    const toggleButton = screen.getByTestId("pass-icon");
     fireEvent.click(toggleButton);
     expect(passwordElement.type).toBe("text");
     fireEvent.click(toggleButton);
@@ -40,50 +48,61 @@ describe("Login Component", () => {
 
   test("Sumbit button should be diabeled when inputs are empty", () => {
     render(
-      <MemoryRouter>
+      <Router>
         <Login />
-      </MemoryRouter>
+      </Router>
     );
 
     const submitButton = screen.getByRole("button", { name: "ورود" });
-    expect(submitButton.disabled).toBe(true);
+    expect(submitButton).toBeDisabled();
   });
 
   test("Submit button should be enabled when inputs are filled", () => {
     render(
-      <MemoryRouter>
+      <Router>
         <Login />
-      </MemoryRouter>
+      </Router>
     );
 
-    const emailInput = screen.getByPlaceholderText("ایمیل");
-    const passwordInput = screen.getByPlaceholderText("رمز عبور");
+    const emailElement = screen.getByPlaceholderText("ایمیل");
+    const passwordElement = screen.getByPlaceholderText("رمز عبور");
     const submitButton = screen.getByRole("button", { name: "ورود" });
 
-    fireEvent.change(emailInput, { target: { value: "maryam@gmail.com" } });
-    fireEvent.change(passwordInput, { target: { value: "ABCD" } });
+    fireEvent.change(emailElement, { target: { value: "maryam@gmail.com" } });
+    fireEvent.change(passwordElement, { target: { value: "ABCD" } });
 
-    expect(submitButton.disabled).toBe(false);
+    expect(submitButton).not.toBeDisabled();
   });
+
+  // test("submits the login form with valid credentials", async () => {
+  //   const successMessage = "ثبت نام با موفقیت انجام شد";
+  //   toast.success.mockImplementation(() => {
+  //     render(
+  //       <>
+  //         <div>{successMessage}</div>
+  //       </>
+  //     );
+  //   });
+  //   render(<Login />);
+  //   const emailInput = screen.getByPlaceholderText("ایمیل");
+  //   const passwordInput = screen.getByPlaceholderText("رمز عبور");
+  //   const submitButton = screen.getByRole("button", { name: "ورود" });
+
+  //   fireEvent.change(emailInput, { target: { value: "maryam@gmail.com" } });
+  //   fireEvent.change(passwordInput, { target: { value: "ABCD" } });
+  //   fireEvent.click(submitButton);
+  //   expect(screen.getByText(successMessage)).toBeInTheDocument();
+  //   // render(
+  //   //   <Router>
+  //   //     <Login />
+  //   //   </Router>
+  //   // );
+
+  //   expect(screen.getByText(successMessage)).toBeInTheDocument();
+  //   // const successToast = screen.findByRole("alert");
+  //   // expect(successToast).toBeInTheDocument();
+  // });
 });
-
-// test("submits the login form with valid credentials", async () => {
-//   render(
-//     <MemoryRouter>
-//       <Login />
-//     </MemoryRouter>
-//   );
-//   const emailInput = screen.getByPlaceholderText("ایمیل");
-//   const passwordInput = screen.getByPlaceholderText("رمز عبور");
-//   const submitButton = screen.getByRole("button", { name: "ورود" });
-
-//   fireEvent.change(emailInput, { target: { value: "maryam@gmail.com" } });
-//   fireEvent.change(passwordInput, { target: { value: "ABCD" } });
-//   fireEvent.click(submitButton);
-
-//   const successToast = await screen.findByText("ورود با موفقیت انجام شد!");
-//   expect(successToast).toBeInTheDocument();
-// });
 
 //   test("submits the login form with invalid credentials and display error", async () => {
 //     render(
