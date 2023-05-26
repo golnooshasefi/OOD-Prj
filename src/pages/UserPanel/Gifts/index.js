@@ -22,17 +22,27 @@ const override = `
 
 function Gifts() {
   console.log("hello");
-  const { user, updateScore } = useContext(UserContext);
+  // const { user, updateScore } = useContext(UserContext);
 
-  let [loading, setLoading] = useState(true);
-  // let [score, setScore] = useState(0);
+  // const [loading, setLoading] = useState(true);
   const [gifts, setGifts] = useState([]);
+
+  console.log("loading state");
+  // console.log(loading);
+
+  console.log("gifts state");
+  console.log(gifts);
+
+  // console.log("user state");
+  // console.log(user);
 
   useEffect(() => {
     axiosInstance.get(`/gifts/show_gift/`).then((res) => {
       if (res.status === 200) {
         setGifts(res.data);
-        setLoading(false);
+        // setLoading(false);
+      } else if (res.status === 204) {
+        // setLoading(false);
       }
     });
   }, []);
@@ -46,14 +56,26 @@ function Gifts() {
           </span>
         </div>
       </div>
-      <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
-      {!loading && (
+      <div data-testid="loader" className={classes.container__loader}>
+        {/* {!loading && gifts.length === 0 && (
+        <span>جایزه‌ای برای نمایش وجود ندارد.</span>
+      )} */}
+        {/* <BeatLoader
+          // data-testid="loader"
+          color="#6667ab"
+          loading={loading}
+          css={override}
+          size={30}
+          className={classes.beatLoader}
+        /> */}
+      </div>
+      {gifts.length !== 0 && (
         <>
           <div className={classes.container__score}>
             <span className={classes["container__score--text"]}>
               امتیاز شما:{" "}
             </span>
-            <span> {digitsEnToFa(addCommas(user.score))}</span>
+            {/* <span> {digitsEnToFa(addCommas(user.score))}</span> */}
           </div>
 
           {gifts.map((element) => (

@@ -32,25 +32,25 @@ function ProductsList() {
           setProducts(res.data);
         }
       });
-    } else if (url === "survey1") {
-      console.log("survey1 run");
-      axiosInstance.get(`accounts/user_styles/`).then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          console.log(res.data);
-          setProducts(res.data);
-          setLoading(false);
-        }
-      });
-    } else if (url === "survey2") {
-      axiosInstance.post(`questions/more_questions/`).then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          console.log(res.data);
-          setProducts(res.data);
-          setLoading(false);
-        }
-      });
+      // } else if (url === "survey1") {
+      //   console.log("survey1 run");
+      //   axiosInstance.get(`accounts/user_styles/`).then((res) => {
+      //     if (res.status === 200) {
+      //       console.log(res);
+      //       console.log(res.data);
+      //       setProducts(res.data);
+      //       setLoading(false);
+      //     }
+      //   });
+      // } else if (url === "survey2") {
+      //   axiosInstance.post(`questions/more_questions/`).then((res) => {
+      //     if (res.status === 200) {
+      //       console.log(res);
+      //       console.log(res.data);
+      //       setProducts(res.data);
+      //       setLoading(false);
+      //     }
+      //   });
     }
   }, []);
   return (

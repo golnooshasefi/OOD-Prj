@@ -90,7 +90,7 @@ export function Signup(props) {
       })
       .then((res) => {
         if (res.status === 200) {
-          notifySuccess();
+          notifySuccess("ثبت نام با موفقیت انجام شد.");
           login(
             res.data.type,
             res.data.username,

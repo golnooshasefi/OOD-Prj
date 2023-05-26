@@ -2,10 +2,8 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import Orders from ".";
 import axiosInstance from "../../../axios";
-import React, { useContext, useState } from "react";
-import UserContext from "../../../store/UserContext";
+import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { BeatLoader } from "react-spinners";
 
 jest.mock("react", () => ({
   ...jest.requireActual("react"),
@@ -67,19 +65,7 @@ describe("Seller Orders Component", () => {
     expect(spanElement).toBeInTheDocument();
   });
 
-  // test("renders loading spinner when loading is true", () => {
-  //   useState.mockImplementationOnce(() => [true, mockedUseState]);
-
-  //   render(
-  //     <>
-  //       <Orders />
-  //     </>
-  //   );
-  //   const spinner = screen.getByTestId("loader");
-  //   expect(spinner).toBeInTheDocument();
-  // });
-
-  test("OrderItem should render whrn loading is false", async () => {
+  test("OrderItem should render when loading is false", async () => {
     axiosInstance.get.mockResolvedValue({
       status: 200,
       data: {
@@ -92,5 +78,14 @@ describe("Seller Orders Component", () => {
 
     expect(screen.getByText("شلوار آبی")).toBeInTheDocument();
     expect(screen.getByText("تیشرت قرمز")).toBeInTheDocument();
+  });
+
+  test("Display message when request is 404 and there is no orders", async () => {
+    axiosInstance.get.mockRejectedValue({
+      status: 404,
+    });
+    useState.mockImplementationOnce(() => [false, mockedUseState]);
+    render(<Orders />);
+    expect(screen.getByText("سفارشی ثبت نشده است")).toBeInTheDocument();
   });
 });

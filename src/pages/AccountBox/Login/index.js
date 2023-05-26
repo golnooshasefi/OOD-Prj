@@ -17,7 +17,7 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 
 export function Login(props) {
-  // const { switchToSignup } = useContext(AccountContext);
+  const { switchToSignup } = useContext(AccountContext);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -160,7 +160,7 @@ export function Login(props) {
           <a
             className={classes.boxContainer__boldLink}
             href="#"
-            // onClick={switchToSignup}
+            onClick={switchToSignup}
           >
             ثبت‌نام کنید
           </a>

@@ -16,13 +16,20 @@ function Orders() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axiosInstance.get(`/accounts/show_order_to_shop/`).then((res) => {
-      if (res.status === 200) {
-        console.log(res);
-        setOrders(res.data);
-        setLoading(false);
-      }
-    });
+    axiosInstance
+      .get(`/accounts/show_order_to_shop/`)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res);
+          setOrders(res.data);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (err.status === 404) {
+          setLoading(false);
+        }
+      });
   }, []);
 
   return (
@@ -36,6 +43,8 @@ function Orders() {
             </span>
           </div>
         </div>
+
+        {!loading && orders.length === 0 && <span>سفارشی ثبت نشده است</span>}
         {!loading && (
           <div className={classes.container__orderItems}>
             {orders.map((element) => (

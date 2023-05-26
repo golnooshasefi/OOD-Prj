@@ -5,7 +5,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom";
 import { setupServer } from "msw/node";
 import { rest } from "msw";
-import { user } from "@testing-library/user-event";
 
 jest.useFakeTimers();
 
@@ -20,7 +19,29 @@ jest.mock("react-router-dom", () => ({
   // 4- Mock the required hook
   useNavigate: () => mockedUsedNavigate,
 }));
+const server = setupServer(
+  rest.post("/auth/register/", (req, res, ctx) => {
+    const { name, email } = req.body;
 
+    if (name === "golnoosh" && email === "golnoosh@gmail.com") {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          username: "golnoosh",
+          email: "golnoosh@gmail.com",
+          user_phone_number: "09073913392",
+          balance: 0.0,
+          score: 0,
+        })
+      );
+    } else {
+      return res(ctx.status(400));
+    }
+  })
+);
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 describe("Signup", () => {
   test("Sign up should renders correctly", () => {
     render(
