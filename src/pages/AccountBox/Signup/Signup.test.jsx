@@ -7,8 +7,6 @@ import { setupServer } from "msw/node";
 import { rest } from "msw";
 import { user } from "@testing-library/user-event";
 
-jest.useFakeTimers();
-
 // 1- Mocking the hook using jest.fn
 const mockedUsedNavigate = jest.fn();
 

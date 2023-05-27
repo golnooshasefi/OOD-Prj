@@ -57,7 +57,6 @@ export function Signup(props) {
   const { login } = useContext(UserContext);
   const [formData, updateFormData] = useState(initialFormData);
   const handleChange = (e) => {
-    // console.log(e.target.name);
     updateFormData({
       ...formData,
       // Trimming any whitespace
@@ -79,8 +78,6 @@ export function Signup(props) {
       notifyError("لطفا شماره تلفن صحیح وارد کنید");
       return;
     }
-    console.log(formData);
-    // console.log("before axios");
     axiosInstance
       .post(`accounts/register/`, {
         username: formData.fullName,
@@ -105,10 +102,6 @@ export function Signup(props) {
             "Bearer " + localStorage.getItem("access_token");
 
           navigate(-1);
-          // history.push("/login");
-          // console.log("axios");
-          console.log(res);
-          console.log(res.data);
         }
       });
   };

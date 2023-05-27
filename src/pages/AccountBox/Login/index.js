@@ -62,7 +62,7 @@ export function Login(props) {
           localStorage.setItem("refresh_token", res.data.refresh);
           axiosInstance.defaults.headers["Authorization"] =
             "Bearer " + localStorage.getItem("access_token");
-          navigate(-1);
+          navigate("/");
         }
       });
   };

@@ -5,8 +5,22 @@ import classes from "./ForgotPassword.module.scss";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../../store/UserContext";
 import axiosInstance from "../../../axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ForgotPassword() {
+  const notifySuccess = () => {
+    toast.success("لطفا ایمیل خود را چک کنید.", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
   const navigate = useNavigate();
 
   let { user } = useContext(UserContext);
@@ -38,7 +52,8 @@ export default function ForgotPassword() {
         email: formData.email,
       })
       .then((res) => {
-        navigate(-1);
+        notifySuccess();
+        // navigate("/");
       });
     console.log(formData);
   };
@@ -117,7 +132,7 @@ export default function ForgotPassword() {
             className={
               classes.appContainer__boxContainer__innerContainer__boldLink
             }
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/account-box")}
           >
             ورود | ثبت‌نام
           </span>

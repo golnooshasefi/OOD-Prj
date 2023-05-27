@@ -1,13 +1,13 @@
 // import React from "react";
 import React, { useState as useStateMock } from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import ForgotPassword from "./index";
+import ForgotPassword from ".";
 import { MemoryRouter, useNavigate } from "react-router-dom";
 import "@testing-library/jest-dom";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import { UserContextProvider } from "../../../store/UserContext";
 
-// 1- Mocking the hook using jest.fn
 const mockedUsedNavigate = jest.fn();
 
 // 2- Mock the library
@@ -20,7 +20,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 const server = setupServer(
-  rest.post("/auth/reset-password/", (req, res, ctx) => {
+  rest.post("accounts/reset_password/", (req, res, ctx) => {
     return res(ctx.status(200));
   })
 );
@@ -30,76 +30,53 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe("ForgotPassword component", () => {
-  test("renders the component", () => {
+  test("ForgotPAssword should renders correctly", () => {
     render(
       <MemoryRouter>
-        <ForgotPassword />
+        <UserContextProvider>
+          <ForgotPassword />
+        </UserContextProvider>
       </MemoryRouter>
     );
 
     const emailInput = screen.getByPlaceholderText("ایمیل");
-    const resetButton = screen.getByText("بازیابی");
+    const resetButton = screen.getByRole("button", { name: "بازیابی" });
 
     expect(emailInput).toBeInTheDocument();
     expect(resetButton).toBeInTheDocument();
   });
 
-  //   test("displays success toast notification on successful form submission", async () => {
-  //     render(
-  //       <MemoryRouter>
+  // test("Success notification should render on submition click by user", async () => {
+  //   render(
+  //     <MemoryRouter>
+  //       <UserContextProvider>
   //         <ForgotPassword />
-  //       </MemoryRouter>
-  //     );
+  //       </UserContextProvider>
+  //     </MemoryRouter>
+  //   );
 
-  //     const emailInput = screen.getByPlaceholderText("ایمیل");
-  //     fireEvent.change(emailInput, { target: { value: "test@gmail.com" } });
+  //   const emailInput = screen.getByPlaceholderText("ایمیل");
+  //   fireEvent.change(emailInput, { target: { value: "test@gmail.com" } });
 
-  //     const submitButton = screen.getByText("بازیابی");
-  //     fireEvent.click(submitButton);
+  //   const submitBtn = screen.getByText("بازیابی");
+  //   fireEvent.click(submitBtn);
 
-  //     const successToast = await screen.findByText(
-  //       "لطفا ایمیل خود را بررسی کنید"
-  //     );
+  //   const successToast = await screen.findByText("لطفا ایمیل خود را چک کنید.");
 
-  //     expect(successToast).toBeInTheDocument();
-  //   });
+  //   expect(successToast).toBeInTheDocument();
+  // });
 
-  //   test("displays error toast notification on failed form submission", async () => {
-  //     server.use(
-  //       rest.post("/auth/reset-password/", (req, res, ctx) => {
-  //         return res(ctx.status(500));
-  //       })
-  //     );
-
-  //     render(
-  //       <MemoryRouter>
-  //         <ForgotPassword />
-  //       </MemoryRouter>
-  //     );
-
-  //     const emailInput = screen.getByPlaceholderText("ایمیل");
-  //     fireEvent.change(emailInput, { target: { value: "test@gmail.com" } });
-
-  //     const submitButton = screen.getByText("بازیابی");
-  //     fireEvent.click(submitButton);
-
-  //     // screen.debug();
-  //     const errorToast = await screen.findByText(
-  //       "حساب کاربری با ایمیل وارد شده یافت نشد"
-  //     );
-
-  //     expect(errorToast).toBeInTheDocument();
-  //   });
-
-  test("should navigate to the /account-box path on click", () => {
+  test("Should navigate to login/signup on click button", () => {
     render(
       <MemoryRouter>
-        <ForgotPassword />
+        <UserContextProvider>
+          <ForgotPassword />
+        </UserContextProvider>
       </MemoryRouter>
     );
 
-    const spanElement = screen.getByText("ورود | ثبت‌نام");
-    fireEvent.click(spanElement);
+    const buttonElement = screen.getByText("ورود | ثبت‌نام");
+    fireEvent.click(buttonElement);
     expect(mockedUsedNavigate).toHaveBeenCalledWith("/account-box");
   });
 });
