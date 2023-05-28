@@ -48,6 +48,7 @@ function ShoppingList() {
       {loading && (
         <div className={classes.spinner}>
           <PuffLoader
+            data-testid="loader"
             color="#6667ab"
             loading={loading}
             css={override}
