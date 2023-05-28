@@ -17,7 +17,7 @@ const override = `
 
 function ProductsList() {
   const [products, setProducts] = useState([]);
-  let [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
   const url = searchParams.get("product");
   console.log(searchParams.get("product"));

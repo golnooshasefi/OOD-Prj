@@ -86,22 +86,23 @@ export function Signup(props) {
         password: formData.password,
       })
       .then((res) => {
-        if (res.status === 200) {
-          notifySuccess();
-          login(
-            res.data.type,
-            res.data.username,
-            res.data.user_phone_number,
-            res.data.email,
-            res.data.balance,
-            res.data.score
-          );
-          localStorage.setItem("access_token", res.data.access);
-          localStorage.setItem("refresh_token", res.data.refresh);
-          axiosInstance.defaults.headers["Authorization"] =
-            "Bearer " + localStorage.getItem("access_token");
+        if (res.status === 200 || res.status === 202 || res.status === 201) {
+          navigate("/confirm-register");
+          // notifySuccess();
+          // login(
+          //   res.data.type,
+          //   res.data.username,
+          //   res.data.user_phone_number,
+          //   res.data.email,
+          //   res.data.balance,
+          //   res.data.score
+          // );
+          // localStorage.setItem("access_token", res.data.access);
+          // localStorage.setItem("refresh_token", res.data.refresh);
+          // axiosInstance.defaults.headers["Authorization"] =
+          //   "Bearer " + localStorage.getItem("access_token");
 
-          navigate(-1);
+          // navigate(-1);
         }
       });
   };

@@ -17,7 +17,19 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 
 export function Login(props) {
-  // const { switchToSignup } = useContext(AccountContext);
+  const notifyError = (msg) => {
+    toast.error(msg, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+  const { switchToSignup } = useContext(AccountContext);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -63,6 +75,13 @@ export function Login(props) {
           axiosInstance.defaults.headers["Authorization"] =
             "Bearer " + localStorage.getItem("access_token");
           navigate("/");
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 400) {
+          notifyError("اطلاعات وارد شده، اشتباه است.");
+        } else if (err.response.status === 401) {
+          notifyError("کاربری با این اطلاعات وجود ندارد.");
         }
       });
   };
@@ -138,7 +157,7 @@ export function Login(props) {
           <a
             className={classes.boxContainer__boldLink}
             href="#"
-            // onClick={switchToSignup}
+            onClick={switchToSignup}
           >
             ثبت‌نام کنید
           </a>

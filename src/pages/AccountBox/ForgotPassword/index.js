@@ -48,7 +48,7 @@ export default function ForgotPassword() {
     e.preventDefault();
     console.log(formData);
     axiosInstance
-      .post(`accounts/reset_password/`, {
+      .post(`accounts/receive_email_for_recover_password/`, {
         email: formData.email,
       })
       .then((res) => {
@@ -60,6 +60,19 @@ export default function ForgotPassword() {
 
   return (
     <div className={classes.appContainer}>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        toastStyle={{ fontSize: "16px", fontFamily: "Vazirmatn" }}
+      />
       <div className={classes.appContainer__boxContainer}>
         <div className={classes.appContainer__boxContainer__topContainer}>
           <div
