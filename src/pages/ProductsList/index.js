@@ -60,6 +60,7 @@ function ProductsList() {
         <h2 className={classes.Products__header}>محصولات</h2>
         <div className={classes.Products__itemContainer}>
           <DotLoader
+            data-testid="loader"
             color="#6667ab"
             loading={loading}
             css={override}
