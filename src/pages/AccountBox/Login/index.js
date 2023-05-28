@@ -29,7 +29,7 @@ export function Login(props) {
       theme: "light",
     });
   };
-  const { switchToSignup } = useContext(AccountContext);
+  // const { switchToSignup } = useContext(AccountContext);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -157,7 +157,7 @@ export function Login(props) {
           <a
             className={classes.boxContainer__boldLink}
             href="#"
-            onClick={switchToSignup}
+            // onClick={switchToSignup}
           >
             ثبت‌نام کنید
           </a>

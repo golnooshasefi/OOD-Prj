@@ -73,33 +73,4 @@ describe("Seller panel sidebar", () => {
     await user.click(screen.getByText(/اطلاعات حساب کاربری/i));
     expect(screen.getByText(/اطلاعات حساب کاربری/i)).toBeInTheDocument();
   });
-
-  //   test("Report should render on clicking sidebar item", async () => {
-  //     render(
-  //       <Router>
-  //         <UserContextProvider>
-  //           <SellerPanel />
-  //         </UserContextProvider>
-  //       </Router>
-  //     );
-  //     user.setup();
-
-  //     await user.click(screen.getByText(/گزارش کالاها/i));
-  //     expect(screen.getByText(/گزارش موجودی/i)).toBeInTheDocument();
-  //   });
-
-  //   describe("App", () => {
-  it("Reacts to url changes when touching the button", async () => {
-    render(
-      <Router>
-        <UserContextProvider>
-          <SellerPanel />
-        </UserContextProvider>
-      </Router>
-    );
-    await user.click(screen.getByText(/گزارش کالاها/i));
-
-    expect(await screen.findByText(/کزارش موجودی/i)).toBeInTheDocument();
-  });
-  //   });
 });
