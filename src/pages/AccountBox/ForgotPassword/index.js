@@ -34,7 +34,7 @@ export default function ForgotPassword() {
     e.preventDefault();
     console.log(formData);
     axiosInstance
-      .post(`accounts/reset_password/`, {
+      .post(`accounts/receive_email_for_recover_password/`, {
         email: formData.email,
       })
       .then((res) => {

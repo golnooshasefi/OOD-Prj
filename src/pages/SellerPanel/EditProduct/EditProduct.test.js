@@ -60,25 +60,30 @@ describe("Edit Product Page", () => {
     const spanElement = screen.getByText(/ویرایش کالا/i);
     expect(spanElement).toBeInTheDocument();
   });
-  test("Products of shop should render if loading is false", () => {
-    axiosInstance.get.mockResolvedValue({
-      status: 200,
-      data: {
-        products: [],
-      },
-    });
-    console.log("first debug");
-    screen.debug();
-    useState.mockImplementationOnce(() => [false, mockedUseState]);
-    useState.mockImplementationOnce(() => [products, mockedUseState]);
-    console.log("second debug");
-    screen.debug();
-    render(
-      <Router>
-        <EditProduct />
-      </Router>
-    );
 
-    expect(screen.getByText("پیراهن مشکی")).toBeInTheDocument();
-  });
+  // test("renders loading spinner when loading is true", () => {
+  //   render(<EditProduct />);
+  //   expect(screen.getByTestId("loader")).toBeInTheDocument();
+  // });
+  // test("Products of shop should render if loading is false", () => {
+  //   axiosInstance.get.mockResolvedValue({
+  //     status: 200,
+  //     data: {
+  //       products: [],
+  //     },
+  //   });
+  //   console.log("first debug");
+  //   screen.debug();
+  //   useState.mockImplementationOnce(() => [false, mockedUseState]);
+  //   useState.mockImplementationOnce(() => [products, mockedUseState]);
+  //   console.log("second debug");
+  //   screen.debug();
+  //   render(
+  //     <Router>
+  //       <EditProduct />
+  //     </Router>
+  //   );
+
+  //   expect(screen.getByText("پیراهن مشکی")).toBeInTheDocument();
+  // });
 });

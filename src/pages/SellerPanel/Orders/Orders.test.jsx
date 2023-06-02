@@ -65,6 +65,10 @@ describe("Seller Orders Component", () => {
     expect(spanElement).toBeInTheDocument();
   });
 
+  // test("renders loading spinner when loading is true", () => {
+  //   render(<Orders />);
+  //   expect(screen.getByTestId("loader")).toBeInTheDocument();
+  // });
   test("OrderItem should render when loading is false", async () => {
     axiosInstance.get.mockResolvedValue({
       status: 200,

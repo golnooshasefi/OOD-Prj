@@ -54,7 +54,13 @@ function Favorites() {
           </span>
         </div>
       </div>
-      <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
+      <BeatLoader
+        data-testid="loader"
+        color="#6667ab"
+        loading={loading}
+        css={override}
+        size={30}
+      />
       {!loading && (
         <div className={classes.container__favoriteItems}>
           {favorites.map((element) => (

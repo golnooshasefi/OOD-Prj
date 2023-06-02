@@ -66,8 +66,8 @@ describe("ForgotPassword component", () => {
 
   //   test("displays error toast notification on failed form submission", async () => {
   //     server.use(
-  //       rest.post("/auth/reset-password/", (req, res, ctx) => {
-  //         return res(ctx.status(500));
+  //       rest.post("accounts/receive_email_for_recover_password/", (req, res, ctx) => {
+  //         return res(ctx.status(400));
   //       })
   //     );
 

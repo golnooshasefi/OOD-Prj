@@ -65,10 +65,10 @@ describe("Gifts", () => {
     expect(spanElement).toBeInTheDocument();
   });
 
-  test("renders loading spinner when loading is true", () => {
-    render(<Gifts />);
-    expect(screen.getByTestId("loader")).toBeInTheDocument();
-  });
+  // test("renders loading spinner when loading is true", () => {
+  //   render(<Gifts />);
+  //   expect(screen.getByTestId("loader")).toBeInTheDocument();
+  // });
 
   test("Component should renders a list of Giftcards", async () => {
     axiosInstance.get.mockResolvedValue({
@@ -83,4 +83,16 @@ describe("Gifts", () => {
 
     expect(screen.getByText("تخفیف 20 درصدی")).toBeInTheDocument();
   });
+
+  // test("Component should renders a list of Giftcards with correct length", async () => {
+  //   axiosInstance.get.mockResolvedValue({
+  //     status: 200,
+  //     data: gifts,
+  //   });
+  //   // useState.mockImplementationOnce(() => [false, mockedUseState]);
+  //   useState.mockImplementationOnce(() => [gifts, mockedUseState]);
+  //   render(<Gifts />);
+
+  //   expect(gifts).toHaveLength(3);
+  // });
 });

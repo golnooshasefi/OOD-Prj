@@ -36,7 +36,7 @@ describe("Main Navigation", () => {
     expect(loginBtn).toBeInTheDocument();
   });
 
-  test("Correct Navigating in navbar", async () => {
+  test("Correct Navigating in navbar to products page", async () => {
     render(
       <UserContextProvider>
         <MainNavigation />
@@ -51,5 +51,21 @@ describe("Main Navigation", () => {
 
     await user.click(screen.getByText(/محصولات/i));
     expect(screen.getByText(/محصولات/i)).toBeInTheDocument();
+  });
+  test("Correct Navigating in navbar to about us", async () => {
+    render(
+      <UserContextProvider>
+        <MainNavigation />
+      </UserContextProvider>,
+      { wrapper: Router }
+    );
+    // user.setup();
+    const user = userEvent.setup();
+
+    // verify page content for default route
+    expect(screen.getByText(/سبکینو/i)).toBeInTheDocument();
+
+    await user.click(screen.getByText(/درباره ما/i));
+    expect(screen.getByText(/درباره ما/i)).toBeInTheDocument();
   });
 });
