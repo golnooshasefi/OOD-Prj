@@ -10,12 +10,8 @@ import { UserContextProvider } from "../../../store/UserContext";
 
 const mockedUsedNavigate = jest.fn();
 
-// 2- Mock the library
 jest.mock("react-router-dom", () => ({
-  // 3- Import non-mocked library and use other functionalities and hooks
   ...jest.requireActual("react-router-dom"),
-
-  // 4- Mock the required hook
   useNavigate: () => mockedUsedNavigate,
 }));
 

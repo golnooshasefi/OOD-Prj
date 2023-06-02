@@ -41,6 +41,7 @@ describe("Signup", () => {
   });
 
   test("Sign up form's inputs should changed", () => {
+    // arrange
     render(
       <Router>
         <Signup />
@@ -52,11 +53,13 @@ describe("Signup", () => {
     const phoneElement = screen.getByPlaceholderText("شماره موبایل");
     const passwordElement = screen.getByPlaceholderText("رمز عبور");
 
+    // act
     fireEvent.change(nameElement, { target: { value: "Golnoosh" } });
     fireEvent.change(emailElement, { target: { value: "golnoosh@gmail.com" } });
     fireEvent.change(phoneElement, { target: { value: "09237130740" } });
     fireEvent.change(passwordElement, { target: { value: "1234" } });
 
+    // assert
     expect(nameElement.value).toBe("Golnoosh");
     expect(emailElement.value).toBe("golnoosh@gmail.com");
     expect(phoneElement.value).toBe("09237130740");

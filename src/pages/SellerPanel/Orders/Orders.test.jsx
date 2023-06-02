@@ -79,7 +79,7 @@ describe("Seller Orders Component", () => {
   //   expect(spinner).toBeInTheDocument();
   // });
 
-  test("OrderItem should render whrn loading is false", async () => {
+  test("OrderItem should render when loading is false", async () => {
     axiosInstance.get.mockResolvedValue({
       status: 200,
       data: {
