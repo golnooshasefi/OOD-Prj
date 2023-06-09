@@ -62,7 +62,7 @@ function MainNavigation() {
 
         <nav className={classes.Navigation}>
           <ul className={classes["Navigation--list"]}>
-            <Link to="/products-list" className={classes.link}>
+            <Link to="/products-list/" className={classes.link}>
               <li className={classes["Navigation--item"]}>محصولات</li>
             </Link>
             <Link to="/about-us" className={classes.link}>
