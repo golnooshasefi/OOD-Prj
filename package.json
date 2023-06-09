@@ -21,6 +21,7 @@
     "classnames": "^2.3.1",
     "font-awesome": "^4.7.0",
     "framer-motion": "^6.3.0",
+    "lodash": "^4.17.21",
     "phosphor-react": "^1.4.1",
     "react": "^18.0.0",
     "react-code-input": "^3.10.1",
@@ -33,10 +34,12 @@
     "react-spinners": "^0.12.0",
     "react-toastify": "^9.1.2",
     "sass": "^1.50.0",
+    "source-map-explorer": "^2.5.3",
     "styled-components": "^5.3.9",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
