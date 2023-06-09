@@ -1,5 +1,6 @@
 import classes from "./productsList.module.scss";
-import Item from "./item/item";
+import React, { Suspense } from "react";
+
 import { useEffect, useState } from "react";
 import axiosInstance from "../../axios";
 import MainNavigation from "../../components/layout/MainNavigation";
@@ -8,6 +9,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import Filter from "../../components/filter";
 
 import DotLoader from "react-spinners/DotLoader";
+const Item = React.lazy(() => import("./item/item"));
+// import Item from "./item/item";
 
 const override = `
   display: inline-block;
@@ -57,7 +60,7 @@ function ProductsList() {
     <>
       <MainNavigation />
       <div className={classes.Products}>
-        <h2 className={classes.Products__header}>محصولات</h2>
+        {/* <h2 className={classes.Products__header}>محصولات</h2> */}
         <div className={classes.Products__itemContainer}>
           <DotLoader
             data-testid="loader"
@@ -73,13 +76,15 @@ function ProductsList() {
                 to={`/products-list/${element.id}`}
                 className={classes.link}
               >
-                <Item
-                  key={element.id}
-                  name={element.product_name}
-                  price={element.product_off_percent}
-                  priceOff={element.product_price}
-                  img={element.upload}
-                ></Item>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Item
+                    key={element.id}
+                    name={element.product_name}
+                    price={element.product_off_percent}
+                    priceOff={element.product_price}
+                    img={element.upload}
+                  ></Item>
+                </Suspense>
               </Link>
             ))}
         </div>
