@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../../axios";
 import { BeatLoader } from "react-spinners";
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
+
 const trash = <FontAwesomeIcon icon={faTrashCan} />;
 const edit = <FontAwesomeIcon icon={faPenToSquare} />;
 
@@ -18,15 +20,13 @@ function EditProduct() {
   let [loading, setLoading] = useState(true);
   let [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    axiosInstance.get(`/products/show_products_of_shop/`).then((res) => {
-      if (res.status === 200) {
-        console.log(res.data.products);
-        setProducts(res.data.products);
-        setLoading(false);
-      }
-    });
-  }, []);
+  async function getProductsOfShop() {
+    const res = await axiosInstance.get("/products/show_products_of_shop/");
+    setProducts(res.data.products);
+    return res.data.products;
+  }
+
+  const { data, isLoading, status } = useQuery("orders", getProductsOfShop);
 
   function deleteProductHandler(e) {
     console.log(e.target);
@@ -53,10 +53,15 @@ function EditProduct() {
           </span>
         </div>
       </div>
-      <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
-      {!loading && (
+      <BeatLoader
+        color="#6667ab"
+        loading={isLoading}
+        css={override}
+        size={30}
+      />
+      {status === "success" && (
         <div className={classes.container__favoriteItems}>
-          {products.map((element) => (
+          {data.map((element) => (
             <div
               id={element.id}
               className={classes.container__favoriteItems__item}

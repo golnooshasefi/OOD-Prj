@@ -5,6 +5,8 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../axios";
 import { BeatLoader } from "react-spinners";
+import { useQuery } from "react-query";
+
 const trash = <FontAwesomeIcon icon={faTrashCan} />;
 
 const override = `
@@ -13,18 +15,15 @@ const override = `
 `;
 
 function Favorites() {
-  let [loading, setLoading] = useState(true);
-  let [favorites, setFavorites] = useState([]);
-  console.log(favorites);
+  const [favorites, setFavorites] = useState([]);
 
-  useEffect(() => {
-    axiosInstance.get(`/favoriteProducts/show_favorite/`).then((res) => {
-      if (res.status === 200) {
-        setLoading(false);
-        setFavorites(res.data);
-      }
-    });
-  }, []);
+  async function getFavorites() {
+    const res = await axiosInstance.get("/favoriteProducts/show_favorite/");
+    setFavorites(res.data);
+    return res.data;
+  }
+
+  const { data, isLoading, status } = useQuery("favorites", getFavorites);
 
   function favoriteHandler(e) {
     console.log(e.target);
@@ -54,10 +53,15 @@ function Favorites() {
           </span>
         </div>
       </div>
-      <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
-      {!loading && (
+      <BeatLoader
+        color="#6667ab"
+        loading={isLoading}
+        css={override}
+        size={30}
+      />
+      {status === "success" && (
         <div className={classes.container__favoriteItems}>
-          {favorites.map((element) => (
+          {data.map((element) => (
             <div
               key={element.id}
               className={classes.container__favoriteItems__item}

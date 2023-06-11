@@ -7,6 +7,7 @@ import MainNavigation from "../../components/layout/MainNavigation";
 import Footer from "../../components/layout/Footer";
 import { Link, useSearchParams } from "react-router-dom";
 import Filter from "../../components/filter";
+import { useQuery } from "react-query";
 
 import DotLoader from "react-spinners/DotLoader";
 const Item = React.lazy(() => import("./item/item"));
@@ -17,60 +18,48 @@ const override = `
   margin: 20rem auto;
   grid-column: 1 / span 4;
 `;
+async function getProducts() {
+  return await axiosInstance
+    .get("/products/show_all_products/")
+    .then((res) => res.data);
+}
 
 function ProductsList() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    data: products,
+    isLoading,
+    status,
+  } = useQuery("products", getProducts);
+
+  // const [products, setProducts] = useState([]);
+  // const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
-  const url = searchParams.get("product");
   console.log(searchParams.get("product"));
 
-  useEffect(() => {
-    if (url === null) {
-      axiosInstance.get(`/products/show_all_products/`).then((res) => {
-        if (res.status === 200) {
-          setLoading(false);
-          console.log(res);
-          console.log(res.data);
-          setProducts(res.data);
-        }
-      });
-    } else if (url === "survey1") {
-      console.log("survey1 run");
-      axiosInstance.get(`accounts/user_styles/`).then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          console.log(res.data);
-          setProducts(res.data);
-          setLoading(false);
-        }
-      });
-    } else if (url === "survey2") {
-      axiosInstance.post(`questions/more_questions/`).then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          console.log(res.data);
-          setProducts(res.data);
-          setLoading(false);
-        }
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   axiosInstance.get(`/products/show_all_products/`).then((res) => {
+  //     if (res.status === 200) {
+  //       setLoading(false);
+  //       console.log(res);
+  //       console.log(res.data);
+  //       setProducts(res.data);
+  //     }
+  //   });
+  // }, []);
   return (
     <>
       <MainNavigation />
       <div className={classes.Products}>
-        {/* <h2 className={classes.Products__header}>محصولات</h2> */}
         <div className={classes.Products__itemContainer}>
           <DotLoader
             data-testid="loader"
             color="#6667ab"
-            loading={loading}
+            loading={isLoading}
             css={override}
             size={80}
             margin={2}
           />
-          {!loading &&
+          {status === "success" &&
             products.map((element) => (
               <Link
                 to={`/products-list/${element.id}`}
@@ -89,7 +78,7 @@ function ProductsList() {
             ))}
         </div>
         <div className={classes.Products__filterContainer}>
-          <Filter setProducts={setProducts} />
+          {/* <Filter setProducts={setProducts} /> */}
         </div>
       </div>
       <Footer />
