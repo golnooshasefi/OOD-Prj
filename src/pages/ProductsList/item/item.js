@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import classes from "./item.module.scss";
+import { memo } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -45,4 +46,4 @@ function Item(props) {
   );
 }
 
-export default Item;
+export default memo(Item);

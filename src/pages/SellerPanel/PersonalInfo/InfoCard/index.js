@@ -4,6 +4,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Modal from "../Modal";
 import Backdrop from "../Backdrop";
+import { memo } from "react";
 const edit = <FontAwesomeIcon icon={faPenToSquare} />;
 
 function InfoCard({ title, value, type, name, information, setInformation }) {
@@ -44,4 +45,4 @@ function InfoCard({ title, value, type, name, information, setInformation }) {
     </div>
   );
 }
-export default InfoCard;
+export default memo(InfoCard);

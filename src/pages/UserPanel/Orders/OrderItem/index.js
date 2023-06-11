@@ -9,6 +9,7 @@ import { faShield } from "@fortawesome/free-solid-svg-icons";
 import { faRulerVertical } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { faBrush } from "@fortawesome/free-solid-svg-icons";
+import { memo } from "react";
 const money = <FontAwesomeIcon icon={faMoneyBill} />;
 const check = <FontAwesomeIcon icon={faCircleCheck} />;
 const shield = <FontAwesomeIcon icon={faShield} />;
@@ -17,6 +18,7 @@ const trash = <FontAwesomeIcon icon={faTrashCan} />;
 const colorIcon = <FontAwesomeIcon icon={faBrush} />;
 
 function OrderItem({ name, price, img, size, color }) {
+  console.log("OrderItems renders");
   return (
     <div className={classes.OrderItem}>
       <img src={img} className={classes.OrderItem__pic} alt={name} />
@@ -54,4 +56,4 @@ function OrderItem({ name, price, img, size, color }) {
   );
 }
 
-export default OrderItem;
+export default memo(OrderItem);
