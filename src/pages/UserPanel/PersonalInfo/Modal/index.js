@@ -8,6 +8,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Marginer } from "../../../../components/marginer";
 import UserContext from "../../../../store/UserContext";
+import { memo } from "react";
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
@@ -171,4 +172,4 @@ function Modal(props) {
   );
 }
 
-export default Modal;
+export default memo(Modal);

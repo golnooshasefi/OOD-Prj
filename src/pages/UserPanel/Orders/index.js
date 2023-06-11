@@ -15,6 +15,7 @@ async function getOrders() {
 }
 
 function Orders() {
+  console.log("Orders renders");
   const { data: orders, isLoading, status } = useQuery("orders", getOrders);
 
   // let [loading, setLoading] = useState(true);
