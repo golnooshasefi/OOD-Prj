@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import classes from "./Report.module.scss";
 import axiosInstance from "../../../axios";
+import { useQuery } from "react-query";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,48 +16,40 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
+import { BeatLoader } from "react-spinners";
 
-// function createData(name, calories, fat, carbs, protein) {
-//   return { name, calories, fat, carbs, protein };
-// }
+const override = `
+  display: inline-block;
+  margin: 15rem auto 0;
+`;
 
-// const rows = [
-//   createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-//   createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-//   createData("Eclair", 262, 16.0, 24, 6.0),
-//   createData("Cupcake", 305, 3.7, 67, 4.3),
-//   createData("Gingerbread", 356, 16.0, 49, 3.9),
-// ];
 function createData(name, inventory, number, price, totalPrice, date) {
   return { name, inventory, number, price, totalPrice, date };
 }
 
 export default function Report() {
   const [rows, setRows] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState();
 
-  useEffect(() => {
-    axiosInstance.get(`/products/report/`).then((res) => {
-      if (res.status === 200) {
-        console.log("reponse 200");
-        setRows(
-          res.data.map((r) =>
-            createData(
-              r.productName,
-              r.inventory,
-              r.initial_inventory,
-              r.price,
-              r.totalPriceOfProduct,
-              r.date
-            )
-          )
-        );
-        // const totalPrice = setTotal(res.data[res.data.length - 1].totalSell);
-        setLoading(false);
-      }
-    });
-  }, []);
+  async function getOrders() {
+    const res = await axiosInstance.get("/products/report/");
+    setRows(
+      res.data.map((r) =>
+        createData(
+          r.productName,
+          r.inventory,
+          r.initial_inventory,
+          r.price,
+          r.totalPriceOfProduct,
+          r.date
+        )
+      )
+    );
+    return res.data;
+  }
+
+  const { isLoading, status } = useQuery("orders", getOrders);
+
   return (
     <>
       <ToastContainer />
@@ -68,7 +61,13 @@ export default function Report() {
             </span>
           </div>
         </div>
-        {!loading && (
+        <BeatLoader
+          color="#6667ab"
+          loading={isLoading}
+          css={override}
+          size={30}
+        />
+        {status === "success" && (
           <>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">

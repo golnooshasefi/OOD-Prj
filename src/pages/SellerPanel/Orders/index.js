@@ -5,6 +5,7 @@ import axiosInstance from "../../../axios";
 import { BeatLoader } from "react-spinners";
 import UserContext from "../../../store/UserContext";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
 
 const override = `
   display: inline-block;
@@ -14,16 +15,27 @@ const override = `
 function Orders() {
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState([]);
+  async function getOrders() {
+    const res = await axiosInstance.get("/orders/show_order_to_shop/");
+    setOrders(res.data);
+    return res.data;
+  }
 
-  useEffect(() => {
-    axiosInstance.get(`/orders/show_order_to_shop/`).then((res) => {
-      if (res.status === 200) {
-        console.log(res);
-        setOrders(res.data);
-        setLoading(false);
-      }
-    });
-  }, []);
+  const {
+    data: fetchorders,
+    isLoading,
+    status,
+  } = useQuery("orders", getOrders);
+
+  // useEffect(() => {
+  //   axiosInstance.get(`/orders/show_order_to_shop/`).then((res) => {
+  //     if (res.status === 200) {
+  //       console.log(res);
+  //       setOrders(res.data);
+  //       setLoading(false);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <>
@@ -36,9 +48,15 @@ function Orders() {
             </span>
           </div>
         </div>
-        {!loading && (
+        <BeatLoader
+          color="#6667ab"
+          loading={isLoading}
+          css={override}
+          size={30}
+        />
+        {status === "success" && (
           <div className={classes.container__orderItems}>
-            {orders.map((element) => (
+            {fetchorders.map((element) => (
               <OrderItem
                 name={element.product_name}
                 price={element.product_price}
@@ -47,13 +65,6 @@ function Orders() {
                 color={element.product_color}
               />
             ))}
-            <BeatLoader
-              data-testid="loader"
-              color="#6667ab"
-              loading={loading}
-              css={override}
-              size={30}
-            />
           </div>
         )}
       </div>

@@ -3,25 +3,32 @@ import OrderItem from "./OrderItem";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../axios";
 import { BeatLoader } from "react-spinners";
-
+import { useQuery } from "react-query";
 const override = `
   display: inline-block;
   margin: 15rem auto 0;
 `;
+async function getOrders() {
+  return await axiosInstance
+    .get("/orders/user_orders/")
+    .then((res) => res.data);
+}
 
 function Orders() {
-  let [loading, setLoading] = useState(true);
-  let [orders, setOrders] = useState([]);
-  console.log(orders);
+  const { data: orders, isLoading, status } = useQuery("orders", getOrders);
 
-  useEffect(() => {
-    axiosInstance.get(`/orders/user_orders/`).then((res) => {
-      if (res.status === 200) {
-        setOrders(res.data);
-        setLoading(false);
-      }
-    });
-  }, []);
+  // let [loading, setLoading] = useState(true);
+  // let [orders, setOrders] = useState([]);
+  // console.log(orders);
+
+  // useEffect(() => {
+  //   axiosInstance.get(`/orders/user_orders/`).then((res) => {
+  //     if (res.status === 200) {
+  //       setOrders(res.data);
+  //       setLoading(false);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <div className={classes.container}>
@@ -33,8 +40,14 @@ function Orders() {
           </span>
         </div>
       </div>
-      <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
-      {!loading && (
+
+      <BeatLoader
+        color="#6667ab"
+        loading={isLoading}
+        css={override}
+        size={30}
+      />
+      {status === "success" && (
         <div className={classes.container__orderItems}>
           {orders.map((element) => (
             <OrderItem
@@ -45,31 +58,6 @@ function Orders() {
               color={element.product_color}
             />
           ))}
-          {/* <OrderItem
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={199000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <OrderItem
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={199000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <OrderItem
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={199000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <OrderItem
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={199000}
-            img={"./images/clothes/11bg.png"}
-          />
-          <OrderItem
-            name={" شلوار مردانه سیدونا مدل MSI03072-403"}
-            price={199000}
-            img={"./images/clothes/11bg.png"}
-          /> */}
         </div>
       )}
     </div>
