@@ -14,31 +14,35 @@ import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
 import axiosInstance from "../../../axios";
 
 import { BeatLoader } from "react-spinners";
+import { useQuery } from "react-query";
 
 const override = `
   display: inline-block;
   margin: 15rem auto 0;
 `;
-
+async function getGifts() {
+  return await axiosInstance.get("/gifts/show_gift/").then((res) => res.data);
+}
 function Gifts() {
-  console.log("hello");
+  const { data: gifts, isLoading, status } = useQuery("gifts", getGifts);
+
   const { user, updateScore } = useContext(UserContext);
   const { msg, setMsg } = useState("");
 
   let [loading, setLoading] = useState(true);
   // let [score, setScore] = useState(0);
-  const [gifts, setGifts] = useState([]);
+  // const [gifts, setGifts] = useState([]);
 
-  useEffect(() => {
-    axiosInstance.get(`/gifts/show_gift/`).then((res) => {
-      if (res.status === 200) {
-        setGifts(res.data);
-        setLoading(false);
-      } else if (res.status === 204) {
-        setMsg("جایزه‌ای برای نمایش وجود ندارد.");
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   axiosInstance.get(`/gifts/show_gift/`).then((res) => {
+  //     if (res.status === 200) {
+  //       setGifts(res.data);
+  //       setLoading(false);
+  //     } else if (res.status === 204) {
+  //       setMsg("جایزه‌ای برای نمایش وجود ندارد.");
+  //     }
+  //   });
+  // }, []);
 
   return (
     <div className={classes.container}>
@@ -49,8 +53,13 @@ function Gifts() {
           </span>
         </div>
       </div>
-      <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
-      {!loading && (
+      <BeatLoader
+        color="#6667ab"
+        loading={isLoading}
+        css={override}
+        size={30}
+      />
+      {status === "success" && (
         <>
           <div className={classes.container__score}>
             <span className={classes["container__score--text"]}>
