@@ -26,23 +26,8 @@ async function getGifts() {
 function Gifts() {
   const { data: gifts, isLoading, status } = useQuery("gifts", getGifts);
 
-  const { user, updateScore } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { msg, setMsg } = useState("");
-
-  let [loading, setLoading] = useState(true);
-  // let [score, setScore] = useState(0);
-  // const [gifts, setGifts] = useState([]);
-
-  // useEffect(() => {
-  //   axiosInstance.get(`/gifts/show_gift/`).then((res) => {
-  //     if (res.status === 200) {
-  //       setGifts(res.data);
-  //       setLoading(false);
-  //     } else if (res.status === 204) {
-  //       setMsg("جایزه‌ای برای نمایش وجود ندارد.");
-  //     }
-  //   });
-  // }, []);
 
   return (
     <div className={classes.container}>
