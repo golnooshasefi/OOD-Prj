@@ -4,6 +4,7 @@ import classes from "./giftcard.module.scss";
 import classNames from "classnames";
 import { Button } from "@mui/material";
 import UserContext from "../../../store/UserContext";
+import { memo } from "react";
 
 function Giftcard(props) {
   const { user, updateScore } = useContext(UserContext);
@@ -58,4 +59,4 @@ function Giftcard(props) {
   );
 }
 
-export default Giftcard;
+export default memo(Giftcard);

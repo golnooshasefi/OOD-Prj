@@ -27,7 +27,6 @@ function Gifts() {
   const { data: gifts, isLoading, status } = useQuery("gifts", getGifts);
 
   const { user } = useContext(UserContext);
-  const { msg, setMsg } = useState("");
 
   return (
     <div className={classes.container}>
